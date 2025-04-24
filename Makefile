@@ -6,7 +6,7 @@
 #    By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/04/23 18:52:39 by luclgdm          ###   ########.fr        #
+#    Updated: 2025/04/24 14:32:47 by luclgdm          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,14 @@ INCLUDES = includes/
 OBJ_DIR = objs/
 SRC_DIR = srcs/
 MEM_DIR = Memory/
+INI_DIR = Initialisation/
 
 
 # Liste des fichiers source
 SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(MEM_DIR)free.c \
-			$(SRC_DIR)$(MEM_DIR)malloc.c
+			$(SRC_DIR)$(MEM_DIR)malloc.c \
+			$(SRC_DIR)$(INI_DIR)game_init.c
 			
 # Transforme chaque fichier source en un fichier objet dans $(OBJ_DIR)
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
@@ -43,8 +45,8 @@ $(OBJ_DIR)%.o: %.c
 # Création du dossier objs/ et des sous-répertoires s'ils n'existent pas
 mkdir_obj:
 	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)$(SRC_DIR)
-	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(MEM_DIR)
+	@mkdir -p $(OBJ_DIR)$(MEM_DIR)
+	@mkdir -p $(OBJ_DIR)$(INI_DIR)
 
 # Compilation finale
 $(NAME): $(OBJS)

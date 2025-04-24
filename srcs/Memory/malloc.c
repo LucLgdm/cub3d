@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:36:24 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/23 18:56:07 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/24 11:24:11 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,20 @@
 
 void	ft_malloc_game(t_game *game)
 {
-	ft_malloc_mlx(game);
 	ft_malloc_image(game);
 	ft_malloc_map(game);
 }
 
 void	ft_malloc_mlx(t_game *game)
 {
-	game->mlx.mlx = mlx_init();
-	mlx_get_screen_size(game->mlx.mlx, &game->width_w, &game->height_w);
-	game->mlx.win = mlx_new_window(game->mlx.mlx, game->width_w, game->height_w, "cub3D");
+	game->mlx = mlx_init();
+	mlx_get_screen_size(game->mlx, &game->width_w, &game->height_w);
+	game->win = mlx_new_window(game->mlx, game->width_w, game->height_w, "cub3D");
 }
 
 void	ft_malloc_image(t_game *game)
 {
-	game->image = ft_calloc(sizeof(t_image));
+	game->image = ft_calloc(1, sizeof(t_image));
 	if (!game->image)
 	{
 		fprintf(stderr, "Error malloc image: %s\n", strerror(errno));
@@ -41,7 +40,7 @@ void 	ft_malloc_map(t_game *game)
 	int	i;
 
 	i = -1;
-	game->map = ft_malloc(sizeof(char *) * (game->height_w + 1));
+	game->map = ft_calloc(game->height_w + 1, sizeof(char *));
 	if (!game->map)
 	{
 		fprintf(stderr, "Error malloc map: %s\n", strerror(errno));
@@ -50,7 +49,7 @@ void 	ft_malloc_map(t_game *game)
 	game->map[game->height_w] = NULL;
 	while(++i < game->height_w)
 	{
-		game->map[i] = ft_malloc(sizeof(char) * (game->width_w + 1));
+		game->map[i] = ft_calloc(game->width_w + 1, sizeof(char));
 		if (!game->map[i])
 		{
 			fprintf(stderr, "Error malloc map line: %s\n", strerror(errno));

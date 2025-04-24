@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/24 14:39:04 by luclgdm          ###   ########.fr       */
+/*   Created: 2025/04/24 14:27:09 by luclgdm           #+#    #+#             */
+/*   Updated: 2025/04/24 15:12:13 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_game	*ft_get_game(void)
-{
-	static t_game	game;
-
-	return (&game);
-}
-
-int main(int argc, char **argv){
-	(void)argc;
-	(void)argv;
+void	ft_game_initialisation(int argc, char **argv){
 	t_game	*game;
+	int		size;
+	int		fd;
 
-	ft_game_initialisation(argc, argv);
+	if (argc != 2)
+		ft_print_error_and_exit("Usage: ./cub3D <map.cub>\n");
+	size = ft_strlen(argv[1]);
+	if (ft_strncmp(argv[1] + size - 4, ".cub", 4) != 0)
+		ft_print_error_and_exit("Error: Invalid file extension: .cub\n");
 	game = ft_get_game();
-	game->mlx = mlx_init();
-	mlx_get_screen_size(game->mlx, &game->width_w, &game->height_w);
-	game->win = mlx_new_window(game->mlx, game->width_w, game->height_w, "cub3D");
-	return (0);	
+	game = ft_calloc(1, sizeof(t_game));
+	if (!game)
+		ft_print_error_and_exit("Error: Memory allocation for game failed\n");
+	ft_parsing(game, argv[1]);
 }
+

@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/23 18:54:51 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/24 15:10:08 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <errno.h>
 
+#include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
 
 #include "image.h"
-
-typedef struct s_mlx{
-	void	*mlx;
-	void	*win;
-} t_mlx;
+#include "map.h"
 
 typedef struct s_game{
-	t_mlx	mlx;
-	char	**map;
-	void	*image;
+	void	*mlx;
+	void	*win;
+	t_map	*map;
+	// void	*image;
 	int		height_w;
 	int		width_w;
 } t_game;
@@ -43,6 +40,13 @@ typedef struct s_game{
  t_game	*ft_get_game(void);
 
 /********************
+ * 	Initialisation
+ ********************/
+
+ void	ft_game_initialisation(int argc, char **argv);
+ void	ft_map_initialisation(t_game *game, int fd);
+ 
+/********************
  * 		Memory
  ********************/
 
@@ -50,5 +54,16 @@ void	ft_malloc_game(t_game *game);
 void	ft_malloc_mlx(t_game *game);
 void	ft_malloc_image(t_game *game);
 void	ft_malloc_map(t_game *game);
+
+void	ft_free_game(t_game *game);
+void	ft_free_mlx(t_game *game);
+void	ft_free_image(t_game *game);
+void	ft_free_map(t_game *game);
+
+/********************
+ * 		Error
+ ********************/
+
+void	ft_print_error_and_exit(char *error_message);
 
 #endif
