@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:36:24 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/24 11:24:11 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/25 16:07:05 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ void 	ft_malloc_map(t_game *game)
 		fprintf(stderr, "Error malloc map: %s\n", strerror(errno));
 		exit(EXIT_FAILURE);
 	}
-	game->map[game->height_w] = NULL;
+	game->map->map[game->height_w] = NULL;
 	while(++i < game->height_w)
 	{
-		game->map[i] = ft_calloc(game->width_w + 1, sizeof(char));
-		if (!game->map[i])
+		game->map->map[i] = ft_calloc(game->width_w + 1, sizeof(char));
+		if (!game->map->map[i])
 		{
 			fprintf(stderr, "Error malloc map line: %s\n", strerror(errno));
 			exit(EXIT_FAILURE);
 		}
-		game->map[i][game->width_w] = '\0';
+		game->map->map[i][game->width_w] = '\0';
 	}
 }

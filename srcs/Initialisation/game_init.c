@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:27:09 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/24 15:12:13 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/26 11:51:58 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_game_initialisation(int argc, char **argv){
 	t_game	*game;
 	int		size;
-	int		fd;
 
 	if (argc != 2)
 		ft_print_error_and_exit("Usage: ./cub3D <map.cub>\n");
@@ -23,9 +22,7 @@ void	ft_game_initialisation(int argc, char **argv){
 	if (ft_strncmp(argv[1] + size - 4, ".cub", 4) != 0)
 		ft_print_error_and_exit("Error: Invalid file extension: .cub\n");
 	game = ft_get_game();
-	game = ft_calloc(1, sizeof(t_game));
-	if (!game)
-		ft_print_error_and_exit("Error: Memory allocation for game failed\n");
-	ft_parsing(game, argv[1]);
+	printf("ft_game_initialisation game address: %p\n", game);
+	ft_parsing(game, argv);
 }
 

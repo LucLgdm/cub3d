@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/24 15:10:08 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/26 11:28:32 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_game{
 	void	*mlx;
 	void	*win;
 	t_map	*map;
-	// void	*image;
+	t_image	*image;
 	int		height_w;
 	int		width_w;
 } t_game;
@@ -45,6 +45,15 @@ typedef struct s_game{
 
  void	ft_game_initialisation(int argc, char **argv);
  void	ft_map_initialisation(t_game *game, int fd);
+
+/********************
+ * 		Parsing
+ ********************/
+
+void	ft_parsing(t_game *game, char **argv);
+void	ft_get_link_image(t_game *game, int fd);
+bool	ft_is_link(char *line);
+void	ft_fill_link(t_game *game, char *line);
  
 /********************
  * 		Memory
@@ -65,5 +74,7 @@ void	ft_free_map(t_game *game);
  ********************/
 
 void	ft_print_error_and_exit(char *error_message);
+void	ft_print_image();
+void	ft_print_game();
 
 #endif
