@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/29 10:20:44 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/29 15:08:41 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,15 @@ typedef struct s_game{
  ********************/
 
 void	ft_parsing(t_game *game, char **argv);
+	/*   LINK    */
 char	*ft_get_link_image(int fd);
 bool	ft_is_link(char *line);
 void	ft_fill_link(char *line, int *counter);
-void	ft_check_path( char *line, int start, char c);
- 
+	/*   COLOR   */
+char	*ft_get_color(int fd, char *line);
+bool	ft_fill_color(char c, char **splitted);
+	/*    MAP    */
+
 /********************
  * 		Memory
  ********************/
@@ -75,6 +79,7 @@ void	ft_free_map(t_game *game);
  ********************/
 
 void	ft_print_error_and_exit(char *error_message);
+void	ft_exit_parsing(int fd, char *line, char *error_message);
 void	ft_print_image();
 void	ft_print_game();
 void	ft_print_map();

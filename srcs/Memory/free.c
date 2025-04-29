@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/28 14:46:05 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/29 15:32:08 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ void	ft_free_game(t_game *game)
 }
 void	ft_free_mlx(t_game *game)
 {
-	if (game->win && game->mlx)
-	{
 		mlx_destroy_window(game->mlx, game->win);
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
-	}
 }
 
 void	ft_free_image(t_game *game)
@@ -36,8 +33,6 @@ void	ft_free_image(t_game *game)
 		free(game->image->wall_S);
 		free(game->image->wall_E);
 		free(game->image->wall_W);
-		free(game->image->floor);
-		free(game->image->ceiling);
 		free(game->image);
 	}
 }

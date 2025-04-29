@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:56:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/28 14:14:05 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/29 15:30:04 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,14 @@ void ft_print_image(){
 	printf("Wall_S: %s\n", (char *)game->image->wall_S);
 	printf("Wall_E: %s\n", (char *)game->image->wall_E);
 	printf("Wall_W: %s\n", (char *)game->image->wall_W);
-	printf("Floor: %s\n", (char *)game->image->floor);
-	printf("Ceiling: %s\n", (char *)game->image->ceiling);
+	printf("Floor: %i\n", game->image->floor.value);
+	printf("  red  : %i\n", game->image->floor.s_channel.r);
+	printf("  green: %i\n", game->image->floor.s_channel.g);
+	printf("  blue : %i\n", game->image->floor.s_channel.b);
+	printf("Ceiling: %i\n", game->image->ceiling.value);
+	printf("  red    : %i\n", game->image->ceiling.s_channel.r);
+	printf("  green  : %i\n", game->image->ceiling.s_channel.g);
+	printf("  blue   : %i\n", game->image->ceiling.s_channel.b);
 	printf("\n");
 }
 
