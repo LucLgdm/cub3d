@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:56:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/26 11:54:24 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/28 14:14:05 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,19 @@ void ft_print_image(){
 	printf("Wall_W: %s\n", (char *)game->image->wall_W);
 	printf("Floor: %s\n", (char *)game->image->floor);
 	printf("Ceiling: %s\n", (char *)game->image->ceiling);
+	printf("\n");
+}
+
+void	ft_print_map(){
+	t_game	*game;
+	int		i;
+
+	printf("ft_print_map\n");
+	game = ft_get_game();
+	i = -1;
+	while (++i < game->map->height)
+	{
+		printf("%s\n", game->map->map[i]);
+	}
 	printf("\n");
 }

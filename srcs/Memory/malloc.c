@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:36:24 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/25 16:07:05 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/28 14:40:38 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,11 @@ void	ft_malloc_image(t_game *game)
 
 void 	ft_malloc_map(t_game *game)
 {
-	int	i;
-
-	i = -1;
-	game->map = ft_calloc(game->height_w + 1, sizeof(char *));
+	// int	i;
+	
+	game->map = ft_calloc(1, sizeof(t_map));
 	if (!game->map)
-	{
-		fprintf(stderr, "Error malloc map: %s\n", strerror(errno));
-		exit(EXIT_FAILURE);
-	}
-	game->map->map[game->height_w] = NULL;
-	while(++i < game->height_w)
-	{
-		game->map->map[i] = ft_calloc(game->width_w + 1, sizeof(char));
-		if (!game->map->map[i])
-		{
-			fprintf(stderr, "Error malloc map line: %s\n", strerror(errno));
-			exit(EXIT_FAILURE);
-		}
-		game->map->map[i][game->width_w] = '\0';
-	}
+		ft_print_error_and_exit("Error malloc t_map\n");
+	game->map->height = 0;
+	game->map->width = 0;
 }

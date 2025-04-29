@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/26 11:58:32 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/28 14:46:05 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_free_map(t_game *game)
 	i = -1;
 	if (game->map)
 	{
-		while (++i < game->height_w)
+		while (++i < game->map->height)
 		{
 			if (game->map->map[i])
 				free(game->map->map[i]);
