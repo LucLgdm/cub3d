@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:36:24 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/28 14:40:38 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/30 10:50:44 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void	ft_malloc_image(t_game *game)
 }
 
 void 	ft_malloc_map(t_game *game)
-{
-	// int	i;
-	
+{	
 	game->map = ft_calloc(1, sizeof(t_map));
 	if (!game->map)
 		ft_print_error_and_exit("Error malloc t_map\n");

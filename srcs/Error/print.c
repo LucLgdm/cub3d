@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:56:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/29 15:30:04 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:19:48 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,5 @@ void	ft_print_map(){
 	game = ft_get_game();
 	i = -1;
 	while (++i < game->map->height)
-	{
 		printf("%s\n", game->map->map[i]);
-	}
-	printf("\n");
 }

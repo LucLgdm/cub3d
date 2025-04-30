@@ -6,14 +6,14 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 15:12:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/29 11:38:13 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:18:03 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 void	ft_parsing(t_game *game, char **argv){
-	int	fd;
+	int		fd;
 	char	*line;
 	
 	ft_malloc_image(game);
@@ -25,7 +25,7 @@ void	ft_parsing(t_game *game, char **argv){
 	fd = open(argv[1], O_RDONLY);
 	line = ft_get_link_image(fd);
 	line = ft_get_color(fd, line);
-	// ft_map_initialisation(game, fd, line);
-	free(line);
+	ft_get_map(game, fd, line);
+	
 }
 

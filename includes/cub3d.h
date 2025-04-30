@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/29 15:08:41 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:15:41 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,25 @@ typedef struct s_game{
  ********************/
 
  void	ft_game_initialisation(int argc, char **argv);
- void	ft_map_initialisation(t_game *game, int fd, char *line);
 
 /********************
  * 		Parsing
  ********************/
 
 void	ft_parsing(t_game *game, char **argv);
+
 	/*   LINK    */
 char	*ft_get_link_image(int fd);
 bool	ft_is_link(char *line);
 void	ft_fill_link(char *line, int *counter);
+
 	/*   COLOR   */
 char	*ft_get_color(int fd, char *line);
 bool	ft_fill_color(char c, char **splitted);
+
 	/*    MAP    */
+void	ft_get_map(t_game *game, int fd, char *line);
+void	ft_new_line(int fd, char *line, t_game *game);
 
 /********************
  * 		Memory
