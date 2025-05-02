@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 09:54:21 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/30 11:24:50 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/02 08:02:47 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_get_map(t_game *game, int fd, char *line)
 {
-	while(line)
+	while(line && ft_strncmp(line, "\n", 2))
 	{
 		if (game->map->height == 0)
 		{
@@ -28,6 +28,13 @@ void	ft_get_map(t_game *game, int fd, char *line)
 		free(line);
 		line = get_next_line(fd);
 	}
+	while(line && ft_strncmp(line, "\n", 2) == 0)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (line)
+		ft_exit_parsing(fd, line, "Error\nTo much element in file\n");
 	free(line);
 	line = NULL;
 	close(fd);
