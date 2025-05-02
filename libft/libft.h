@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 10:20:13 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/03/17 14:25:26 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/02 08:46:33 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		ft_next_prime(int n);
 bool	ft_isprime(int n);
 int		ft_arraylen(char **str);
 void	ft_free_array(char **split);
+char	**ft_transpose_tab(char **tab);
 char	**ft_catchartab(char **tab1, char **tab2, int pos);
 void	ft_print_tab(char **tab);
 int		ft_isdigit(int c);
