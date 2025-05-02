@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 09:54:21 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/02 08:02:47 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/02 09:09:28 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,27 @@ void	ft_new_line(int fd, char *line, t_game *game)
 		game->map->map[i] = tmp[i];
 	game->map->map[i] = ft_strdup(line);
 	free(tmp);
+}
+
+void ft_check_map(t_game *game)
+{
+	t_map	*transposed_map;
+	
+	transposed_map->map = ft_transpose_tab(game->map->map);
+	transposed_map->height = game->map->width;
+	transposed_map->width = game->map->height;
+	ft_check_border(game->map);
+	ft_check_border(transposed_map);
+}
+
+void	ft_check_border(t_map *map)
+{
+	int	i;
+
+	i = -1;
+	while(++i < map->height)
+	{
+		ft_check_wall(map->map[i]);
+		ft_check_content(map->map[i], i);
+	}
 }

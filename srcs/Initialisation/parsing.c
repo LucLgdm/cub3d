@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 15:12:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/30 11:27:50 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/02 08:08:37 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	ft_parsing(t_game *game, char **argv){
 	line = ft_get_link_image(fd);
 	line = ft_get_color(fd, line);
 	ft_get_map(game, fd, line);
-	// ft_check_map(game);
+	ft_check_map(game);
 }
 

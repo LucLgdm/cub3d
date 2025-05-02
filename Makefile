@@ -6,7 +6,7 @@
 #    By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/04/30 10:00:40 by luclgdm          ###   ########.fr        #
+#    Updated: 2025/05/02 08:07:19 by luclgdm          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ $(NAME): $(OBJS)
 	@echo "\033[32mlibft en cours\033[0m"
 	@make -C libft all --silent
 	@echo "\033[0;32mSUCCESS !\033[0m \033[0;33mlibft\033[0m"
-	@make -C libft clean --silent
 	@echo "\033[32mCompilation $(NAME) en cours\033[0m"
 	@$(CC) $(OBJS) $(FLAGS) -o $(NAME)
 	@echo "\033[0;32mSUCCESS !\033[0m \033[0;33m$(NAME)\033[0m"
