@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:44:36 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/29 15:38:09 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/05 10:37:56 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ char	*ft_get_color(int fd, char *line)
 
 	counter = 0;
 	if (line[0] != 'F' && line[0] != 'C')
-		ft_exit_parsing(fd, line, "Error\nColor doesn't exist or at the wrong place\n");
-	while(1)
+		ft_exit_parsing(fd, line, "Error\nColors got a problem !\n");
+	while (1)
 	{
 		if (line[0] == 'F' || line[0] == 'C')
 		{
@@ -31,9 +31,9 @@ char	*ft_get_color(int fd, char *line)
 			if (!ft_fill_color(line[0], splitted))
 				ft_exit_parsing(fd, line, "Error\nInvalid color format\n");
 		}
-		else if(ft_strncmp(line, "\n", 1) != 0)
+		else if (ft_strncmp(line, "\n", 1) != 0)
 		{
-			if(counter != 2)
+			if (counter != 2)
 				ft_exit_parsing(fd, line, "Error\nMissing, too much color\n");
 			break ;
 		}
@@ -47,7 +47,7 @@ bool	ft_fill_color(char c, char **splitted)
 {
 	int		i;
 	t_color	color;
-	
+
 	i = -1;
 	if (ft_arraylen(splitted) != 3)
 		return (ft_free_array(splitted), false);

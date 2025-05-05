@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:22:10 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/03/17 14:22:35 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/05 14:08:23 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	ft_print_tab(char **tab)
 
 	i = -1;
 	while (tab[++i])
-		ft_printf("%s ", tab[i]);
+		ft_printf("%s\n", tab[i]);
 	ft_printf("\n");
 }

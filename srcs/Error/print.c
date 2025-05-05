@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:56:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/30 11:19:48 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/05 10:35:27 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void ft_print_game(){
+void	ft_print_game(void)
+{
 	t_game	*game;
 
 	printf("ft_print_game\n");
@@ -27,7 +28,8 @@ void ft_print_game(){
 	printf("\n");
 }
 
-void ft_print_image(){
+void	ft_print_image(void)
+{
 	t_game	*game;
 
 	printf("ft_print_image\n");
@@ -47,7 +49,8 @@ void ft_print_image(){
 	printf("\n");
 }
 
-void	ft_print_map(){
+void	ft_print_map(void)
+{
 	t_game	*game;
 	int		i;
 

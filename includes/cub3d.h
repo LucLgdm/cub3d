@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/02 16:39:33 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/05 14:21:32 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3d_H
+#ifndef CUB3D_H
 # define CUB3D_H
 
 #include <stdio.h>
@@ -64,10 +64,10 @@ bool	ft_fill_color(char c, char **splitted);
 void	ft_get_map(t_game *game, int fd, char *line);
 void	ft_new_line(int fd, char *line, t_game *game);
 void	ft_check_map(t_game *game);
-void	ft_check_border(t_map *map);
-void	ft_check_content(char *line);
+int		ft_check_border(t_map *map);
+int		ft_check_content(char *line);
 bool	ft_is_good_char(char c);
-void	ft_check_wall(char *line);
+int		ft_check_wall(char *line);
 
 /********************
  * 		Memory
@@ -81,7 +81,7 @@ void	ft_malloc_map(t_game *game);
 void	ft_free_game(t_game *game);
 void	ft_free_mlx(t_game *game);
 void	ft_free_image(t_game *game);
-void	ft_free_map(t_game *game);
+void	ft_free_map(t_map *map);
 
 /********************
  * 		Error

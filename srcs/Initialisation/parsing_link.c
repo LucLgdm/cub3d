@@ -3,36 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_link.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:42:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/29 15:20:11 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/05 10:35:14 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*ft_get_link_image(int fd){
+char	*ft_get_link_image(int fd)
+{
 	char	*line;
 	int		counter;
-	
+
 	counter = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		if(ft_is_link(line))
+		if (ft_is_link(line))
 		{
 			line[ft_strlen(line) - 1] = '\0';
 			ft_fill_link(line, &counter);
 		}
-		else if(ft_strncmp(line, "\n", 1) != 0)
+		else if (ft_strncmp(line, "\n", 1) != 0)
 		{
 			if (counter != 4)
 			{
 				ft_putstr_fd("Error\nMissing, too much,", 2);
 				ft_exit_parsing(fd, line, " or invalid link\n");
 			}
-			break;
+			break ;
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -40,10 +41,10 @@ char	*ft_get_link_image(int fd){
 	return (line);
 }
 
-
-bool	ft_is_link(char *line){
-	if (ft_strncmp(line, "NO ", 3) == 0 || ft_strncmp(line, "SO ", 3) == 0 ||
-		ft_strncmp(line, "WE ", 3) == 0 || ft_strncmp(line, "EA ", 3) == 0)
+bool	ft_is_link(char *line)
+{
+	if (ft_strncmp(line, "NO ", 3) == 0 || ft_strncmp(line, "SO ", 3) == 0
+		|| ft_strncmp(line, "WE ", 3) == 0 || ft_strncmp(line, "EA ", 3) == 0)
 		return (true);
 	return (false);
 }
@@ -67,4 +68,3 @@ void	ft_fill_link(char *line, int *counter)
 	else
 		ft_print_error_and_exit("Error\nInvalid path\n");
 }
-

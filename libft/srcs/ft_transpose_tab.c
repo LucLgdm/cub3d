@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_transpose_tab.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 08:20:26 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/02 16:42:20 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/05 12:27:32 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ char	**ft_transpose_tab(char **tab)
             tab_width = ft_strlen(tab[i]);
     }
     i = -1;
-    transposed_tab = ft_calloc(tab_width + 1, sizeof(char **));
+    transposed_tab = ft_calloc(tab_width + 1, sizeof(char *));
     if (!transposed_tab)
         return (NULL);
     while(++i < tab_width)
     {
-        transposed_tab[i] = ft_calloc(tab_length + 1, sizeof(char *));
+        transposed_tab[i] = ft_calloc(tab_length + 1, sizeof(char));
         if (!transposed_tab[i])
         {
             ft_free_array(transposed_tab);

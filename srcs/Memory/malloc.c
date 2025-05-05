@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:36:24 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/30 10:50:44 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/05 10:35:03 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	ft_malloc_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	mlx_get_screen_size(game->mlx, &game->width_w, &game->height_w);
-	game->win = mlx_new_window(game->mlx, game->width_w, game->height_w, "cub3D");
+	game->win = mlx_new_window(game->mlx, game->width_w, game->height_w,
+			"cub3D");
 }
 
 void	ft_malloc_image(t_game *game)
@@ -35,8 +36,8 @@ void	ft_malloc_image(t_game *game)
 	}
 }
 
-void 	ft_malloc_map(t_game *game)
-{	
+void	ft_malloc_map(t_game *game)
+{
 	game->map = ft_calloc(1, sizeof(t_map));
 	if (!game->map)
 		ft_print_error_and_exit("Error malloc t_map\n");

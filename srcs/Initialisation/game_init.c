@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:27:09 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/26 12:03:12 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/05 10:35:20 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_game_initialisation(int argc, char **argv){
+void	ft_game_initialisation(int argc, char **argv)
+{
 	t_game	*game;
 	int		size;
 
@@ -24,4 +25,3 @@ void	ft_game_initialisation(int argc, char **argv){
 	game = ft_get_game();
 	ft_parsing(game, argv);
 }
-
