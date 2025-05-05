@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/02 09:05:51 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/02 16:39:33 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ bool	ft_fill_color(char c, char **splitted);
 void	ft_get_map(t_game *game, int fd, char *line);
 void	ft_new_line(int fd, char *line, t_game *game);
 void	ft_check_map(t_game *game);
+void	ft_check_border(t_map *map);
 void	ft_check_content(char *line);
+bool	ft_is_good_char(char c);
 void	ft_check_wall(char *line);
 
 /********************

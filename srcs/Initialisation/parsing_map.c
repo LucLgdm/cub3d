@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 09:54:21 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/02 09:09:28 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/02 16:39:10 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void ft_check_map(t_game *game)
 {
 	t_map	*transposed_map;
 	
+	transposed_map = ft_calloc(1, sizeof(t_map));
+	if (!transposed_map)
+		ft_print_error_and_exit("Error malloc ft_check_map\n");
 	transposed_map->map = ft_transpose_tab(game->map->map);
 	transposed_map->height = game->map->width;
 	transposed_map->width = game->map->height;
@@ -75,6 +78,6 @@ void	ft_check_border(t_map *map)
 	while(++i < map->height)
 	{
 		ft_check_wall(map->map[i]);
-		ft_check_content(map->map[i], i);
+		ft_check_content(map->map[i]);
 	}
 }

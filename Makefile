@@ -6,7 +6,7 @@
 #    By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/05/02 08:07:19 by luclgdm          ###   ########.fr        #
+#    Updated: 2025/05/02 16:35:24 by luclgdm          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(INI_DIR)parsing_link.c \
 			$(SRC_DIR)$(INI_DIR)parsing_color.c \
 			$(SRC_DIR)$(INI_DIR)parsing_map.c \
+			$(SRC_DIR)$(INI_DIR)check_map.c \
 			$(SRC_DIR)$(ERR_DIR)error.c \
 			$(SRC_DIR)$(ERR_DIR)print.c \
 			
