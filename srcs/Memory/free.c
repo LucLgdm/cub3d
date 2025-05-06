@@ -6,24 +6,18 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/05 14:46:56 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:28:04 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+
 void	ft_free_game(t_game *game)
 {
-	// ft_free_mlx(game);
 	ft_free_image(game);
 	ft_free_map(game->map);
-}
-
-void	ft_free_mlx(t_game *game)
-{
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	ft_free_player(game->player);
 }
 
 void	ft_free_image(t_game *game)
@@ -54,4 +48,10 @@ void	ft_free_map(t_map *map)
 	free(map->map);
 	free(map);
 	map = NULL;
+}
+
+void	ft_free_player(t_player *player)
+{
+	if (player)
+		free(player);
 }

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 08:20:26 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/06 11:22:44 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:48:54 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 char	**ft_transpose_tab(char **tab)
 {
 	char	**transposed_tab;
-	size_t	tab_length;
-	size_t	tab_width;
+	int		tab_length;
+	int		tab_width;
 	int		i;
 	int		j;
 
-	tab_length = ft_arraylen(tab);
+	tab_length = (int)ft_arraylen(tab);
 	if (tab_length == 0)
 		return (NULL);
 	tab_width = 0;
 	i = -1;
 	while (++i < tab_length)
-		if (ft_strlen(tab[i]) > tab_width)
-			tab_width = ft_strlen(tab[i]);
+		if ((int)ft_strlen(tab[i]) > tab_width)
+			tab_width = (int)ft_strlen(tab[i]);
 	transposed_tab = ft_calloc(tab_width + 1, sizeof(char *));
 	if (!transposed_tab)
 		return (NULL);
@@ -48,7 +48,7 @@ char	**ft_transpose_tab(char **tab)
 	while (++i < tab_length)
 	{
 		j = -1;
-		while (++j < ft_strlen(tab[i]))
+		while (++j < (int)ft_strlen(tab[i]))
 			transposed_tab[j][i] = tab[i][j];
 	}
 	return (transposed_tab);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+         #
+#    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/05/02 16:35:24 by luclgdm          ###   ########.fr        #
+#    Updated: 2025/05/06 13:42:03 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC_DIR = srcs/
 MEM_DIR = Memory/
 INI_DIR = Initialisation/
 ERR_DIR = Error/
+MLX_DIR = Mlx/
 
 # Liste des fichiers source
 SRC_FILES = $(SRC_DIR)main.c \
@@ -39,6 +40,9 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(INI_DIR)check_map.c \
 			$(SRC_DIR)$(ERR_DIR)error.c \
 			$(SRC_DIR)$(ERR_DIR)print.c \
+			$(SRC_DIR)$(MLX_DIR)hook.c \
+			$(SRC_DIR)$(MLX_DIR)quit.c \
+			$(SRC_DIR)$(MLX_DIR)display.c \
 			
 # Transforme chaque fichier source en un fichier objet dans $(OBJ_DIR)
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
@@ -56,6 +60,7 @@ mkdir_obj:
 	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(MEM_DIR)
 	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(INI_DIR)
 	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(ERR_DIR)
+	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(MLX_DIR)
 
 # Compilation finale
 $(NAME): $(OBJS)

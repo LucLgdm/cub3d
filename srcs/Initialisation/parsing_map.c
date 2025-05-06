@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 09:54:21 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/05 17:56:04 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:42:34 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,6 @@ void	ft_check_map(t_game *game)
 	}
 	transposed_map->height = game->map->width;
 	transposed_map->width = game->map->height;
-	
-
-	ft_print_tab(transposed_map->map);
 	res = ft_check_border(transposed_map);
 	ft_free_map(transposed_map);
 	if (res == 1)
@@ -99,10 +96,12 @@ int	ft_check_border(t_map *map)
 	i = -1;
 	while (map->map[++i])
 	{
+		if (map->width < (int)ft_strlen(map->map[i]))
+			map->width = (int)ft_strlen(map->map[i]);
 		res = ft_check_wall(map->map[i]);
 		if (res)
 			return (1);
-		res = ft_check_content(map->map[i]);
+		res = ft_check_content(map->map[i], i);
 		if (res)
 			return (2);
 	}
