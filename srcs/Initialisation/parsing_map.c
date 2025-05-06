@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 09:54:21 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/05 14:47:35 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/05 17:56:04 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	ft_get_map(t_game *game, int fd, char *line)
 			if (!game->map->map)
 				ft_exit_parsing(fd, line, "Error\nAllocation map failed\n");
 		}
-		line[ft_strlen(line) - 1] = '\0';
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = '\0';
 		ft_new_line(fd, line, game);
 		game->map->height++;
 		free(line);
@@ -79,6 +80,9 @@ void	ft_check_map(t_game *game)
 	}
 	transposed_map->height = game->map->width;
 	transposed_map->width = game->map->height;
+	
+
+	ft_print_tab(transposed_map->map);
 	res = ft_check_border(transposed_map);
 	ft_free_map(transposed_map);
 	if (res == 1)
