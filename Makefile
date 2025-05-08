@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
+#    By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/05/06 13:42:03 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/05/08 15:34:09 by luclgdm          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = cub3d
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -I $(INCLUDES)
-FLAGS = $(LIBFT) $(MLX) -I mlx -Lmlx -lmlx -lX11 -lXext
+FLAGS = $(LIBFT) $(MLX) -I mlx -Lmlx -lmlx -lX11 -lXext -lm
 
 LIBFT = libft/libft.a
 MLX = mlx/libmlx.a
@@ -42,7 +42,7 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(ERR_DIR)print.c \
 			$(SRC_DIR)$(MLX_DIR)hook.c \
 			$(SRC_DIR)$(MLX_DIR)quit.c \
-			$(SRC_DIR)$(MLX_DIR)display.c \
+			$(SRC_DIR)$(MLX_DIR)display.c
 			
 # Transforme chaque fichier source en un fichier objet dans $(OBJ_DIR)
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))

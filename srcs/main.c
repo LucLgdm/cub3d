@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/06 17:45:14 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:34:55 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	ft_game(void)
     game->mlx->addr = mlx_get_data_addr(game->mlx->img, &game->mlx->bits_per_pixel, &game->mlx->line_length,
 			&game->mlx->endian);
 
+
 	
 	
 	ft_display(game);
@@ -51,15 +52,21 @@ static void	ft_game(void)
 
 int	main(int argc, char **argv)
 {
-	t_game	*game;
-
-	game = ft_get_game();
-
 	ft_game_initialisation(argc, argv);
 
-	game->player->pos.x *= 64;
-	game->player->pos.y *= 64;
-	// ft_print_game();
+	t_game * game = ft_get_game();
+
+	if (game->player->direction == 'N')
+		game->player->angle = 3 * PI / 2;
+	else if (game->player->direction == 'S')
+		game->player->angle = PI / 2;
+	else if (game->player->direction == 'E')
+		game->player->angle = 0;
+	else if (game->player->direction == 'W')
+		game->player->angle = PI;
+	game->player->dx = 5 * cos(game->player->angle);
+	game->player->dy = 5 * sin(game->player->angle);
+	
 	ft_game();
 
 	return (0);

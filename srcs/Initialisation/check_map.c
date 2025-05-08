@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:04:54 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/06 17:42:40 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:20:07 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void	ft_fill_player(char c, int i, int j, t_game *game)
 			ft_print_error_and_exit("Error: Memory allocation for player failed\n");
 	}
 		
-	game->player->pos.x = j;
-	game->player->pos.y = i;
+	game->player->pos.x = (float)j;
+	game->player->pos.y = (float)i;
+	game->player->pos.x = 64 * game->player->pos.x + 27;
+	game->player->pos.y = 64 * game->player->pos.y + 27;
 	game->player->direction = c;
 }

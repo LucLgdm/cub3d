@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/06 17:42:58 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:32:08 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
+# include "math.h"
+# define PI 3.1415926535
 
 #include "image.h"
 #include "map.h"
@@ -35,13 +37,16 @@ typedef struct s_mlx{
 } t_mlx;
 
 typedef struct s_position{
-	int		x;
-	int		y;
+	float	x;
+	float	y;
 } t_position;
 
 typedef struct s_player{
 	t_position	pos;
 	char		direction;
+	float		angle;
+	float		dx;
+	float		dy;
 } t_player;
 
 typedef struct s_game{
