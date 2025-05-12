@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/08 16:34:55 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/12 13:35:29 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,6 @@ int	main(int argc, char **argv)
 {
 	ft_game_initialisation(argc, argv);
 
-	t_game * game = ft_get_game();
-
-	if (game->player->direction == 'N')
-		game->player->angle = 3 * PI / 2;
-	else if (game->player->direction == 'S')
-		game->player->angle = PI / 2;
-	else if (game->player->direction == 'E')
-		game->player->angle = 0;
-	else if (game->player->direction == 'W')
-		game->player->angle = PI;
-	game->player->dx = 5 * cos(game->player->angle);
-	game->player->dy = 5 * sin(game->player->angle);
-	
 	ft_game();
 
 	return (0);

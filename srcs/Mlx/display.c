@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/08 16:39:55 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/12 17:09:19 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color){
 	char	*dst;
+
 
 	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
@@ -51,14 +52,13 @@ static void	ft_draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2, int color)
 
     dx = x2 - x1;
     dy = y2 - y1;
-    steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy); // Nombre de pas nécessaires
-    x_inc = dx / (float)steps; // Incrément en x
-    y_inc = dy / (float)steps; // Incrément en y
+    steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
+    x_inc = dx / (float)steps;
+    y_inc = dy / (float)steps;
     x = x1;
     y = y1;
-    for (int i = 0; i <= steps; i++)
-    {
-        my_mlx_pixel_put(mlx, (int)x, (int)y, color); // Dessiner le pixel
+    for (int i = 0; i <= steps; i++){
+	    my_mlx_pixel_put(mlx, (int)x, (int)y, color);
         x += x_inc;
         y += y_inc;
     }
@@ -102,6 +102,101 @@ void	ft_display(t_game *game)
 	int x2 = x1 + 5 * game->player->dx;
 	int y2 = y1 + 5 * game->player->dy;
 	ft_draw_line(game->mlx, x1, y1, x2, y2, line_color);
+
+	// Raycasting
+	// int ray_color_h = create_color(255, 0, 255, 0); // horizontal
+	// int ray_color_v = create_color(255, 0, 255, 255); // vertical
+	int ray_color = create_color(255, 0, 255, 0); // ray color
+	int dof, dist, px, py;
+	int map_x, map_y;
+	float rx, ry, x0, y0;
 	
+	
+	for (int r = 0; r < 1; r++){
+	/************************
+	 * Horizontal raycasting
+	 ************************/
+		dof = 0;
+		float atan = -1 / tan(game->player->angle);
+		if (game->player->angle > PI){
+			ry = (((int)game->player->pos.y >> 6) << 6) - 0.0001;
+			rx = (game->player->pos.y - ry)*atan + game->player->pos.x;
+			y0 = -64;
+			x0 = -y0*atan;
+		}
+		if (game->player->angle < PI){
+			ry = (((int)game->player->pos.y >> 6) << 6) + 64;
+			rx = (game->player->pos.y - ry)*atan + game->player->pos.x;
+			y0 = 64;
+			x0 = -y0*atan;
+		}
+		if (game->player->angle == 0 || game->player->angle == PI){
+			rx = game->player->pos.x;
+			ry = game->player->pos.y;
+			dof = 8;
+		}
+		while( dof < 8) {
+			map_x = (int)rx >> 6;
+			map_y = (int)ry >> 6;
+			if (map_x < 0 || map_x >= game->map->width || map_y < 0 || map_y >= game->map->height)
+				break;
+			if (game->map->map[map_y][map_x] == '1')
+				dof = 8;
+			else{
+				rx += x0;
+				ry += y0;
+				dof++;
+			}
+		}
+		dist = sqrt(pow((game->player->pos.x - rx), 2) + pow((game->player->pos.y - ry), 2));
+		px = rx;
+		py = ry;
+		// ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y, rx, ry, ray_color_h);
+	
+	/************************
+	 * Vertical raycasting
+	 ************************/
+		dof = 0;
+		float ntan = -tan(game->player->angle);
+		
+		if (game->player->angle > PI / 2 && game->player->angle < 3 * PI / 2){
+			rx = (((int)game->player->pos.x >> 6) << 6) - 0.0001;
+			ry = (game->player->pos.x - rx) * ntan + game->player->pos.y;
+			x0 = -64;
+			y0 = -x0 * ntan;
+		} else if (game->player->angle < PI / 2 || game->player->angle > 3 * PI / 2){
+			rx = (((int)game->player->pos.x >> 6) << 6) + 64;
+			ry = (game->player->pos.x - rx) * ntan + game->player->pos.y;
+			x0 = 64;
+			y0 = -x0 * ntan;
+		}else{
+			rx = game->player->pos.x;
+			ry = game->player->pos.y;
+			dof = 8;
+		}
+		
+		while(dof < 8) {
+			map_x = (int)rx >> 6;
+			map_y = (int)ry >> 6;
+			if (map_x < 0 || map_x >= game->map->width || map_y < 0 || map_y >= game->map->height)
+				break;
+			if (game->map->map[map_y][map_x] == '1')
+				dof = 8;
+			else{
+				rx += x0;
+				ry += y0;
+				dof++;
+			}
+		}
+		if (ry > game->height_w)
+			ry = game->height_w;
+		if (ry < 0)
+			ry = 0;
+		if (dist < sqrt(pow((game->player->pos.x - rx), 2) + pow((game->player->pos.y - ry), 2)))
+			ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y, px, py, ray_color);
+		else
+			ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y, rx, ry, ray_color);
+	}
 	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, game->mlx->img, 0, 0);
 }
+

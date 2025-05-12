@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:56:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/06 17:40:48 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/12 12:46:59 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_print_game(void)
 	printf("Image: %p\n", game->image);
 	printf("Height_w: %d\n", game->height_w);
 	printf("Width_w: %d\n", game->width_w);
-	printf("Player_x: %i\n", game->player->pos.x);
-	printf("Player_y: %i\n", game->player->pos.y);
+	printf("Player_x: %f\n", game->player->pos.x);
+	printf("Player_y: %f\n", game->player->pos.y);
 	printf("Player_dir: %c\n", game->player->direction);
 	printf("\n");
 }
