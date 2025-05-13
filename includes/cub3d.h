@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/12 13:35:22 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:36:04 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 
 #include "image.h"
 #include "map.h"
+#include "raycasting.h"
+
+
+typedef struct s_position{
+	float	x;
+	float	y;
+} t_position;
 
 typedef struct s_mlx{
 	void	*mlx;
@@ -36,10 +43,22 @@ typedef struct s_mlx{
 	int		endian;
 } t_mlx;
 
-typedef struct s_position{
-	float	x;
-	float	y;
-} t_position;
+typedef struct s_raycasting
+{
+	float		angle;
+	float		dist;
+	t_position	pos;
+	t_position	next;
+	t_position	final;
+	int			map_x;
+	int			map_y;
+	int			dof;
+	int			color;
+	int			distV;
+	int			distH;
+	
+	
+}	t_raycasting;
 
 typedef struct s_player{
 	t_position	pos;
@@ -47,15 +66,18 @@ typedef struct s_player{
 	float		angle;
 	float		dx;
 	float		dy;
+	float		velocity;
+	float		rotation_speed;
 } t_player;
 
 typedef struct s_game{
-	t_mlx		*mlx;
-	t_map		*map;
-	t_image		*image;
-	t_player	*player;
-	int			height_w;
-	int			width_w;
+	t_mlx			*mlx;
+	t_map			*map;
+	t_image			*image;
+	t_player		*player;
+	t_raycasting	raycasting;
+	int				height_w;
+	int				width_w;
 } t_game;
 
 /********************
@@ -101,14 +123,36 @@ void	ft_fill_player(char c, int i, int j, t_game *game);
  * 		Mlx
  ********************/
 
-	/*	GLOBAL	*/
+	/*	GLOBAL		*/
 int		ft_key_handle(int key, void *data);
 int		ft_close_window(t_game *game);
+void	ft_display_correction(t_game * game);
 void	ft_display(t_game *game);
-int	create_color(int t, int r, int g, int b);
-void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 
-	/*	HOOK	*/
+	/*	DRAWING		*/
+int		ft_create_color(int t, int r, int g, int b);
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void	ft_draw_square(t_game *game, int x, int y, int color);
+void	ft_draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2, int color);
+void	ft_draw_rectangle(t_mlx *mlx, int x, int y_start, int y_end, int width, int color);
+
+	/*	CORRECTION	*/
+void	ft_display_correction(t_game *game);
+void	ft_display_all(t_game *game);
+void	ft_display_background(t_game *game);
+void	ft_display_map(t_game *game);
+void	ft_display_player(t_game *game);
+
+	/*	RAYCASTING	*/
+void	ft_ray_casting(t_raycasting *ray, t_game *game);
+void	ft_init_ray(t_raycasting *ray, t_game *game);
+void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game);
+void	ft_vertical_raycasting(t_raycasting *ray, t_game *game);
+void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag);
+void	ft_choose_ray(t_raycasting *ray, t_game *game);
+
+
+	/*	HOOK		*/
 void	ft_move_player(t_game *game, int key);
 
 /********************
@@ -134,5 +178,11 @@ void	ft_exit_parsing(int fd, char *line, char *error_message);
 void	ft_print_image();
 void	ft_print_game();
 void	ft_print_map();
+
+/********************
+ * 		Usefull
+ ********************/
+
+int	ft_distance(t_position *pos1, t_position *pos2);
 
 #endif

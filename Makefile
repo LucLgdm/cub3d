@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+         #
+#    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/05/08 15:34:09 by luclgdm          ###   ########.fr        #
+#    Updated: 2025/05/13 16:18:01 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,11 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(ERR_DIR)print.c \
 			$(SRC_DIR)$(MLX_DIR)hook.c \
 			$(SRC_DIR)$(MLX_DIR)quit.c \
-			$(SRC_DIR)$(MLX_DIR)display.c
+			$(SRC_DIR)$(MLX_DIR)display.c \
+			$(SRC_DIR)$(MLX_DIR)correction.c \
+			$(SRC_DIR)$(MLX_DIR)drawing.c \
+			$(SRC_DIR)$(MLX_DIR)raycasting.c \
+			$(SRC_DIR)$(MLX_DIR)usefull.c
 			
 # Transforme chaque fichier source en un fichier objet dans $(OBJ_DIR)
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))

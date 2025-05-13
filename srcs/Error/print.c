@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:56:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/12 12:46:59 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:35:28 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_print_game(void)
 	printf("ft_print_game\n");
 	game = ft_get_game();
 	printf("Game: %p\n", game);
-	// printf("Mlx: %p\n", game->mlx->mlx);
-	// printf("Win: %p\n", game->mlx->win);
+	printf("Mlx: %p\n", game->mlx->mlx);
+	printf("Win: %p\n", game->mlx->win);
 	printf("Map: %p\n", game->map);
 	printf("Image: %p\n", game->image);
 	printf("Height_w: %d\n", game->height_w);
