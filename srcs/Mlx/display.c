@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/13 11:07:22 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:28:45 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ int	create_color(int t, int r, int g, int b){
 }
 
 
-static void	ft_draw_square(t_game *game, int x, int y, int color)
-{
-	int	i;
-	int	j;
+// static void	ft_draw_square(t_game *game, int x, int y, int color)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	while (++i < 63)
-	{
-		j = 0;
-		while (++j < 63)
-			my_mlx_pixel_put(game->mlx, x + j, y + i, color);
-	}
-}
+// 	i = 0;
+// 	while (++i < 63)
+// 	{
+// 		j = 0;
+// 		while (++j < 63)
+// 			my_mlx_pixel_put(game->mlx, x + j, y + i, color);
+// 	}
+// }
 
 static void	ft_draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2, int color)
 {
@@ -81,26 +81,26 @@ void	ft_display(t_game *game)
 		}
 	}
 	
-	// Map
-	int i, j;
-	i = -1;
-	while(++i < game->map->height){
-		j = -1;
-		while(++j < game->map->width){
-			if (game->map->map[i][j] == '1')
-				ft_draw_square(game, j * 64, i * 64, create_color(255, 255, 255, 255));
-			if (game->map->map[i][j] == '0')
-				ft_draw_square(game, j * 64, i * 64, create_color(255, 0, 0, 0));
-		}
-	}
+	// // Map
+	// int i, j;
+	// i = -1;
+	// while(++i < game->map->height){
+	// 	j = -1;
+	// 	while(++j < game->map->width){
+	// 		if (game->map->map[i][j] == '1')
+	// 			ft_draw_square(game, j * 64, i * 64, create_color(255, 255, 255, 255));
+	// 		if (game->map->map[i][j] == '0')
+	// 			ft_draw_square(game, j * 64, i * 64, create_color(255, 0, 0, 0));
+	// 	}
+	// }
 	
 	
-	// Player
-	for(int i = -5; i < 6; i++){
-		for(int j = -5; j < 6; j++){
-			my_mlx_pixel_put(game->mlx, game->player->pos.x + i, game->player->pos.y + j, create_color(255, 255, 255, 0));
-		}
-	}
+	// // Player
+	// for(int i = -5; i < 6; i++){
+	// 	for(int j = -5; j < 6; j++){
+	// 		my_mlx_pixel_put(game->mlx, game->player->pos.x + i, game->player->pos.y + j, create_color(255, 255, 255, 0));
+	// 	}
+	// }
 	
 	// Player direction line
 	// int line_color = create_color(255, 255, 255, 0); // Vert
@@ -124,7 +124,10 @@ void	ft_display(t_game *game)
 	if (ray_angle > 2 * PI)
 		ray_angle -= 2 * PI;
 	
-	for (int r = 0; r < 60; r++){
+	int num_rays = 60;
+	float ray_width = (float)game->width_w / num_rays;
+	
+	for (int r = 0; r < num_rays; r++){
 	/************************
 	 * Horizontal raycasting
 	 ************************/
@@ -206,13 +209,13 @@ void	ft_display(t_game *game)
 			ry = 0;
 		if (dist < sqrt(pow((game->player->pos.x - rx), 2) + pow((game->player->pos.y - ry), 2)))
 		{
-			ray_color = create_color(255, 0.9 * 140, 0.9 * 30, 0.9 * 250);
+			ray_color = create_color(255, 0.9 * 20, 0.9 * 30, 0.9 * 150);
 			dist3d = dist;
-			ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y, px, py, ray_color);
+			// ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y, px, py, ray_color);
 		}else{
-			ray_color = create_color(255, 0.7 * 140, 0.7 * 30, 0.7 * 250);
+			ray_color = create_color(255, 0.7 * 20, 0.7 * 30, 0.7 * 150);
 			dist3d = sqrt(pow((game->player->pos.x - rx), 2) + pow((game->player->pos.y - ry), 2));
-			ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y, rx, ry, ray_color);
+			// ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y, rx, ry, ray_color);
 		}
 		
 		/*********************
@@ -228,10 +231,12 @@ void	ft_display(t_game *game)
 		if (wall_height > game->height_w)
 			wall_height = game->height_w;
 		float wall_start = (game->height_w / 2) - (wall_height / 2);
-		float wall_offset = game->width_w / 2;
+		// float wall_offset = game->width_w / 2;
 
-		int thickness = 10; // Épaisseur des rayons
-		ft_draw_rectangle(game->mlx, r * 10 + wall_offset, wall_start,
+		int thickness = ray_width + 1; // Épaisseur des rayons
+		// ft_draw_rectangle(game->mlx, r * 10 + wall_offset, wall_start,
+        //           wall_start + wall_height, thickness, ray_color);
+		ft_draw_rectangle(game->mlx, r * ray_width, wall_start,
                   wall_start + wall_height, thickness, ray_color);
 		
 		ray_angle += PI / 180;
