@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/12 17:09:19 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:07:22 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@ static void	ft_draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2, int color)
     }
 }
 
+static void	ft_draw_rectangle(t_mlx *mlx, int x, int y_start, int y_end, int width, int color)
+{
+    for (int i = 0; i < width; i++) {
+        ft_draw_line(mlx, x + i, y_start, x + i, y_end, color);
+    }
+}
+
 void	ft_display(t_game *game)
 {
 	int color = create_color(255, 255 / 3, 255 / 3, 255 / 3);
@@ -96,41 +103,46 @@ void	ft_display(t_game *game)
 	}
 	
 	// Player direction line
-	int line_color = create_color(255, 255, 255, 0); // Vert
-	int x1 = game->player->pos.x;
-	int y1 = game->player->pos.y;
-	int x2 = x1 + 5 * game->player->dx;
-	int y2 = y1 + 5 * game->player->dy;
-	ft_draw_line(game->mlx, x1, y1, x2, y2, line_color);
+	// int line_color = create_color(255, 255, 255, 0); // Vert
+	// int x1 = game->player->pos.x;
+	// int y1 = game->player->pos.y;
+	// int x2 = x1 + 5 * game->player->dx;
+	// int y2 = y1 + 5 * game->player->dy;
+	// ft_draw_line(game->mlx, x1, y1, x2, y2, line_color);
 
 	// Raycasting
 	// int ray_color_h = create_color(255, 0, 255, 0); // horizontal
 	// int ray_color_v = create_color(255, 0, 255, 255); // vertical
-	int ray_color = create_color(255, 0, 255, 0); // ray color
+	int ray_color; // = create_color(255, 0, 255, 0); // ray color
 	int dof, dist, px, py;
 	int map_x, map_y;
-	float rx, ry, x0, y0;
+	float rx, ry, x0, y0, ray_angle, dist3d;
 	
+	ray_angle = game->player->angle - 30 * PI / 180;
+	if (ray_angle < 0)
+		ray_angle += 2 * PI;
+	if (ray_angle > 2 * PI)
+		ray_angle -= 2 * PI;
 	
-	for (int r = 0; r < 1; r++){
+	for (int r = 0; r < 60; r++){
 	/************************
 	 * Horizontal raycasting
 	 ************************/
 		dof = 0;
-		float atan = -1 / tan(game->player->angle);
-		if (game->player->angle > PI){
+		float atan = -1 / tan(ray_angle);
+		if (ray_angle > PI){
 			ry = (((int)game->player->pos.y >> 6) << 6) - 0.0001;
 			rx = (game->player->pos.y - ry)*atan + game->player->pos.x;
 			y0 = -64;
 			x0 = -y0*atan;
 		}
-		if (game->player->angle < PI){
+		if (ray_angle < PI){
 			ry = (((int)game->player->pos.y >> 6) << 6) + 64;
 			rx = (game->player->pos.y - ry)*atan + game->player->pos.x;
 			y0 = 64;
 			x0 = -y0*atan;
 		}
-		if (game->player->angle == 0 || game->player->angle == PI){
+		if (ray_angle == 0 || ray_angle == PI){
 			rx = game->player->pos.x;
 			ry = game->player->pos.y;
 			dof = 8;
@@ -157,14 +169,14 @@ void	ft_display(t_game *game)
 	 * Vertical raycasting
 	 ************************/
 		dof = 0;
-		float ntan = -tan(game->player->angle);
+		float ntan = -tan(ray_angle);
 		
-		if (game->player->angle > PI / 2 && game->player->angle < 3 * PI / 2){
+		if (ray_angle > PI / 2 && ray_angle < 3 * PI / 2){
 			rx = (((int)game->player->pos.x >> 6) << 6) - 0.0001;
 			ry = (game->player->pos.x - rx) * ntan + game->player->pos.y;
 			x0 = -64;
 			y0 = -x0 * ntan;
-		} else if (game->player->angle < PI / 2 || game->player->angle > 3 * PI / 2){
+		} else if (ray_angle < PI / 2 || ray_angle > 3 * PI / 2){
 			rx = (((int)game->player->pos.x >> 6) << 6) + 64;
 			ry = (game->player->pos.x - rx) * ntan + game->player->pos.y;
 			x0 = 64;
@@ -193,10 +205,42 @@ void	ft_display(t_game *game)
 		if (ry < 0)
 			ry = 0;
 		if (dist < sqrt(pow((game->player->pos.x - rx), 2) + pow((game->player->pos.y - ry), 2)))
+		{
+			ray_color = create_color(255, 0.9 * 140, 0.9 * 30, 0.9 * 250);
+			dist3d = dist;
 			ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y, px, py, ray_color);
-		else
+		}else{
+			ray_color = create_color(255, 0.7 * 140, 0.7 * 30, 0.7 * 250);
+			dist3d = sqrt(pow((game->player->pos.x - rx), 2) + pow((game->player->pos.y - ry), 2));
 			ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y, rx, ry, ray_color);
+		}
+		
+		/*********************
+		 * Drawing the wall
+		 *********************/
+		float ca = game->player->angle - ray_angle;
+		if (ca < 0)
+			ca += 2 * PI;
+		if (ca > 2 * PI)
+			ca -= 2 * PI;
+		dist3d = dist3d * cos(ca);	
+		float wall_height = (game->height_w * 64) / dist3d;
+		if (wall_height > game->height_w)
+			wall_height = game->height_w;
+		float wall_start = (game->height_w / 2) - (wall_height / 2);
+		float wall_offset = game->width_w / 2;
+
+		int thickness = 10; // Épaisseur des rayons
+		ft_draw_rectangle(game->mlx, r * 10 + wall_offset, wall_start,
+                  wall_start + wall_height, thickness, ray_color);
+		
+		ray_angle += PI / 180;
+		if (ray_angle < 0)
+			ray_angle += 2 * PI;
+		if (ray_angle > 2 * PI)
+			ray_angle -= 2 * PI;	
 	}
+	
 	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, game->mlx->img, 0, 0);
 }
 
