@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/14 13:54:45 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/14 17:29:41 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_raycasting
 	int			num_rays;
 	float		angle;
 	float		dist;
+	float 		width;
 	t_position	pos;
 	t_position	next;
 	t_position	final;
@@ -55,9 +56,9 @@ typedef struct s_raycasting
 	int			map_y;
 	int			dof;
 	int			color;
-	int			distV;
-	int			distH;
-	
+	int			dist_v;
+	int			dist_h;
+	int			dist_min;
 	
 }	t_raycasting;
 
@@ -144,14 +145,15 @@ void	ft_display_background(t_game *game);
 void	ft_display_map(t_game *game);
 void	ft_display_player(t_game *game);
 
-	/*	RAYCASTING	*/
+/*	RAYCASTING	*/
 void	ft_ray_casting(t_raycasting *ray, t_game *game);
 void	ft_init_ray(t_raycasting *ray, t_game *game);
 void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game);
 void	ft_vertical_raycasting(t_raycasting *ray, t_game *game);
 void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag);
 void	ft_choose_ray(t_raycasting *ray, t_game *game);
-
+void	ft_draw_3d(t_raycasting *ray, t_game * game, int r);
+void    ft_update_angle(t_raycasting *ray);
 
 	/*	HOOK		*/
 void	ft_move_player(t_game *game, int key);

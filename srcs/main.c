@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/13 15:10:28 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/14 17:38:27 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static void	ft_correction(void)
 		
 	game->mlx->mlx = mlx_init();
 	mlx_get_screen_size(game->mlx->mlx, &game->width_w, &game->height_w);
-	game->width_w = 3 * game->width_w / 4;
-	game->height_w = 3 * game->height_w / 4;
+	// game->width_w = 3 * game->width_w / 4;
+	// game->height_w = 3 * game->height_w / 4;
 	game->mlx->win = mlx_new_window(game->mlx->mlx, game->width_w, game->height_w, "cub3D");
 
 	game->mlx->img = mlx_new_image(game->mlx->mlx, game->width_w, game->height_w);
