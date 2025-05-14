@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/13 16:41:04 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/14 14:17:22 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_ray_casting(t_raycasting *ray, t_game *game)
 {
-	int	num_rays;
 	int	r;
 
-	num_rays = 66;
 	ft_init_ray(ray, game);
+	ray->num_rays = 60;
 	r = -1;
-	while (++r < num_rays)
+	while (++r < ray->num_rays)
 	{
+		ray->dof = 0;
 		ft_horizontal_raycasting(ray, game);
 		ft_calcul_loop(ray, game, 1);
 		ray->dof = 0;
@@ -61,7 +61,7 @@ void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game)
 		ray->next.y = -64;
 		ray->next.x = -ray->next.y * atan;
 	}
-	else
+	if (ray->angle < PI)
 	{
 		ray->pos.y = (((int)game->player->pos.y >> 6) << 6) + 64;
 		ray->pos.x = (game->player->pos.y - ray->pos.y) * atan
@@ -138,20 +138,19 @@ void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag)
 
 void	ft_choose_ray(t_raycasting *ray, t_game *game)
 {
-	int	distmin;
+	// int	distmin;
+	float	angle_increment;
 	
 	ray->distV = ft_distance(&game->player->pos, &ray->pos);
-	if (ray->distH < ray->distV)
-		distmin = ray->distH;
-	else
+	if (ray->distH > ray->distV)
 	{
-		distmin = ray->distV;
 		ray->final.x = ray->pos.x;
 		ray->final.y = ray->pos.y;
 	}
 	ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y,
 			ray->final.x, ray->final.y, ray->color);
-	ray->angle += PI / 180;
+	angle_increment = (60 * PI / 180) / ray->num_rays;
+	ray->angle += angle_increment;
 	if (ray->angle < 0)
 		ray->angle += 2 * PI;
 	if (ray->angle > 2 * PI)

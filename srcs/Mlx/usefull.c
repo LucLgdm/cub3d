@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   usefull.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:02:27 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/13 16:04:14 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/14 13:59:41 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_distance(t_position *pos1, t_position *pos2)
 {
-	return (sqrt(pow((pos1->x - pos2->x), 2) + pow((pos1->y - pos2->y), 2)));
+	return (sqrt(pow((pos2->x - pos1->x), 2) + pow((pos2->y - pos1->y), 2)));
 }
