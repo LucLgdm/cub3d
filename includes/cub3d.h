@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/15 13:57:27 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/15 15:00:52 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,20 @@ typedef struct s_raycasting
 	
 }	t_raycasting;
 
+typedef struct s_key{
+	char 	*key;
+	bool	pressed;
+} t_key;
+
+typedef struct s_buttons{
+	t_key	a;
+	t_key	d;
+	t_key	w;
+	t_key	s;
+	t_key	left;
+	t_key	right;
+} t_buttons;
+
 typedef struct s_player{
 	t_position	pos;
 	char		direction;
@@ -78,6 +92,7 @@ typedef struct s_game{
 	t_image			*image;
 	t_player		*player;
 	t_raycasting	raycasting;
+	t_buttons		buttons;
 	int				height_w;
 	int				width_w;
 	bool			correction;
@@ -165,6 +180,14 @@ void    ft_update_angle(t_raycasting *ray);
 
 	/*	HOOK		*/
 void	ft_move_player(t_game *game, int key);
+void	ft_handle_key(t_game *game);
+void	ft_handle_w(t_game *game);
+void	ft_handle_s(t_game *game);
+void	ft_handle_a(t_game *game);
+void	ft_handle_d(t_game *game);
+void	ft_handle_left(t_game *game);
+void	ft_handle_right(t_game *game);
+int		ft_key_release(int key, void *data);
 
 /********************
  * 		Memory

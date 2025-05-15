@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/15 13:51:49 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/15 14:58:00 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_correction(void)
 	ft_display_correction(game, 1);
 	mlx_hook(game->mlx->win, 17, 1L << 19, ft_close_window, game);
 	mlx_hook(game->mlx->win, 2, 1L << 0, ft_key_handle, game);
+	mlx_hook(game->mlx->win, 3, 1L << 1, ft_key_release, game);
 	mlx_loop(game->mlx->mlx);
 }
 
@@ -73,8 +74,8 @@ int	main(int argc, char **argv)
 {
 	ft_game_initialisation(argc, argv);
 
-	// ft_correction();
-	ft_game();
+	ft_correction();
+	// ft_game();
 
 	return (0);
 }
