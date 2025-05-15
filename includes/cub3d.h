@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/14 17:29:41 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/15 13:57:27 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_game{
 	t_raycasting	raycasting;
 	int				height_w;
 	int				width_w;
+	bool			correction;
 } t_game;
 
 /********************
@@ -92,8 +93,15 @@ typedef struct s_game{
  * 	Initialisation
  ********************/
 
- void	ft_game_initialisation(int argc, char **argv);
- void	ft_check_player(t_game *game);
+void	ft_game_initialisation(int argc, char **argv);
+void	ft_check_player(t_game *game);
+
+/********************
+ * 	Main
+ ********************/
+
+void	ft_game(void);
+void	ft_correction(void);
 
 /********************
  * 		Parsing
@@ -128,8 +136,8 @@ void	ft_fill_player(char c, int i, int j, t_game *game);
 	/*	GLOBAL		*/
 int		ft_key_handle(int key, void *data);
 int		ft_close_window(t_game *game);
-void	ft_display_correction(t_game * game);
-void	ft_display(t_game *game);
+void	ft_display_correction(t_game * game, int flag);
+void	ft_display(t_game *game, int flag);
 
 	/*	DRAWING		*/
 int		ft_create_color(int t, int r, int g, int b);
@@ -139,20 +147,20 @@ void	ft_draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2, int color);
 void	ft_draw_rectangle(t_mlx *mlx, int x, int y_start, int y_end, int width, int color);
 
 	/*	CORRECTION	*/
-void	ft_display_correction(t_game *game);
+void	ft_display_correction(t_game *game, int flag);
 void	ft_display_all(t_game *game);
 void	ft_display_background(t_game *game);
 void	ft_display_map(t_game *game);
 void	ft_display_player(t_game *game);
 
 /*	RAYCASTING	*/
-void	ft_ray_casting(t_raycasting *ray, t_game *game);
-void	ft_init_ray(t_raycasting *ray, t_game *game);
+void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag);
+void	ft_init_ray(t_raycasting *ray, t_game *game, int flag);
 void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game);
 void	ft_vertical_raycasting(t_raycasting *ray, t_game *game);
 void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag);
-void	ft_choose_ray(t_raycasting *ray, t_game *game);
-void	ft_draw_3d(t_raycasting *ray, t_game * game, int r);
+void	ft_choose_ray(t_raycasting *ray, t_game *game, int flag);
+void	ft_draw_3d(t_raycasting *ray, t_game * game, int r, int flag);
 void    ft_update_angle(t_raycasting *ray);
 
 	/*	HOOK		*/

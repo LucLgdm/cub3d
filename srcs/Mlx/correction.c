@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:37:39 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/14 14:23:59 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/15 13:31:10 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	ft_display_player(t_game *game)
 {
 	int	i;
 	int	j;
+	int	x2;
+	int	y2;
 
 	i = -5;
 	while (++i < 6)
@@ -72,4 +74,9 @@ void	ft_display_player(t_game *game)
 				game->player->pos.y + j, ft_create_color(255, 255, 255, 0));
 		}
 	}
+	i = game->player->pos.x;
+	j = game->player->pos.y;
+	x2 = i + 5 * game->player->dx;
+	y2 = j + 5 * game->player->dy;
+	ft_draw_line(game->mlx, i, j, x2, y2, ft_create_color(255, 255, 255, 0));
 }

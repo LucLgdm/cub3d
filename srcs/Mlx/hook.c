@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:54:44 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/13 15:10:53 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:51:24 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void	ft_move_player(t_game *game, int key)
 		game->player->dx = 5 * cos(game->player->angle);
 		game->player->dy = 5 * sin(game->player->angle);
 	}
-	ft_display_correction(game);
+	ft_display(game, (int)game->correction);
 }

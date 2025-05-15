@@ -6,17 +6,17 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/14 18:02:43 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/15 13:57:06 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_ray_casting(t_raycasting *ray, t_game *game)
+void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag)
 {
 	int	r;
 
-	ft_init_ray(ray, game);
+	ft_init_ray(ray, game, flag);
 	r = -1;
 	while (++r < ray->num_rays)
 	{
@@ -30,15 +30,15 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game)
 			ray->pos.y = game->height_w;
 		if (ray->pos.y < 0)
 			ray->pos.y = 0;
-		ft_choose_ray(ray, game);
-		ft_draw_3d(ray, game, r);
+		ft_choose_ray(ray, game, flag);
+		ft_draw_3d(ray, game, r, flag);
 		ft_update_angle(ray);		
 	}
 	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, game->mlx->img, 10,
 		10);
 }
 
-void	ft_init_ray(t_raycasting *ray, t_game *game)
+void	ft_init_ray(t_raycasting *ray, t_game *game, int flag)
 {
 	ray->num_rays = 66;
 	ray->color = ft_create_color(255, 255, 255, 0);
@@ -48,7 +48,10 @@ void	ft_init_ray(t_raycasting *ray, t_game *game)
 		ray->angle += 2 * PI;
 	if (ray->angle > 2 * PI)
 		ray->angle -= 2 * PI;
-	ray->width = ((float)game->width_w / 2) / ray->num_rays;
+	if (flag == 1)
+		ray->width = ((float)game->width_w / 2) / ray->num_rays;
+	else
+		ray->width = (float)game->width_w / ray->num_rays;
 	
 }
 
