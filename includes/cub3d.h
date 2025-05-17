@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/15 15:00:52 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/15 16:07:15 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
 # include "math.h"
+# include "image.h"
+# include "map.h"
+# include "raycasting.h"
+
 # define PI 3.1415926535
-
-#include "image.h"
-#include "map.h"
-#include "raycasting.h"
-
+# define TILE_SIZE 64
 
 typedef struct s_position{
 	float	x;
@@ -115,8 +115,7 @@ void	ft_check_player(t_game *game);
  * 	Main
  ********************/
 
-void	ft_game(void);
-void	ft_correction(void);
+void	ft_game(int flag);
 
 /********************
  * 		Parsing
@@ -151,7 +150,6 @@ void	ft_fill_player(char c, int i, int j, t_game *game);
 	/*	GLOBAL		*/
 int		ft_key_handle(int key, void *data);
 int		ft_close_window(t_game *game);
-void	ft_display_correction(t_game * game, int flag);
 void	ft_display(t_game *game, int flag);
 
 	/*	DRAWING		*/
@@ -162,7 +160,6 @@ void	ft_draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2, int color);
 void	ft_draw_rectangle(t_mlx *mlx, int x, int y_start, int y_end, int width, int color);
 
 	/*	CORRECTION	*/
-void	ft_display_correction(t_game *game, int flag);
 void	ft_display_all(t_game *game);
 void	ft_display_background(t_game *game);
 void	ft_display_map(t_game *game);

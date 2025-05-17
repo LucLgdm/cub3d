@@ -6,7 +6,7 @@
 /*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/15 14:58:00 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/15 15:58:19 by luclgdm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,12 @@ t_game	*ft_get_game(void)
 	return (&game);
 }
 
-void	ft_game(void)
+void	ft_game(int flag)
 {
 	t_game	*game;
 
 	game = ft_get_game();
-	game->correction = 0;
-	game->mlx = ft_calloc(1, sizeof(t_mlx));
-	if (!game->mlx)
-		ft_print_error_and_exit("Error\nAllocation failed\n");
-		
-	game->mlx->mlx = mlx_init();
-	mlx_get_screen_size(game->mlx->mlx, &game->width_w, &game->height_w);
-	// game->width_w = 3 * game->width_w / 4;
-	// game->height_w = 3 * game->height_w / 4;
-	game->mlx->win = mlx_new_window(game->mlx->mlx, game->width_w, game->height_w, "cub3D");
-
-	game->mlx->img = mlx_new_image(game->mlx->mlx, game->width_w, game->height_w);
-    game->mlx->addr = mlx_get_data_addr(game->mlx->img, &game->mlx->bits_per_pixel, &game->mlx->line_length,
-			&game->mlx->endian);
-	
-	ft_display(game, 0);
-	mlx_hook(game->mlx->win, 17, 1L << 19, ft_close_window, game);
-	mlx_hook(game->mlx->win, 2, 1L << 0, ft_key_handle, game);
-	mlx_loop(game->mlx->mlx);
-}
-
-void	ft_correction(void)
-{
-	t_game	*game;
-
-	game = ft_get_game();
-	game->correction = 1;
+	game->correction = flag;
 	game->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!game->mlx)
 		ft_print_error_and_exit("Error\nAllocation failed\n");
@@ -63,7 +37,7 @@ void	ft_correction(void)
     game->mlx->addr = mlx_get_data_addr(game->mlx->img, &game->mlx->bits_per_pixel, &game->mlx->line_length,
 			&game->mlx->endian);
 	
-	ft_display_correction(game, 1);
+	ft_display(game, flag);
 	mlx_hook(game->mlx->win, 17, 1L << 19, ft_close_window, game);
 	mlx_hook(game->mlx->win, 2, 1L << 0, ft_key_handle, game);
 	mlx_hook(game->mlx->win, 3, 1L << 1, ft_key_release, game);
@@ -74,8 +48,7 @@ int	main(int argc, char **argv)
 {
 	ft_game_initialisation(argc, argv);
 
-	ft_correction();
-	// ft_game();
+	ft_game(1);
 
 	return (0);
 }
