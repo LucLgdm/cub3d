@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:56:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/13 15:35:28 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:40:25 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_print_map(void)
 	int		i;
 
 	game = ft_get_game();
-
 	printf("ft_print_map\n");
 	printf("height: %d\n", game->map->height);
 	printf("width : %d\n", game->map->width);

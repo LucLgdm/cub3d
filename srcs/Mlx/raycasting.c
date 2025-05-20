@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/20 10:04:49 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:36:23 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag)
 			ray->pos.y = 0;
 		ft_choose_ray(ray, game, flag);
 		ft_draw_3d(ray, game, r, flag);
-		ft_update_angle(ray);		
+		ft_update_angle(ray);
 	}
 	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, game->mlx->img, 10,
 		10);
@@ -52,7 +52,6 @@ void	ft_init_ray(t_raycasting *ray, t_game *game, int flag)
 		ray->width = ((float)game->width_w / 2) / ray->num_rays;
 	else
 		ray->width = (float)game->width_w / ray->num_rays;
-	
 }
 
 void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game)
@@ -62,7 +61,7 @@ void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game)
 	atan = -1 / tan(ray->angle);
 	if (ray->angle > PI)
 	{
-		ray->pos.y = (((int)game->player->pos.y / TILE_SIZE) * TILE_SIZE) - 0.0001;
+		ray->pos.y = (((int)game->player->pos.y >> (int)(log2((double)TILE_SIZE))) << (int)(log2((double)TILE_SIZE))) - 0.0001;
 		ray->pos.x = (game->player->pos.y - ray->pos.y) * atan
 			+ game->player->pos.x;
 		ray->next.y = -TILE_SIZE;
@@ -70,7 +69,7 @@ void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game)
 	}
 	if (ray->angle < PI)
 	{
-		ray->pos.y = (((int)game->player->pos.y / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
+		ray->pos.y = (((int)game->player->pos.y >> (int)(log2((double)TILE_SIZE))) << (int)(log2((double)TILE_SIZE))) + TILE_SIZE;
 		ray->pos.x = (game->player->pos.y - ray->pos.y) * atan
 			+ game->player->pos.x;
 		ray->next.y = TILE_SIZE;
@@ -91,7 +90,7 @@ void	ft_vertical_raycasting(t_raycasting *ray, t_game *game)
 	ntan = -tan(ray->angle);
 	if (ray->angle > PI / 2 && ray->angle < 3 * PI / 2)
 	{
-		ray->pos.x = (((int)game->player->pos.x / TILE_SIZE) * TILE_SIZE) - 0.0001;
+		ray->pos.x = (((int)game->player->pos.x >> (int)(log2((double)TILE_SIZE))) << (int)(log2((double)TILE_SIZE))) - 0.0001;
 		ray->pos.y = (game->player->pos.x - ray->pos.x) * ntan
 			+ game->player->pos.y;
 		ray->next.x = -TILE_SIZE;
@@ -99,7 +98,7 @@ void	ft_vertical_raycasting(t_raycasting *ray, t_game *game)
 	}
 	else if (ray->angle < PI / 2 || ray->angle > 3 * PI / 2)
 	{
-		ray->pos.x = (((int)game->player->pos.x / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
+		ray->pos.x = (((int)game->player->pos.x >> (int)(log2((double)TILE_SIZE))) << (int)(log2((double)TILE_SIZE))) + TILE_SIZE;
 		ray->pos.y = (game->player->pos.x - ray->pos.x) * ntan
 			+ game->player->pos.y;
 		ray->next.x = TILE_SIZE;
@@ -112,7 +111,6 @@ void	ft_vertical_raycasting(t_raycasting *ray, t_game *game)
 		ray->dof = 8;
 	}
 }
-
 
 void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag)
 {

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 09:54:21 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/12 12:56:43 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:41:34 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_check_map(t_game *game)
 {
 	t_map	*transposed_map;
 	int		res;
-	
+
 	res = ft_check_border(game->map);
 	if (res == 1)
 		ft_print_error_and_exit("Error\nMap not closed\n");
@@ -92,7 +92,7 @@ int	ft_check_border(t_map *map)
 {
 	int	i;
 	int	res;
-	
+
 	i = -1;
 	while (map->map[++i])
 	{

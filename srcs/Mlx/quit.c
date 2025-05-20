@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:15:37 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/15 14:54:56 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/20 13:37:43 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,3 @@ int	ft_close_window(t_game *game)
 	ft_printf("\033[32mClosing window... End of the game !\033[0m\n");
 	exit(0);
 }
-
