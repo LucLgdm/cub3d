@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:41 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/13 16:28:14 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/20 09:58:05 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	ft_draw_square(t_game *game, int x, int y, int color)
 	int	j;
 
 	i = 0;
-	while (++i < 63)
+	while (++i < TILE_SIZE - 1)
 	{
 		j = 0;
-		while (++j < 63)
+		while (++j < TILE_SIZE - 1)
 			my_mlx_pixel_put(game->mlx, x + j, y + i, color);
 	}
 }
@@ -68,7 +68,5 @@ void	ft_draw_rectangle(t_mlx *mlx, int x, int y_start, int y_end, int width,
 		int color)
 {
 	for (int i = 0; i < width; i++)
-	{
 		ft_draw_line(mlx, x + i, y_start, x + i, y_end, color);
-	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/15 15:58:19 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/20 09:53:32 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_game(int flag)
 	mlx_hook(game->mlx->win, 17, 1L << 19, ft_close_window, game);
 	mlx_hook(game->mlx->win, 2, 1L << 0, ft_key_handle, game);
 	mlx_hook(game->mlx->win, 3, 1L << 1, ft_key_release, game);
+	mlx_loop_hook(game->mlx->mlx, ft_game_loop, game);
 	mlx_loop(game->mlx->mlx);
 }
 

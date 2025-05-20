@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:04:54 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/08 15:20:07 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/20 09:59:56 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_fill_player(char c, int i, int j, t_game *game)
 		
 	game->player->pos.x = (float)j;
 	game->player->pos.y = (float)i;
-	game->player->pos.x = 64 * game->player->pos.x + 27;
-	game->player->pos.y = 64 * game->player->pos.y + 27;
+	game->player->pos.x = TILE_SIZE * game->player->pos.x + TILE_SIZE / 2;
+	game->player->pos.y = TILE_SIZE * game->player->pos.y + TILE_SIZE / 2;
 	game->player->direction = c;
 }

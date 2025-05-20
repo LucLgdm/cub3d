@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/15 16:07:15 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/20 09:56:18 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "raycasting.h"
 
 # define PI 3.1415926535
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 
 typedef struct s_position{
 	float	x;
@@ -105,14 +105,14 @@ typedef struct s_game{
  t_game	*ft_get_game(void);
 
 /********************
- * 	Initialisation
+ * 		Initialisation
  ********************/
 
 void	ft_game_initialisation(int argc, char **argv);
 void	ft_check_player(t_game *game);
 
 /********************
- * 	Main
+ * 		Main
  ********************/
 
 void	ft_game(int flag);
@@ -185,6 +185,7 @@ void	ft_handle_d(t_game *game);
 void	ft_handle_left(t_game *game);
 void	ft_handle_right(t_game *game);
 int		ft_key_release(int key, void *data);
+int		ft_game_loop(void *data);
 
 /********************
  * 		Memory

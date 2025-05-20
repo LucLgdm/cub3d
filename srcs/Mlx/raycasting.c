@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/15 13:57:06 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/20 10:04:49 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,18 @@ void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game)
 	atan = -1 / tan(ray->angle);
 	if (ray->angle > PI)
 	{
-		ray->pos.y = (((int)game->player->pos.y >> 6) << 6) - 0.0001;
+		ray->pos.y = (((int)game->player->pos.y / TILE_SIZE) * TILE_SIZE) - 0.0001;
 		ray->pos.x = (game->player->pos.y - ray->pos.y) * atan
 			+ game->player->pos.x;
-		ray->next.y = -64;
+		ray->next.y = -TILE_SIZE;
 		ray->next.x = -ray->next.y * atan;
 	}
 	if (ray->angle < PI)
 	{
-		ray->pos.y = (((int)game->player->pos.y >> 6) << 6) + 64;
+		ray->pos.y = (((int)game->player->pos.y / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
 		ray->pos.x = (game->player->pos.y - ray->pos.y) * atan
 			+ game->player->pos.x;
-		ray->next.y = 64;
+		ray->next.y = TILE_SIZE;
 		ray->next.x = -ray->next.y * atan;
 	}
 	if (ray->angle == 0 || ray->angle == PI)
@@ -91,18 +91,18 @@ void	ft_vertical_raycasting(t_raycasting *ray, t_game *game)
 	ntan = -tan(ray->angle);
 	if (ray->angle > PI / 2 && ray->angle < 3 * PI / 2)
 	{
-		ray->pos.x = (((int)game->player->pos.x >> 6) << 6) - 0.0001;
+		ray->pos.x = (((int)game->player->pos.x / TILE_SIZE) * TILE_SIZE) - 0.0001;
 		ray->pos.y = (game->player->pos.x - ray->pos.x) * ntan
 			+ game->player->pos.y;
-		ray->next.x = -64;
+		ray->next.x = -TILE_SIZE;
 		ray->next.y = -ray->next.x * ntan;
 	}
 	else if (ray->angle < PI / 2 || ray->angle > 3 * PI / 2)
 	{
-		ray->pos.x = (((int)game->player->pos.x >> 6) << 6) + 64;
+		ray->pos.x = (((int)game->player->pos.x / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
 		ray->pos.y = (game->player->pos.x - ray->pos.x) * ntan
 			+ game->player->pos.y;
-		ray->next.x = 64;
+		ray->next.x = TILE_SIZE;
 		ray->next.y = -ray->next.x * ntan;
 	}
 	else
@@ -121,8 +121,8 @@ void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag)
 
 	while (ray->dof < 8)
 	{
-		map_x = (int)ray->pos.x >> 6;
-		map_y = (int)ray->pos.y >> 6;
+		map_x = (int)ray->pos.x / TILE_SIZE;
+		map_y = (int)ray->pos.y / TILE_SIZE;
 		if (map_x < 0 || map_x >= game->map->width || map_y < 0
 			|| map_y >= game->map->height)
 			break ;

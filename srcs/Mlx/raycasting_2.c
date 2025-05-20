@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/15 13:48:21 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/20 10:00:51 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
     if (ca > 2 * PI)
         ca -= 2 * PI;
     ray->dist_min *= cos(ca);
-    wall_height = (game->height_w * 64) / ray->dist_min;
+    wall_height = (game->height_w * TILE_SIZE) / ray->dist_min;
     if (wall_height > game->height_w)
         wall_height = game->height_w;
     wall_start = (game->height_w / 2) - (wall_height / 2);

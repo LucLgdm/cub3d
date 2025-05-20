@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:54:44 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/17 11:15:24 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/20 09:54:20 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,14 @@ void	ft_move_player(t_game *game, int key)
 	if (key == 65363)
 		game->buttons.right.pressed = 1;
 	ft_handle_key(game);
-	ft_display(game, (int)game->correction);
+	
+}
+
+int	ft_game_loop(void *data)
+{
+    t_game *game = (t_game *)data;
+    ft_handle_key(game);
+    return (0);
 }
 
 void	ft_handle_key(t_game *game)
@@ -56,38 +63,47 @@ void	ft_handle_key(t_game *game)
 		ft_handle_left(game);
 	if (game->buttons.right.pressed)
 		ft_handle_right(game);
+	ft_display(game, (int)game->correction);
 }
 
-static bool ft_is_wall(t_map *map, float x, float y)
-{
-	int	i;
-	int	j;
+// static bool ft_is_wall(t_map *map, float x, float y)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = (int)(y / TILE_SIZE);
-	j = (int)(x / TILE_SIZE);
-	if (i < 0 || i >= map->height || j < 0 || j >= map->width)
-		return (true);
-	return (map->map[i][j] == '1');
-}
+// 	i = (int)(y / TILE_SIZE);
+// 	j = (int)(x / TILE_SIZE);
+// 	if (i < 0 || i >= map->height || j < 0 || j >= map->width)
+// 		return (true);
+// 	return (map->map[i][j] == '1');
+// }
 
 
 void	ft_handle_w(t_game *game)
 {
-	float	tmpx;
-	float	tmpy;
+	// float	tmpx;
+	// float	tmpy;
 
-	tmpx = game->player->pos.x + game->player->dx;
-	tmpy = game->player->pos.y + game->player->dy;
-	if (!ft_is_wall(game->map, tmpx, game->player->pos.y))
-		game->player->pos.x += game->player->dx;
-	if (!ft_is_wall(game->map, game->player->pos.x, tmpy))
-		game->player->pos.y += game->player->dy;
+	// tmpx = game->player->pos.x + game->player->dx;
+	// tmpy = game->player->pos.y + game->player->dy;
+	// if (!ft_is_wall(game->map, tmpx, game->player->pos.y))
+	// 	game->player->pos.x += game->player->dx;
+	// if (!ft_is_wall(game->map, game->player->pos.x, tmpy))
+	// 	game->player->pos.y += game->player->dy;
+
+	// if (((int)(game->player->pos.x + game->player->dx) >> 6) != ((int)(game->player->pos.x) >> 6))
+	// 	game->player->pos.x += game->player->dx;
+	// if (((int)(game->player->pos.y + game->player->dy) >> 6) != ((int)(game->player->pos.y) >> 6))
+	// 	game->player->pos.y += game->player->dy;
+	
+	game->player->pos.x += game->player->dx;
+	game->player->pos.y += game->player->dy;
 }
 
 void	ft_handle_s(t_game *game)
 {
-	float	tmpx;
-	float	tmpy;
+	// float	tmpx;
+	// float	tmpy;
 	// float	x0;
 	// float	y0;
 
@@ -101,37 +117,43 @@ void	ft_handle_s(t_game *game)
 	// 	y0 = -5;
 	// else
 	// 	y0 = 5;
-	tmpx = game->player->pos.x - game->player->dx;
-	tmpy = game->player->pos.y - game->player->dy;
-	if (!ft_is_wall(game->map, tmpx, game->player->pos.y))
-		game->player->pos.x -= game->player->dx;
-	if (!ft_is_wall(game->map, game->player->pos.x, tmpy))
-		game->player->pos.y -= game->player->dy;
+	// tmpx = game->player->pos.x - game->player->dx;
+	// tmpy = game->player->pos.y - game->player->dy;
+	// if (!ft_is_wall(game->map, tmpx, game->player->pos.y))
+	// 	game->player->pos.x -= game->player->dx;
+	// if (!ft_is_wall(game->map, game->player->pos.x, tmpy))
+	// 	game->player->pos.y -= game->player->dy;
 		
-	// game->player->pos.x -= game->player->dx;
-	// game->player->pos.y -= game->player->dy;
+	game->player->pos.x -= game->player->dx;
+	game->player->pos.y -= game->player->dy;
 }
 
 void	ft_handle_a(t_game *game)
 {
-    float	tmpx = game->player->pos.x + game->player->dy;
-    float	tmpy = game->player->pos.y - game->player->dx;
+    // float	tmpx = game->player->pos.x + game->player->dy;
+    // float	tmpy = game->player->pos.y - game->player->dx;
 
-    if (!ft_is_wall(game->map, tmpx, game->player->pos.y))
-        game->player->pos.x += game->player->dy;
-    if (!ft_is_wall(game->map, game->player->pos.x, tmpy))
-        game->player->pos.y -= game->player->dx;
+    // if (!ft_is_wall(game->map, tmpx, game->player->pos.y))
+    //     game->player->pos.x += game->player->dy;
+    // if (!ft_is_wall(game->map, game->player->pos.x, tmpy))
+    //     game->player->pos.y -= game->player->dx;
+		
+	game->player->pos.x += game->player->dy;
+	game->player->pos.y -= game->player->dx;
 }
 
 void	ft_handle_d(t_game *game)
 {
-    float	tmpx = game->player->pos.x - game->player->dy;
-    float	tmpy = game->player->pos.y + game->player->dx;
+    // float	tmpx = game->player->pos.x - game->player->dy;
+    // float	tmpy = game->player->pos.y + game->player->dx;
 
-    if (!ft_is_wall(game->map, tmpx, game->player->pos.y))
-        game->player->pos.x -= game->player->dy;
-    if (!ft_is_wall(game->map, game->player->pos.x, tmpy))
-        game->player->pos.y += game->player->dx;
+    // if (!ft_is_wall(game->map, tmpx, game->player->pos.y))
+    //     game->player->pos.x -= game->player->dy;
+    // if (!ft_is_wall(game->map, game->player->pos.x, tmpy))
+    //     game->player->pos.y += game->player->dx;
+
+	game->player->pos.x -= game->player->dy;
+	game->player->pos.y += game->player->dx;
 }
 
 void	ft_handle_left(t_game *game)
