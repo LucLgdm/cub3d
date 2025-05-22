@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/22 10:09:58 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:45:22 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ void	ft_choose_ray(t_raycasting *ray, t_game *game, int flag)
 	ray->dist_v = ft_distance(&game->player->pos, &ray->pos);
 	if (ray->dist_h > ray->dist_v)
 	{
-		ray->color = ft_create_color(255, 0.9 * 20, 0.9 * 30, 0.9 * 150);
+		ray->color = ft_create_color(255, 0.9 * 150, 0.9 * 150, 0.9 * 0);
 		ray->final.x = ray->pos.x;
 		ray->final.y = ray->pos.y;
 		ray->dist_min = ray->dist_v;
+		ray->hit_v = true;
 	}
 	else
 	{
-		ray->color = ft_create_color(255, 0.7 * 20, 0.7 * 30, 0.7 * 150);
+		ray->color = ft_create_color(255, 0.7 * 80, 0.7 * 130, 0.7 * 50);
 		ray->dist_min = ray->dist_h;
+		ray->hit_v = false;
 	}
 	if (flag == 1)
 		ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y,
@@ -57,6 +59,8 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
 	column_x = r * ray->width + wall_offset;
 	ft_draw_rectangle(game->mlx, column_x, wall_start, wall_start + wall_height,
 		ray->width + 1, ray->color);
+
+	
 	ft_draw_rectangle(game->mlx, column_x, wall_start + wall_height, game->height_w, ray->width + 1, ft_create_color(255, (int)(game->image->floor.s_channel.r), (int)(game->image->floor.s_channel.g), (int)(game->image->floor.s_channel.b)));
 	ft_draw_rectangle(game->mlx, column_x, 0, wall_start, ray->width + 1, ft_create_color(255, (int)(game->image->ceiling.s_channel.r), (int)(game->image->ceiling.s_channel.g), (int)(game->image->ceiling.s_channel.b)));
 }

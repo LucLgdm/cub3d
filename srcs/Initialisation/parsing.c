@@ -6,11 +6,12 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 15:12:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/05 14:26:55 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:56:46 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 void	ft_parsing(t_game *game, char **argv)
 {
@@ -24,8 +25,9 @@ void	ft_parsing(t_game *game, char **argv)
 	if (!game->map)
 		ft_print_error_and_exit("Error: Memory allocation for map failed\n");
 	fd = open(argv[1], O_RDONLY);
-	line = ft_get_link_image(fd);
-	line = ft_get_color(fd, line);
+	line = ft_get_info(fd);
 	ft_get_map(game, fd, line);
 	ft_check_map(game);
+	game->image->img_height = TILE_SIZE;
+	game->image->img_width = TILE_SIZE;
 }

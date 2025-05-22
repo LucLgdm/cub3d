@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/22 10:13:20 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:25:25 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag)
 		ft_draw_3d(ray, game, r, flag);
 		ft_update_angle(ray);
 	}
-	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, game->mlx->img, 10,
-		10);
+	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, game->mlx->img, 0,
+		0);
 }
 
 void	ft_init_ray(t_raycasting *ray, t_game *game, int flag)
 {
 	ray->num_rays = game->width_w;
-	ray->color = ft_create_color(255, 255, 255, 0);
+	ray->color = ft_create_color(255, 150, 150, 0);
 	ray->dof = 0;
 	ray->angle = game->player->angle - 30 * PI / 180;
 	if (ray->angle < 0)
@@ -79,7 +79,7 @@ void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game)
 	{
 		ray->pos.x = game->player->pos.x;
 		ray->pos.y = game->player->pos.y;
-		ray->dof = 8;
+		ray->dof = 50;
 	}
 }
 
@@ -108,7 +108,7 @@ void	ft_vertical_raycasting(t_raycasting *ray, t_game *game)
 	{
 		ray->pos.x = game->player->pos.x;
 		ray->pos.y = game->player->pos.y;
-		ray->dof = 8;
+		ray->dof = 50;
 	}
 }
 
@@ -117,7 +117,7 @@ void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag)
 	int	map_x;
 	int	map_y;
 
-	while (ray->dof < 8)
+	while (ray->dof < 50)
 	{
 		map_x = (int)ray->pos.x / TILE_SIZE;
 		map_y = (int)ray->pos.y / TILE_SIZE;
@@ -125,7 +125,7 @@ void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag)
 			|| map_y >= game->map->height)
 			break ;
 		if (game->map->map[map_y][map_x] == '1')
-			ray->dof = 8;
+			ray->dof = 50;
 		else
 		{
 			ray->pos.x += ray->next.x;

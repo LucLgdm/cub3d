@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/21 14:02:54 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:58:01 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "raycasting.h"
 
 # define PI 3.1415926535
-# define TILE_SIZE 64.0
+# define TILE_SIZE 32.0
 
 typedef struct s_position{
 	float	x;
@@ -59,7 +59,7 @@ typedef struct s_raycasting
 	int			dist_v;
 	int			dist_h;
 	int			dist_min;
-	
+	bool		hit_v;
 }	t_raycasting;
 
 typedef struct s_key{
@@ -122,15 +122,18 @@ void	ft_game(int flag);
  ********************/
 
 void	ft_parsing(t_game *game, char **argv);
+char	*ft_get_info(int fd);
 
 	/*   LINK    */
-char	*ft_get_link_image(int fd);
 bool	ft_is_link(char *line);
-void	ft_fill_link(char *line, int *counter);
+void	ft_fill_link(char *line, int fd);
 
 	/*   COLOR   */
-char	*ft_get_color(int fd, char *line);
-bool	ft_fill_color(char c, char **splitted);
+void	ft_fill_game_color(char *line, t_color *color);
+char	**ft_fill_color_2(char *line, int fd);
+void	ft_fill_color(char *line, int fd);
+bool	ft_is_color(char *line);
+
 
 	/*    MAP    */
 void	ft_get_map(t_game *game, int fd, char *line);
