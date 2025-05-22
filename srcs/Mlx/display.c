@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/20 13:38:52 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/22 10:12:22 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ void	ft_display(t_game *game, int flag)
 	t_mlx			*mlx;
 
 	mlx = game->mlx;
-	if (flag == 0)
-		ft_display_background(game);
-	else
+	if (flag)
 		ft_display_all(game);
 	ft_ray_casting(&ray, game, flag);
 	mlx_do_sync(mlx->mlx);

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/21 11:06:13 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/22 10:13:20 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag)
 
 void	ft_init_ray(t_raycasting *ray, t_game *game, int flag)
 {
-	ray->num_rays = 1000;
+	ray->num_rays = game->width_w;
 	ray->color = ft_create_color(255, 255, 255, 0);
 	ray->dof = 0;
 	ray->angle = game->player->angle - 30 * PI / 180;

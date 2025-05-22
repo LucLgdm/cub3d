@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/20 13:36:57 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/22 10:09:58 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
 	column_x = r * ray->width + wall_offset;
 	ft_draw_rectangle(game->mlx, column_x, wall_start, wall_start + wall_height,
 		ray->width + 1, ray->color);
+	ft_draw_rectangle(game->mlx, column_x, wall_start + wall_height, game->height_w, ray->width + 1, ft_create_color(255, (int)(game->image->floor.s_channel.r), (int)(game->image->floor.s_channel.g), (int)(game->image->floor.s_channel.b)));
+	ft_draw_rectangle(game->mlx, column_x, 0, wall_start, ray->width + 1, ft_create_color(255, (int)(game->image->ceiling.s_channel.r), (int)(game->image->ceiling.s_channel.g), (int)(game->image->ceiling.s_channel.b)));
 }
 
 void	ft_update_angle(t_raycasting *ray)
