@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/20 17:09:47 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/22 09:26:53 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_game(int flag)
 	t_game	*game;
 
 	game = ft_get_game();
-	game->player->velocity = 0.03;
+	game->player->velocity = 0.05;
 	game->correction = flag;
 	game->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!game->mlx)
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 {
 	ft_game_initialisation(argc, argv);
 
-	ft_game(1);
+	ft_game(0);
 
 	return (0);
 }
