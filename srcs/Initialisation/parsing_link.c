@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:42:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/22 15:56:13 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:59:07 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 char	*ft_get_info(int fd)
 {
-	char *line;
-	int counter = 0;
+	char	*line;
+	int		counter;
 
+	counter = 0;
 	line = get_next_line(fd);
-	while(line){
-		if (ft_is_link(line) || ft_is_color(line)){
+	while (line)
+	{
+		if (ft_is_link(line) || ft_is_color(line))
+		{
 			counter++;
 			if (ft_is_link(line))
 				ft_fill_link(line, fd);
@@ -30,10 +33,10 @@ char	*ft_get_info(int fd)
 		{
 			if (counter != 6)
 				ft_exit_parsing(fd, line, "Error\nToo much or few info\n");
-			break;
+			break ;
 		}
 		free(line);
-		line = get_next_line(fd);	
+		line = get_next_line(fd);
 	}
 	return (line);
 }
@@ -48,11 +51,11 @@ void	ft_fill_link(char *line, int fd)
 		ft_exit_parsing(fd, line, "Error\nPath must start with './'\n");
 	if (line[0] == 'N' && !game->image->wall_N)
 		game->image->wall_N = ft_strdup(line + 3);
-	else if (line[0] == 'S'&& !game->image->wall_S)
+	else if (line[0] == 'S' && !game->image->wall_S)
 		game->image->wall_S = ft_strdup(line + 3);
-	else if (line[0] == 'W'&& !game->image->wall_W)
+	else if (line[0] == 'W' && !game->image->wall_W)
 		game->image->wall_W = ft_strdup(line + 3);
-	else if (line[0] == 'E'&& !game->image->wall_E)
+	else if (line[0] == 'E' && !game->image->wall_E)
 		game->image->wall_E = ft_strdup(line + 3);
 	else
 		ft_exit_parsing(fd, line, "Error\nToo much texture\n");

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:27:09 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/22 15:52:53 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:57:13 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,25 @@ void	ft_check_player(t_game *game)
 		game->player->angle = PI;
 	game->player->dx = 5 * cos(game->player->angle);
 	game->player->dy = 5 * sin(game->player->angle);
+}
+
+void	ft_image_generator(t_game *game)
+{
+	t_mlx	*mlx;
+	int		height;
+	int		width;
+
+	mlx = game->mlx;
+	height = game->image->img_height;
+	width = game->image->img_width;
+	
+	game->image->wall_N = mlx_xpm_file_to_image(game->mlx->mlx, (char *)(game->image->wall_N), &width, &height);
+	game->image->wall_S = mlx_xpm_file_to_image(game->mlx->mlx, (char *)(game->image->wall_S), &width, &height);
+	game->image->wall_E = mlx_xpm_file_to_image(game->mlx->mlx, (char *)(game->image->wall_E), &width, &height);
+	game->image->wall_W = mlx_xpm_file_to_image(game->mlx->mlx, (char *)(game->image->wall_W), &width, &height);
+	
+	game->image->add_N = mlx_get_data_addr(game->image->wall_N, &(mlx->bits_per_pixel), &(mlx->line_length), &(mlx->endian));
+	game->image->add_S = mlx_get_data_addr(game->image->wall_S, &(mlx->bits_per_pixel), &(mlx->line_length), &(mlx->endian));
+	game->image->add_E = mlx_get_data_addr(game->image->wall_E, &(mlx->bits_per_pixel), &(mlx->line_length), &(mlx->endian));
+	game->image->add_W = mlx_get_data_addr(game->image->wall_W, &(mlx->bits_per_pixel), &(mlx->line_length), &(mlx->endian));
 }

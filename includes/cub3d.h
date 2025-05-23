@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/22 15:58:01 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:06:38 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "raycasting.h"
 
 # define PI 3.1415926535
-# define TILE_SIZE 32.0
+# define TILE_SIZE 64.0
 
 typedef struct s_position{
 	float	x;
@@ -154,6 +154,7 @@ void	ft_fill_player(char c, int i, int j, t_game *game);
 int		ft_key_handle(int key, void *data);
 int		ft_close_window(t_game *game);
 void	ft_display(t_game *game, int flag);
+void	ft_image_generator(t_game *game);
 
 	/*	DRAWING		*/
 int		ft_create_color(int t, int r, int g, int b);

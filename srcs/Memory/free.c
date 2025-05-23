@@ -3,34 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/15 14:45:21 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/23 14:50:21 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
 void	ft_free_game(t_game *game)
 {
 	ft_free_image(game);
-	// free(game->mlx->mlx);
-	// free(game->mlx);
+	mlx_destroy_window(game->mlx->mlx, game->mlx->win);
+	mlx_destroy_display(game->mlx->mlx);
 	ft_free_map(game->map);
 	ft_free_player(game->player);
-	// free(game);
+	free(game);
 }
 
 void	ft_free_image(t_game *game)
 {
 	if (game->image)
 	{
-		free(game->image->wall_N);
-		free(game->image->wall_S);
-		free(game->image->wall_E);
-		free(game->image->wall_W);
+		mlx_destroy_image(game->mlx->mlx, game->image->wall_N);
+		mlx_destroy_image(game->mlx->mlx, game->image->wall_S);
+		mlx_destroy_image(game->mlx->mlx, game->image->wall_W);
+		mlx_destroy_image(game->mlx->mlx, game->image->wall_E);
 		free(game->image);
 	}
 }

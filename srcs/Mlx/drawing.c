@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:41 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/20 09:58:05 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:45:53 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void	ft_draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2, int color)
 void	ft_draw_rectangle(t_mlx *mlx, int x, int y_start, int y_end, int width,
 		int color)
 {
-	for (int i = 0; i < width; i++)
+	int	i;
+
+	i = -1;
+	while (++i < width)
 		ft_draw_line(mlx, x + i, y_start, x + i, y_end, color);
 }

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:44:36 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/22 15:57:54 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:58:45 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_fill_game_color(char *line, t_color *color)
 	t_game	*game;
 
 	game = ft_get_game();
-	;
 	if (line[0] == 'F')
 		ft_get_game()->image->floor.value = color->value;
 	else if (line[0] == 'C')
@@ -38,6 +37,7 @@ char	**ft_fill_color_2(char *line, int fd)
 	}
 	return (splited);
 }
+
 void	ft_fill_color(char *line, int fd)
 {
 	t_color	color;

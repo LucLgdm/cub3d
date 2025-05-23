@@ -6,12 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 15:12:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/22 15:56:46 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:58:13 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	ft_parsing(t_game *game, char **argv)
 {

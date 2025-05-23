@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:43:30 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/04/29 11:08:46 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/05/23 13:53:19 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ typedef struct s_image
 	t_color	ceiling;
 	int		img_height;
 	int		img_width;
+	char	*add_N;
+	char	*add_S;
+	char	*add_E;
+	char	*add_W;
 } t_image;
 
 
