@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:27:09 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 13:57:13 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 21:08:43 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,37 @@ void	ft_check_player(t_game *game)
 void	ft_image_generator(t_game *game)
 {
 	t_mlx	*mlx;
-	int		height;
-	int		width;
-
+	
 	mlx = game->mlx;
-	height = game->image->img_height;
-	width = game->image->img_width;
+	ft_image_north(mlx->mlx, &game->image->north);
+	ft_image_south(mlx->mlx, &game->image->south);
+	ft_image_east(mlx->mlx, &game->image->east);
+	ft_image_west(mlx->mlx, &game->image->west);
+}
+
+void	ft_image_north(void *mlx, t_tex *north)
+{
+	north->img = mlx_xpm_file_to_image(mlx, (char *)(north->path), &(north->width), &(north->height));
+	north->addr = mlx_get_data_addr(north->img, &(north->bits_per_pixel), &(north->line_length), &(north->endian));
+}
+
+void	ft_image_south(void *mlx, t_tex *south)
+{
+	south->img = mlx_xpm_file_to_image(mlx, (char *)(south->path), &(south->width), &(south->height));
+	south->addr = mlx_get_data_addr(south->img, &(south->bits_per_pixel), &(south->line_length), &(south->endian));
 	
-	game->image->wall_N = mlx_xpm_file_to_image(game->mlx->mlx, (char *)(game->image->wall_N), &width, &height);
-	game->image->wall_S = mlx_xpm_file_to_image(game->mlx->mlx, (char *)(game->image->wall_S), &width, &height);
-	game->image->wall_E = mlx_xpm_file_to_image(game->mlx->mlx, (char *)(game->image->wall_E), &width, &height);
-	game->image->wall_W = mlx_xpm_file_to_image(game->mlx->mlx, (char *)(game->image->wall_W), &width, &height);
+}
+
+void	ft_image_east(void *mlx, t_tex *east)
+{
+	east->img = mlx_xpm_file_to_image(mlx, (char *)(east->path), &(east->width), &(east->height));
+	east->addr = mlx_get_data_addr(east->img, &(east->bits_per_pixel), &(east->line_length), &(east->endian));
 	
-	game->image->add_N = mlx_get_data_addr(game->image->wall_N, &(mlx->bits_per_pixel), &(mlx->line_length), &(mlx->endian));
-	game->image->add_S = mlx_get_data_addr(game->image->wall_S, &(mlx->bits_per_pixel), &(mlx->line_length), &(mlx->endian));
-	game->image->add_E = mlx_get_data_addr(game->image->wall_E, &(mlx->bits_per_pixel), &(mlx->line_length), &(mlx->endian));
-	game->image->add_W = mlx_get_data_addr(game->image->wall_W, &(mlx->bits_per_pixel), &(mlx->line_length), &(mlx->endian));
+}
+
+void	ft_image_west(void *mlx, t_tex *west)
+{
+	west->img = mlx_xpm_file_to_image(mlx, (char *)(west->path), &(west->width), &(west->height));
+	west->addr = mlx_get_data_addr(west->img, &(west->bits_per_pixel), &(west->line_length), &(west->endian));
+	
 }

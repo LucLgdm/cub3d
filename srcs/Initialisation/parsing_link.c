@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:42:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 11:59:07 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 21:08:05 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ void	ft_fill_link(char *line, int fd)
 	line[ft_strlen(line) - 1] = '\0';
 	if (ft_strncmp(line + 3, "./", 2) != 0)
 		ft_exit_parsing(fd, line, "Error\nPath must start with './'\n");
-	if (line[0] == 'N' && !game->image->wall_N)
-		game->image->wall_N = ft_strdup(line + 3);
-	else if (line[0] == 'S' && !game->image->wall_S)
-		game->image->wall_S = ft_strdup(line + 3);
-	else if (line[0] == 'W' && !game->image->wall_W)
-		game->image->wall_W = ft_strdup(line + 3);
-	else if (line[0] == 'E' && !game->image->wall_E)
-		game->image->wall_E = ft_strdup(line + 3);
+	if (line[0] == 'N' && !game->image->north.path)
+		game->image->north.path = ft_strdup(line + 3);
+	else if (line[0] == 'S' && !game->image->south.path)
+		game->image->south.path = ft_strdup(line + 3);
+	else if (line[0] == 'W' && !game->image->west.path)
+		game->image->west.path = ft_strdup(line + 3);
+	else if (line[0] == 'E' && !game->image->east.path)
+		game->image->east.path = ft_strdup(line + 3);
 	else
 		ft_exit_parsing(fd, line, "Error\nToo much texture\n");
 }

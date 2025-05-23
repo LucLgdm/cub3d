@@ -1,9 +1,9 @@
 
 
 NO ./texture/pics/greystone.xpm
-SO ./texture/pics/greystone.xpm
-WE ./texture/pics/greystone.xpm
-EA ./texture/pics/greystone.xpm
+SO ./texture/pics/bluestone.xpm
+WE ./texture/pics/colorstone.xpm
+EA ./texture/pics/purplestone.xpm
 
 F 255,255,255
 C 0,0,255
@@ -15,5 +15,5 @@ C 0,0,255
 100000101
 100001101
 100000101
-10000E101
+100N00101
 111111111

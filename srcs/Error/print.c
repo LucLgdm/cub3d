@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:56:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/22 14:26:36 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 21:14:15 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,10 @@ void	ft_print_image(void)
 
 	printf("ft_print_image\n");
 	game = ft_get_game();
-	printf("Image height: %i\n", game->image->img_height);
-	printf("Image width: %i\n", game->image->img_width);
-	printf("Wall_S: %s\n", (char *)game->image->wall_S);
-	printf("Wall_E: %s\n", (char *)game->image->wall_E);
-	printf("Wall_N: %s\n", (char *)game->image->wall_N);
-	printf("Wall_W: %s\n", (char *)game->image->wall_W);
+	printf("Path south: %s\n", (char *)game->image->south.path);
+	printf("Path east: %s\n", (char *)game->image->east.path);
+	printf("Path north: %s\n", (char *)game->image->north.path);
+	printf("Path west: %s\n", (char *)game->image->west.path);
 	printf("Floor: %i\n", game->image->floor.value);
 	printf("	red  : %i\n", game->image->floor.s_channel.r);
 	printf("	green: %i\n", game->image->floor.s_channel.g);

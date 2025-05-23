@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 17:18:15 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 20:57:15 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ typedef struct s_raycasting
 	int			map_y;
 	int			dof;
 	int			color;
-	float			dist_v;
-	float			dist_h;
-	int		dist_min;
+	float		dist_v;
+	float		dist_h;
+	float		dist_min;
 	bool		hit_v;
 }	t_raycasting;
 
@@ -154,7 +154,13 @@ void	ft_fill_player(char c, int i, int j, t_game *game);
 int		ft_key_handle(int key, void *data);
 int		ft_close_window(t_game *game);
 void	ft_display(t_game *game, int flag);
+
+	/*	IMAGE		*/
 void	ft_image_generator(t_game *game);
+void	ft_image_north(void *mlx, t_tex *north);
+void	ft_image_south(void *mlx, t_tex *south);
+void	ft_image_east(void *mlx, t_tex *east);
+void	ft_image_west(void *mlx, t_tex *west);
 
 	/*	DRAWING		*/
 int		ft_create_color(int t, int r, int g, int b);

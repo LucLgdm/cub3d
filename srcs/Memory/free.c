@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 14:50:21 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 21:18:46 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,25 @@ void	ft_free_game(t_game *game)
 	ft_free_image(game);
 	mlx_destroy_window(game->mlx->mlx, game->mlx->win);
 	mlx_destroy_display(game->mlx->mlx);
+	free(game->mlx->mlx);
+	free(game->mlx);
 	ft_free_map(game->map);
 	ft_free_player(game->player);
-	free(game);
 }
 
 void	ft_free_image(t_game *game)
 {
 	if (game->image)
 	{
-		mlx_destroy_image(game->mlx->mlx, game->image->wall_N);
-		mlx_destroy_image(game->mlx->mlx, game->image->wall_S);
-		mlx_destroy_image(game->mlx->mlx, game->image->wall_W);
-		mlx_destroy_image(game->mlx->mlx, game->image->wall_E);
+		mlx_destroy_image(game->mlx->mlx, game->mlx->img);
+		mlx_destroy_image(game->mlx->mlx, game->image->north.img);
+		mlx_destroy_image(game->mlx->mlx, game->image->south.img);
+		mlx_destroy_image(game->mlx->mlx, game->image->west.img);
+		mlx_destroy_image(game->mlx->mlx, game->image->east.img);
+		free(game->image->north.path);
+		free(game->image->south.path);
+		free(game->image->east.path);
+		free(game->image->west.path);
 		free(game->image);
 	}
 }
@@ -49,7 +55,6 @@ void	ft_free_map(t_map *map)
 	free(map->map[i]);
 	free(map->map);
 	free(map);
-	map = NULL;
 }
 
 void	ft_free_player(t_player *player)

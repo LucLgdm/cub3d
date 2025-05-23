@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 15:12:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 11:58:13 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:37:08 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,4 @@ void	ft_parsing(t_game *game, char **argv)
 	line = ft_get_info(fd);
 	ft_get_map(game, fd, line);
 	ft_check_map(game);
-	game->image->img_height = TILE_SIZE;
-	game->image->img_width = TILE_SIZE;
 }
