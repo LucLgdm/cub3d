@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 16:07:36 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:11:16 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	ft_game(int flag)
 int	main(int argc, char **argv)
 {
 	ft_game_initialisation(argc, argv);
-	ft_game(0);
+	ft_game(1);
 	return (0);
 }

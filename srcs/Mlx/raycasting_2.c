@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 16:06:33 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:18:51 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_choose_ray(t_raycasting *ray, t_game *game, int flag)
 	ray->dist_v = ft_distance(&game->player->pos, &ray->pos);
 	if (ray->dist_h > ray->dist_v)
 	{
-		ray->color = ft_create_color(255, 0.9 * 150, 0.9 * 150, 0.9 * 0);
 		ray->final.x = ray->pos.x;
 		ray->final.y = ray->pos.y;
 		ray->dist_min = ray->dist_v;
@@ -25,11 +24,9 @@ void	ft_choose_ray(t_raycasting *ray, t_game *game, int flag)
 	}
 	else
 	{
-		ray->color = ft_create_color(255, 0.7 * 80, 0.7 * 130, 0.7 * 50);
 		ray->dist_min = ray->dist_h;
 		ray->hit_v = false;
 	}
-
 	if (ray->hit_v){
 		if (ray->angle < PI / 2 || ray->angle > 3 * PI / 2)
 			ray->color = ft_create_color(255, 255, 0, 0);

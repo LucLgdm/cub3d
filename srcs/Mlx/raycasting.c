@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/23 13:44:06 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:58:03 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game)
 	{
 		ray->pos.x = game->player->pos.x;
 		ray->pos.y = game->player->pos.y;
-		ray->dof = 50;
+		ray->dof = 50; 
 	}
 }
 

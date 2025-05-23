@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 16:06:38 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:18:15 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ typedef struct s_raycasting
 	int			map_y;
 	int			dof;
 	int			color;
-	int			dist_v;
-	int			dist_h;
-	int			dist_min;
+	float			dist_v;
+	float			dist_h;
+	int		dist_min;
 	bool		hit_v;
 }	t_raycasting;
 
@@ -219,6 +219,6 @@ void	ft_print_map();
  * 		Usefull
  ********************/
 
-int	ft_distance(t_position *pos1, t_position *pos2);
+float	ft_distance(t_position *pos1, t_position *pos2);
 
 #endif
