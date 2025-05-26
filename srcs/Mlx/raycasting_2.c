@@ -6,11 +6,18 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 21:22:17 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:01:03 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	ft_draw_ray(t_raycasting *ray, t_game *game, int flag)
+{
+	if (flag == 1)
+		ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y,
+			ray->final.x, ray->final.y, ray->color);
+}
 
 void	ft_choose_ray(t_raycasting *ray, t_game *game, int flag)
 {
@@ -38,22 +45,17 @@ void	ft_choose_ray(t_raycasting *ray, t_game *game, int flag)
 		else
 			ray->color = ft_create_color(255,  155, 32, 137);
 	}
-	
-	if (flag == 1)
-		ft_draw_line(game->mlx, game->player->pos.x, game->player->pos.y,
-			ray->final.x, ray->final.y, ray->color);
+	ft_draw_ray(ray, game, flag);
 }
 
 void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
 {
-	float	ca;
 	float	wall_height;
 	float	wall_start;
 	float	wall_offset;
 	int		column_x;
 
-	// On choisit la texture //
-
+		// On choisit la texture //
 	t_tex	*tex;
 	
 	if (ray->hit_v)
@@ -71,15 +73,24 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
 			tex = &game->image->east;
 	}
 	
-	ca = ray->angle - game->player->angle;
+		// Fixing fisheyes
+	float	ca;
+	ca = game->player->angle - ray->angle;
 	if (ca > PI)
 		ca -= 2 * PI;
 	if (ca < -PI)
 		ca += 2 * PI;
-	ray->dist_min *= cos(ca);
-	wall_height = (int)((game->height_w * tex->height) / ray->dist_min);
+	ray->dist_min *= (float)cos(ca);
+
+		// Calcul de la hauteur du mur
+	wall_height = (game->height_w * tex->height) / ray->dist_min;
+	float ty_step = tex->height / wall_height;
+	float ty_off = 0.0f;
 	if (wall_height > game->height_w)
+	{
+		ty_off = (wall_height - game->height_w) / 2.0f;
 		wall_height = game->height_w;
+	}
 	wall_start = (game->height_w / 2) - (wall_height / 2);
 	if (flag == 1)
 		wall_offset = game->width_w / 2;
@@ -87,9 +98,7 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
 		wall_offset = 0;
 	column_x = r * ray->width + wall_offset;
 		
-		
-	
-	// Calcul de la coordonnée X sur la texture
+		// Calcul de la coordonnée X sur la texture
 	float wall_x;
 	if (ray->hit_v)
 		wall_x = ray->final.y / tex->width - floor(ray->final.y / tex->width);
@@ -99,22 +108,24 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
 	if (tex_x < 0) tex_x = 0;
 	if (tex_x >= tex->width) tex_x = tex->width - 1;
 
-	// Affichage de la colonne texturée
+	float ty = ty_off * ty_step;
 	for (int y = 0; y < wall_height; y++)
 	{
 		int screen_y = wall_start + y;
 		if (screen_y < 0 || screen_y >= game->height_w)
 			continue;
-		int tex_y = (int)((float)y / wall_height * tex->height);
+		int tex_y = (int)ty;
+		if (tex_y < 0) tex_y = 0;
+		if (tex_y >= tex->height)
+			tex_y = tex->height - 1;
 
 		char *dst = tex->addr + (tex_y * tex->line_length + tex_x * (tex->bits_per_pixel / 8));
 		unsigned int color = *(unsigned int*)dst;
-		
+
 		my_mlx_pixel_put(game->mlx, column_x, screen_y, color);
+		ty += ty_step;
 	}
-		
-	// ft_draw_rectangle(game->mlx, column_x, wall_start, wall_start + wall_height,
-	// 	ray->width + 1, ray->color);
+
 	ft_draw_rectangle(game->mlx, column_x, wall_start + wall_height,
 		game->height_w, ray->width + 1, ft_create_color(255,
 			(int)(game->image->floor.s_channel.r),

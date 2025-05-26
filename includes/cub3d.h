@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 20:57:15 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:11:20 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "raycasting.h"
 
 # define PI 3.1415926535
-# define TILE_SIZE 64.0
+# define TILE_SIZE 32.0
 
 typedef struct s_position{
 	float	x;
@@ -180,7 +180,7 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag);
 void	ft_init_ray(t_raycasting *ray, t_game *game, int flag);
 void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game);
 void	ft_vertical_raycasting(t_raycasting *ray, t_game *game);
-void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag);
+void	ft_dda_loop(t_raycasting *ray, t_game *game, int flag);
 void	ft_choose_ray(t_raycasting *ray, t_game *game, int flag);
 void	ft_draw_3d(t_raycasting *ray, t_game * game, int r, int flag);
 void    ft_update_angle(t_raycasting *ray);

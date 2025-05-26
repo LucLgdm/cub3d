@@ -6,11 +6,13 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:54:44 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/23 13:48:24 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:03:53 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+#define PLAYER_RADIUS 10.0f
 
 int	ft_key_handle(int key, void *data)
 {
@@ -65,22 +67,43 @@ void	ft_handle_key(t_game *game)
 	ft_display(game, (int)game->correction);
 }
 
+static int	ft_is_wall_at(t_game *game, float x, float y)
+{
+	int	map_x;
+	int	map_y;
+
+	map_x = (int)(x / TILE_SIZE);
+	map_y = (int)(y / TILE_SIZE);
+	return (game->map->map[map_y][map_x] != '0');
+}
+
+static int	ft_can_move_to(t_game *game, float x, float y)
+{
+	if (ft_is_wall_at(game, x + PLAYER_RADIUS, y))
+		return (0);
+	if (ft_is_wall_at(game, x - PLAYER_RADIUS, y))
+		return (0);
+	if (ft_is_wall_at(game, x, y + PLAYER_RADIUS))
+		return (0);
+	if (ft_is_wall_at(game, x, y - PLAYER_RADIUS))
+		return (0);
+	return (1);
+}
+
 void	ft_handle_w(t_game *game)
 {
 	float	off;
 	float	new_x;
 	float	new_y;
 
-	off = 10.0f;
+	off = 1.0f;
 	new_x = game->player->pos.x + game->player->dx * off
 		* game->player->velocity;
 	new_y = game->player->pos.y + game->player->dy * off
 		* game->player->velocity;
-	if (game->map->map[(int)(game->player->pos.y / TILE_SIZE)][(int)(new_x
-			/ TILE_SIZE)] == '0')
+	if (ft_can_move_to(game, new_x, game->player->pos.y))
 		game->player->pos.x = new_x;
-	if (game->map->map[(int)(new_y / TILE_SIZE)][(int)(game->player->pos.x
-			/ TILE_SIZE)] == '0')
+	if (ft_can_move_to(game, game->player->pos.x, new_y))
 		game->player->pos.y = new_y;
 }
 
@@ -90,16 +113,14 @@ void	ft_handle_s(t_game *game)
 	float	new_x;
 	float	new_y;
 
-	off = 10.0f;
+	off = 1.0f;
 	new_x = game->player->pos.x - game->player->dx * off
 		* game->player->velocity;
 	new_y = game->player->pos.y - game->player->dy * off
 		* game->player->velocity;
-	if (game->map->map[(int)(game->player->pos.y / TILE_SIZE)][(int)(new_x
-			/ TILE_SIZE)] == '0')
+	if (ft_can_move_to(game, new_x, game->player->pos.y))
 		game->player->pos.x = new_x;
-	if (game->map->map[(int)(new_y / TILE_SIZE)][(int)(game->player->pos.x
-			/ TILE_SIZE)] == '0')
+	if (ft_can_move_to(game, game->player->pos.x, new_y))
 		game->player->pos.y = new_y;
 }
 
@@ -109,16 +130,14 @@ void	ft_handle_a(t_game *game)
 	float	new_x;
 	float	new_y;
 
-	off = 10.0f;
+	off = 1.0f;
 	new_x = game->player->pos.x + game->player->dy * off
 		* game->player->velocity;
 	new_y = game->player->pos.y - game->player->dx * off
 		* game->player->velocity;
-	if (game->map->map[(int)(game->player->pos.y / TILE_SIZE)][(int)(new_x
-			/ TILE_SIZE)] == '0')
+	if (ft_can_move_to(game, new_x, game->player->pos.y))
 		game->player->pos.x = new_x;
-	if (game->map->map[(int)(new_y / TILE_SIZE)][(int)(game->player->pos.x
-			/ TILE_SIZE)] == '0')
+	if (ft_can_move_to(game, game->player->pos.x, new_y))
 		game->player->pos.y = new_y;
 }
 
@@ -128,16 +147,14 @@ void	ft_handle_d(t_game *game)
 	float	new_x;
 	float	new_y;
 
-	off = 10.0f;
+	off = 1.0f;
 	new_x = game->player->pos.x - game->player->dy * off
 		* game->player->velocity;
 	new_y = game->player->pos.y + game->player->dx * off
 		* game->player->velocity;
-	if (game->map->map[(int)(game->player->pos.y / TILE_SIZE)][(int)(new_x
-			/ TILE_SIZE)] == '0')
+	if (ft_can_move_to(game, new_x, game->player->pos.y))
 		game->player->pos.x = new_x;
-	if (game->map->map[(int)(new_y / TILE_SIZE)][(int)(game->player->pos.x
-			/ TILE_SIZE)] == '0')
+	if (ft_can_move_to(game, game->player->pos.x, new_y))
 		game->player->pos.y = new_y;
 }
 void	ft_handle_left(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/23 21:19:44 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:10:53 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag)
 		ft_calcul_loop(ray, game, 1);
 		ray->dof = 0;
 		ft_vertical_raycasting(ray, game);
-		ft_calcul_loop(ray, game, 2);
+		ft_dda_loop(ray, game, 2);
 		if (ray->pos.y > game->height_w)
 			ray->pos.y = game->height_w;
 		if (ray->pos.y < 0)
-			ray->pos.y = 0;
+		ray->pos.y = 0;
 		ft_choose_ray(ray, game, flag);
 		ft_draw_3d(ray, game, r, flag);
 		ft_update_angle(ray);
@@ -41,7 +41,6 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag)
 void	ft_init_ray(t_raycasting *ray, t_game *game, int flag)
 {
 	ray->num_rays = game->width_w;
-	ray->color = ft_create_color(255, 150, 150, 0);
 	ray->dof = 0;
 	ray->angle = game->player->angle - 30 * PI / 180;
 	if (ray->angle < 0)
@@ -81,7 +80,7 @@ void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game)
 	{
 		ray->pos.x = game->player->pos.x;
 		ray->pos.y = game->player->pos.y;
-		ray->dof = 50; 
+		ray->dof = 20; 
 	}
 }
 
@@ -112,16 +111,16 @@ void	ft_vertical_raycasting(t_raycasting *ray, t_game *game)
 	{
 		ray->pos.x = game->player->pos.x;
 		ray->pos.y = game->player->pos.y;
-		ray->dof = 50;
+		ray->dof = 20;
 	}
 }
 
-void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag)
+void	ft_dda_loop(t_raycasting *ray, t_game *game, int flag)
 {
 	int	map_x;
 	int	map_y;
 
-	while (ray->dof < 50)
+	while (ray->dof < 20)
 	{
 		map_x = (int)ray->pos.x / TILE_SIZE;
 		map_y = (int)ray->pos.y / TILE_SIZE;
@@ -129,7 +128,7 @@ void	ft_calcul_loop(t_raycasting *ray, t_game *game, int flag)
 			|| map_x >= (int)ft_strlen(game->map->map[map_y]))
 			break ;
 		if (game->map->map[map_y][map_x] == '1')
-			ray->dof = 50;
+			ray->dof = 20;
 		else
 		{
 			ray->pos.x += ray->next.x;
