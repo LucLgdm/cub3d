@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:41 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/27 16:00:19 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:23:30 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_draw_line(t_mlx *mlx, t_position x1, t_position x2, int color)
 	if (abs((int)dxdy.x) > abs((int)dxdy.y))
 		steps = abs((int)dxdy.x);
 	else
-		steps = abs((int)dxdy.x);
+		steps = abs((int)dxdy.y);
 	inc.x = dxdy.x / (float)steps;
 	inc.y = dxdy.y / (float)steps;
 	current.x = x1.x;

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/27 16:00:19 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:21:16 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void	ft_draw_rectangle(t_position start, int height, int width, int color);
 void	ft_draw_wall_column(t_game *game, t_tex *tex, t_wall_params wp, int tex_x);
 void	ft_draw_ceiling(int column_x, int wall_start, t_raycasting *ray);
 void	ft_draw_floor(int column_x, int wall_start, int wall_height, t_raycasting *ray);
-void	ft_draw_ray(t_raycasting *ray, t_game *game, int flag);
+void	ft_draw_ray(t_game *game, t_raycasting *ray);
 
 
 	/*	CORRECTION	*/

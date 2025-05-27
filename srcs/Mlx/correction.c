@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:37:39 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/27 16:00:19 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:18:13 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void	ft_display_player(t_game *game)
 	pos.x = game->player->pos.x;
 	pos.y = game->player->pos.y;
 	pos_next.x = pos.x + 5 * game->player->dx;
-	pos_next.x = pos.y + 5 * game->player->dy;
+	pos_next.y = pos.y + 5 * game->player->dy;
 	ft_draw_line(game->mlx, pos, pos_next, color);
 }

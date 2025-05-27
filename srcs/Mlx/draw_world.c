@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:36:26 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/27 15:44:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:21:02 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_draw_wall_column(t_game *game, t_tex *tex, t_wall_params wp,
 	}
 }
 
-void	ft_draw_ray(t_raycasting *ray, t_game *game, int flag)
+void	ft_draw_ray(t_game *game, t_raycasting *ray)
 {
 	t_position	pos;
 	t_position	ray_pos;
@@ -83,6 +83,5 @@ void	ft_draw_ray(t_raycasting *ray, t_game *game, int flag)
 	pos.y = game->player->pos.y;
 	ray_pos.x = ray->final.x;
 	ray_pos.y = ray->final.y;
-	if (flag == 1)
-		ft_draw_line(game->mlx, pos, ray_pos, ray->color);
+	ft_draw_line(game->mlx, pos, ray_pos, ray->color);
 }
