@@ -6,28 +6,35 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 08:20:26 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/06 11:48:54 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:21:16 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	**ft_transpose_tab(char **tab)
+static int	ft_get_tab_width(char **tab, int tab_length)
 {
-	char	**transposed_tab;
-	int		tab_length;
-	int		tab_width;
-	int		i;
-	int		j;
+	int	tab_width;
+	int	i;
+	int	len;
 
-	tab_length = (int)ft_arraylen(tab);
-	if (tab_length == 0)
-		return (NULL);
 	tab_width = 0;
 	i = -1;
 	while (++i < tab_length)
-		if ((int)ft_strlen(tab[i]) > tab_width)
-			tab_width = (int)ft_strlen(tab[i]);
+	{
+		len = (int)ft_strlen(tab[i]);
+		if (len > tab_width)
+			tab_width = len;
+	}
+	return (tab_width);
+}
+
+static char	**ft_alloc_transposed_tab(int tab_width, int tab_length)
+{
+	char	**transposed_tab;
+	int		i;
+	int		j;
+
 	transposed_tab = ft_calloc(tab_width + 1, sizeof(char *));
 	if (!transposed_tab)
 		return (NULL);
@@ -44,6 +51,15 @@ char	**ft_transpose_tab(char **tab)
 		while (++j < tab_length)
 			transposed_tab[i][j] = ' ';
 	}
+	return (transposed_tab);
+}
+
+static void	ft_fill_transposed_tab(char **tab, char **transposed_tab,
+		int tab_length)
+{
+	int	i;
+	int	j;
+
 	i = -1;
 	while (++i < tab_length)
 	{
@@ -51,25 +67,21 @@ char	**ft_transpose_tab(char **tab)
 		while (++j < (int)ft_strlen(tab[i]))
 			transposed_tab[j][i] = tab[i][j];
 	}
-	return (transposed_tab);
 }
 
-// int main(){
-// 	char *tab[] = { "123456789",
-// 					"12345678",
-// 					"1234567",
-// 					"123456",
-// 					"12345",
-// 					"1234",
-// 					"123",
-// 					"12",
-// 					"1",
-// 					NULL};
+char	**ft_transpose_tab(char **tab)
+{
+	int		tab_length;
+	int		tab_width;
+	char	**transposed_tab;
 
-// 	char **transposed = ft_transpose_tab(tab);
-
-// 	for(int i = 0; transposed[i]; i++)
-// 		printf("%s\n", transposed[i]);
-// 	ft_free_array(transposed);
-// 	return (0);
-// }
+	tab_length = (int)ft_arraylen(tab);
+	if (tab_length == 0)
+		return (NULL);
+	tab_width = ft_get_tab_width(tab, tab_length);
+	transposed_tab = ft_alloc_transposed_tab(tab_width, tab_length);
+	if (!transposed_tab)
+		return (NULL);
+	ft_fill_transposed_tab(tab, transposed_tab, tab_length);
+	return (transposed_tab);
+}

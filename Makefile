@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/05/23 17:18:20 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/05/27 16:02:32 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(INI_DIR)parsing_color.c \
 			$(SRC_DIR)$(INI_DIR)parsing_map.c \
 			$(SRC_DIR)$(INI_DIR)check_map.c \
+			$(SRC_DIR)$(INI_DIR)image_generator.c \
 			$(SRC_DIR)$(ERR_DIR)error.c \
 			$(SRC_DIR)$(ERR_DIR)print.c \
 			$(SRC_DIR)$(MLX_DIR)hook.c \
@@ -47,7 +48,11 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(MLX_DIR)drawing.c \
 			$(SRC_DIR)$(MLX_DIR)raycasting.c \
 			$(SRC_DIR)$(MLX_DIR)raycasting_2.c \
-			$(SRC_DIR)$(MLX_DIR)usefull.c
+			$(SRC_DIR)$(MLX_DIR)raycasting_3.c \
+			$(SRC_DIR)$(MLX_DIR)usefull.c \
+			$(SRC_DIR)$(MLX_DIR)draw_world.c \
+			$(SRC_DIR)$(MLX_DIR)status.c \
+			$(SRC_DIR)$(MLX_DIR)move.c
 			
 # Transforme chaque fichier source en un fichier objet dans $(OBJ_DIR)
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))

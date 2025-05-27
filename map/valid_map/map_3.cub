@@ -5,8 +5,8 @@ SO ./texture/pics/bluestone.xpm
 WE ./texture/pics/colorstone.xpm
 EA ./texture/pics/purplestone.xpm
 
-F 0,0,0
-C 0,0,0
+F 255, 255,255
+C 0,0, 0
 
 111111111111111111111111111111111
 100000000000000000000000000000001

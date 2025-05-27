@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/26 16:11:20 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:00:19 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "raycasting.h"
 
 # define PI 3.1415926535
-# define TILE_SIZE 32.0
+# define T_SIZE 32.0
 
 typedef struct s_position{
 	float	x;
@@ -42,6 +42,16 @@ typedef struct s_mlx{
 	int		line_length;
 	int		endian;
 } t_mlx;
+
+typedef struct s_wall_params
+{
+	float	height;
+	float	start;
+	float	offset;
+	int		column_x;
+	float	ty_step;
+	float	ty_off;
+}	t_wall_params;
 
 typedef struct s_raycasting
 {
@@ -60,6 +70,7 @@ typedef struct s_raycasting
 	float		dist_h;
 	float		dist_min;
 	bool		hit_v;
+	int			p;
 }	t_raycasting;
 
 typedef struct s_key{
@@ -166,8 +177,13 @@ void	ft_image_west(void *mlx, t_tex *west);
 int		ft_create_color(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void	ft_draw_square(t_game *game, int x, int y, int color);
-void	ft_draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2, int color);
-void	ft_draw_rectangle(t_mlx *mlx, int x, int y_start, int y_end, int width, int color);
+void	ft_draw_line(t_mlx *mlx, t_position x1, t_position x2, int color);
+void	ft_draw_rectangle(t_position start, int height, int width, int color);
+void	ft_draw_wall_column(t_game *game, t_tex *tex, t_wall_params wp, int tex_x);
+void	ft_draw_ceiling(int column_x, int wall_start, t_raycasting *ray);
+void	ft_draw_floor(int column_x, int wall_start, int wall_height, t_raycasting *ray);
+void	ft_draw_ray(t_raycasting *ray, t_game *game, int flag);
+
 
 	/*	CORRECTION	*/
 void	ft_display_all(t_game *game);
@@ -175,17 +191,25 @@ void	ft_display_background(t_game *game);
 void	ft_display_map(t_game *game);
 void	ft_display_player(t_game *game);
 
-/*	RAYCASTING	*/
+	/*	RAYCASTING	*/
 void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag);
 void	ft_init_ray(t_raycasting *ray, t_game *game, int flag);
 void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game);
 void	ft_vertical_raycasting(t_raycasting *ray, t_game *game);
 void	ft_dda_loop(t_raycasting *ray, t_game *game, int flag);
 void	ft_choose_ray(t_raycasting *ray, t_game *game, int flag);
+void	ft_set_ray_hit(t_raycasting *ray, t_game *game);
+void	ft_set_ray_color(t_raycasting *ray);
 void	ft_draw_3d(t_raycasting *ray, t_game * game, int r, int flag);
+t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray);
+void	ft_fix_fisheyes(t_game *game, t_raycasting *ray);
+t_wall_params	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r, int flag);
+int		ft_calc_tex_x(t_tex *tex, t_raycasting *ray);
 void    ft_update_angle(t_raycasting *ray);
 
 	/*	HOOK		*/
+int		ft_can_move_to(t_game *game, float x, float y);
+int		ft_is_wall_at(t_game *game, float x, float y);
 void	ft_move_player(t_game *game, int key);
 void	ft_handle_key(t_game *game);
 void	ft_handle_w(t_game *game);
@@ -207,6 +231,7 @@ void	ft_malloc_image(t_game *game);
 void	ft_malloc_map(t_game *game);
 
 void	ft_free_game(t_game *game);
+void	ft_free_mlx(t_mlx *mlx);
 void	ft_free_player(t_player *player);
 void	ft_free_image(t_game *game);
 void	ft_free_map(t_map *map);

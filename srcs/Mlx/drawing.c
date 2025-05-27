@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:41 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/23 13:45:53 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:00:19 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,45 +31,53 @@ void	ft_draw_square(t_game *game, int x, int y, int color)
 	int	j;
 
 	i = 0;
-	while (++i < TILE_SIZE - 1)
+	while (++i < T_SIZE - 1)
 	{
 		j = 0;
-		while (++j < TILE_SIZE - 1)
+		while (++j < T_SIZE - 1)
 			my_mlx_pixel_put(game->mlx, x + j, y + i, color);
 	}
 }
 
-void	ft_draw_line(t_mlx *mlx, int x1, int y1, int x2, int y2, int color)
+void	ft_draw_line(t_mlx *mlx, t_position x1, t_position x2, int color)
 {
-	int		dx;
-	int		dy;
-	int		steps;
-	float	x_inc;
-	float	y_inc;
-	float	x;
-	float	y;
+	t_position	dxdy;
+	t_position	inc;
+	t_position	current;
+	int			steps;
+	int			i;
 
-	dx = x2 - x1;
-	dy = y2 - y1;
-	steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-	x_inc = dx / (float)steps;
-	y_inc = dy / (float)steps;
-	x = x1;
-	y = y1;
-	for (int i = 0; i <= steps; i++)
+	dxdy.x = x2.x - x1.x;
+	dxdy.y = x2.y - x1.y;
+	if (abs((int)dxdy.x) > abs((int)dxdy.y))
+		steps = abs((int)dxdy.x);
+	else
+		steps = abs((int)dxdy.x);
+	inc.x = dxdy.x / (float)steps;
+	inc.y = dxdy.y / (float)steps;
+	current.x = x1.x;
+	current.y = x1.y;
+	i = -1;
+	while (++i < steps)
 	{
-		my_mlx_pixel_put(mlx, (int)x, (int)y, color);
-		x += x_inc;
-		y += y_inc;
+		my_mlx_pixel_put(mlx, (int)current.x, (int)current.y, color);
+		current.x += inc.x;
+		current.y += inc.y;
 	}
 }
 
-void	ft_draw_rectangle(t_mlx *mlx, int x, int y_start, int y_end, int width,
-		int color)
+void	ft_draw_rectangle(t_position start, int height, int width, int color)
 {
-	int	i;
+	t_mlx	*mlx;
+	int		i;
+	int		j;
 
+	mlx = ft_get_game()->mlx;
 	i = -1;
 	while (++i < width)
-		ft_draw_line(mlx, x + i, y_start, x + i, y_end, color);
+	{
+		j = -1;
+		while (++j < height)
+			my_mlx_pixel_put(mlx, start.x + i, start.y + j, color);
+	}
 }

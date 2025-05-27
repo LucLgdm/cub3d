@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:04:54 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/20 13:42:30 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:00:19 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_fill_player(char c, int i, int j, t_game *game)
 	}
 	game->player->pos.x = (float)j;
 	game->player->pos.y = (float)i;
-	game->player->pos.x = TILE_SIZE * game->player->pos.x + TILE_SIZE / 2;
-	game->player->pos.y = TILE_SIZE * game->player->pos.y + TILE_SIZE / 2;
+	game->player->pos.x = T_SIZE * game->player->pos.x + T_SIZE / 2;
+	game->player->pos.y = T_SIZE * game->player->pos.y + T_SIZE / 2;
 	game->player->direction = c;
 }

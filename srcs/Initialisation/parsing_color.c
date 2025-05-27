@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:44:36 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/23 11:58:45 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:14:32 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ void	ft_fill_color(char *line, int fd)
 	i = -1;
 	while (++i < 3)
 	{
-		if (ft_atoi(splited[i]) < 0 || ft_atoi(splited[i]) > 255
-			|| ft_isdigit(splited[i][0]) == 0)
+		if (ft_atoi(splited[i]) < 0 || ft_atoi(splited[i]) > 255)
 		{
 			ft_free_array(splited);
 			ft_exit_parsing(fd, line, "Error\nProblem with the color\n");

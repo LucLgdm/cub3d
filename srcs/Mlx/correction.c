@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:37:39 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/23 13:41:10 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:00:19 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	ft_display_map(t_game *game)
 		while (++j < game->map->width)
 		{
 			if (game->map->map[i][j] == '1')
-				ft_draw_square(game, j * TILE_SIZE, i * TILE_SIZE,
+				ft_draw_square(game, j * T_SIZE, i * T_SIZE,
 					ft_create_color(255, 255, 255, 255));
 			if (game->map->map[i][j] == '0')
-				ft_draw_square(game, j * TILE_SIZE, i * TILE_SIZE,
+				ft_draw_square(game, j * T_SIZE, i * T_SIZE,
 					ft_create_color(255, 0, 0, 0));
 		}
 	}
@@ -59,24 +59,26 @@ void	ft_display_map(t_game *game)
 
 void	ft_display_player(t_game *game)
 {
-	int	i;
-	int	j;
-	int	x2;
-	int	y2;
+	t_position	pos;
+	t_position	pos_next;
+	t_position	tmp;
+	int			color;
 
-	i = -5;
-	while (++i < 6)
+	color = ft_create_color(255, 255, 255, 0);
+	pos.x = -5;
+	while (++(pos.x) < 6)
 	{
-		j = -5;
-		while (++j < 6)
+		pos.y = -5;
+		while (++(pos.y) < 6)
 		{
-			my_mlx_pixel_put(game->mlx, game->player->pos.x + i,
-				game->player->pos.y + j, ft_create_color(255, 255, 255, 0));
+			tmp.x = game->player->pos.x + pos.x;
+			tmp.y = game->player->pos.y + pos.y;
+			my_mlx_pixel_put(game->mlx, tmp.x, tmp.y, color);
 		}
 	}
-	i = game->player->pos.x;
-	j = game->player->pos.y;
-	x2 = i + 5 * game->player->dx;
-	y2 = j + 5 * game->player->dy;
-	ft_draw_line(game->mlx, i, j, x2, y2, ft_create_color(255, 255, 255, 0));
+	pos.x = game->player->pos.x;
+	pos.y = game->player->pos.y;
+	pos_next.x = pos.x + 5 * game->player->dx;
+	pos_next.x = pos.y + 5 * game->player->dy;
+	ft_draw_line(game->mlx, pos, pos_next, color);
 }
