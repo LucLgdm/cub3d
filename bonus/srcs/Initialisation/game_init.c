@@ -6,11 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:27:09 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/27 12:23:51 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:18:20 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	ft_game_initialisation(int argc, char **argv)
 {
@@ -25,20 +25,23 @@ void	ft_game_initialisation(int argc, char **argv)
 	game = ft_get_game();
 	ft_parsing(game, argv);
 	ft_check_player(game);
+	game->mouse_prev_x = game->width_w / 2;
 }
 
 void	ft_check_player(t_game *game)
 {
 	if (!game->player)
-		ft_print_error_and_exit("Error\nNo player found\n");
+	ft_print_error_and_exit("Error\nNo player found\n");
 	if (game->player->direction == 'N')
-		game->player->angle = 3 * PI / 2;
+	game->player->angle = 3 * PI / 2;
 	else if (game->player->direction == 'S')
-		game->player->angle = PI / 2;
+	game->player->angle = PI / 2;
 	else if (game->player->direction == 'E')
-		game->player->angle = 0;
+	game->player->angle = 0;
 	else if (game->player->direction == 'W')
-		game->player->angle = PI;
+	game->player->angle = PI;
 	game->player->dx = 5 * cos(game->player->angle);
 	game->player->dy = 5 * sin(game->player->angle);
+	game->player->rotation_speed_base = 0.0002;
+	game->player->base_velocity = 1.0f;
 }

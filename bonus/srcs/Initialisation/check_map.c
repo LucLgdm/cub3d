@@ -6,11 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:04:54 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/27 16:00:19 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	ft_check_wall(char *line)
 {

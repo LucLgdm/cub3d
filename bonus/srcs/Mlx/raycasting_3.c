@@ -6,11 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:38:14 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/27 16:20:48 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	ft_fix_fisheyes(t_game *game, t_raycasting *ray)
 {

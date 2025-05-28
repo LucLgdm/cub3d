@@ -6,11 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:36:26 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/27 16:21:02 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:44:02 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	ft_draw_floor(int column_x, int wall_start, int wall_height,
 		t_raycasting *ray)
@@ -45,7 +45,7 @@ void	ft_draw_ceiling(int column_x, int wall_start, t_raycasting *ray)
 	ft_draw_rectangle(ceiling, wall_start, ray->width + 1, color);
 }
 
-void	ft_draw_wall_column(t_game *game, t_tex *tex, t_wall_params wp,
+void	ft_draw_wall_column(t_game *game, t_tex *tex, t_wall wp,
 		int tex_x)
 {
 	float	ty;

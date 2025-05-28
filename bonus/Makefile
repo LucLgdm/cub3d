@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/05/27 16:02:32 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/05/28 12:35:56 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(MLX_DIR)usefull.c \
 			$(SRC_DIR)$(MLX_DIR)draw_world.c \
 			$(SRC_DIR)$(MLX_DIR)status.c \
-			$(SRC_DIR)$(MLX_DIR)move.c
+			$(SRC_DIR)$(MLX_DIR)move.c \
+			$(SRC_DIR)$(MLX_DIR)move_2.c
 			
 # Transforme chaque fichier source en un fichier objet dans $(OBJ_DIR)
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))

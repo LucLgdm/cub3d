@@ -6,14 +6,19 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:51:53 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/27 15:53:19 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:21:39 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
-void	ft_move_player(t_game *game, int key)
+int	ft_key_pressed(int key, void *data)
 {
+	t_game	*game;
+
+	game = (t_game *)data;
+	if (key == 65307)
+		ft_close_window(game);
 	if (key == 119)
 		game->buttons.w.pressed = 1;
 	if (key == 115)
@@ -26,6 +31,9 @@ void	ft_move_player(t_game *game, int key)
 		game->buttons.left.pressed = 1;
 	if (key == 65363)
 		game->buttons.right.pressed = 1;
+	if (key == 65505)
+		game->buttons.shift.pressed = 1;
+	return (0);
 }
 
 int	ft_key_release(int key, void *data)
@@ -45,6 +53,17 @@ int	ft_key_release(int key, void *data)
 		game->buttons.left.pressed = 0;
 	if (key == 65363)
 		game->buttons.right.pressed = 0;
+	if (key == 65505)
+		game->buttons.shift.pressed = 0;
+	return (0);
+}
+
+int	ft_game_loop(void *data)
+{
+	t_game	*game;
+
+	game = (t_game *)data;
+	ft_handle_key(game);
 	return (0);
 }
 
@@ -62,14 +81,7 @@ void	ft_handle_key(t_game *game)
 		ft_handle_left(game);
 	if (game->buttons.right.pressed)
 		ft_handle_right(game);
+	ft_handle_shift(game);
 	ft_display(game, (int)game->correction);
 }
 
-int	ft_game_loop(void *data)
-{
-	t_game	*game;
-
-	game = (t_game *)data;
-	ft_handle_key(game);
-	return (0);
-}

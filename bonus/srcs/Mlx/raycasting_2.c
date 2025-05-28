@@ -6,11 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/27 15:43:32 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:44:02 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray)
 {
@@ -33,11 +33,11 @@ t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray)
 	return (tex);
 }
 
-t_wall_params	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r,
+t_wall	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r,
 		int flag)
 {
 	t_game			*game;
-	t_wall_params	wp;
+	t_wall	wp;
 
 	game = ft_get_game();
 	wp.height = (game->height_w * tex->height) / ray->dist_min;
@@ -78,7 +78,7 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
 {
 	t_tex			*tex;
 	int				tex_x;
-	t_wall_params	wp;
+	t_wall	wp;
 
 	tex = ft_choose_tex(game, ray);
 	ft_fix_fisheyes(game, ray);

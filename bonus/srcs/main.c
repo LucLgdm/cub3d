@@ -6,11 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/27 16:06:54 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:18:16 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 t_game	*ft_get_game(void)
 {
@@ -24,7 +24,7 @@ void	ft_game(int flag)
 	t_game	*game;
 
 	game = ft_get_game();
-	game->player->velocity = 1.0f;
+	game->player->velocity = game->player->base_velocity;
 	game->correction = flag;
 	game->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!game->mlx)
@@ -33,6 +33,7 @@ void	ft_game(int flag)
 	mlx_get_screen_size(game->mlx->mlx, &game->width_w, &game->height_w);
 	game->mlx->win = mlx_new_window(game->mlx->mlx, game->width_w,
 			game->height_w, "cub3D");
+	mlx_mouse_hide(game->mlx->mlx, game->mlx->win);
 	game->mlx->img = mlx_new_image(game->mlx->mlx, game->width_w,
 			game->height_w);
 	game->mlx->addr = mlx_get_data_addr(game->mlx->img,
@@ -41,8 +42,9 @@ void	ft_game(int flag)
 	ft_image_generator(game);
 	ft_display(game, flag);
 	mlx_hook(game->mlx->win, 17, 1L << 19, ft_close_window, game);
-	mlx_hook(game->mlx->win, 2, 1L << 0, ft_key_handle, game);
+	mlx_hook(game->mlx->win, 2, 1L << 0, ft_key_pressed, game);
 	mlx_hook(game->mlx->win, 3, 1L << 1, ft_key_release, game);
+	mlx_hook(game->mlx->win, 6, 1L << 6, ft_mouse_handle, game);
 	mlx_loop_hook(game->mlx->mlx, ft_game_loop, game);
 	mlx_loop(game->mlx->mlx);
 }
@@ -50,6 +52,6 @@ void	ft_game(int flag)
 int	main(int argc, char **argv)
 {
 	ft_game_initialisation(argc, argv);
-	ft_game(1);
+	ft_game(0);
 	return (0);
 }

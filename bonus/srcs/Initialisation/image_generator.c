@@ -6,11 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:23:35 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/27 12:23:40 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	ft_image_generator(t_game *game)
 {
