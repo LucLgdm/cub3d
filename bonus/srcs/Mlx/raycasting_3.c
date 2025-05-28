@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:38:14 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:57:23 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,8 @@ void	ft_set_ray_color(t_raycasting *ray)
 	}
 }
 
-void	ft_choose_ray(t_raycasting *ray, t_game *game, int flag)
+void	ft_choose_ray(t_raycasting *ray, t_game *game)
 {
 	ft_set_ray_hit(ray, game);
 	ft_set_ray_color(ray);
-	if (flag == 1)
-		ft_draw_ray(game, ray);
 }

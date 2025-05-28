@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 14:44:02 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:00:36 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray)
 	return (tex);
 }
 
-t_wall	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r,
-		int flag)
+t_wall	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r)
 {
 	t_game			*game;
 	t_wall	wp;
@@ -49,11 +48,7 @@ t_wall	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r,
 		wp.height = game->height_w;
 	}
 	wp.start = (game->height_w / 2) - (wp.height / 2);
-	if (flag == 1)
-		wp.offset = game->width_w / 2;
-	else
-		wp.offset = 0;
-	wp.column_x = r * ray->width + wp.offset;
+	wp.column_x = r * ray->width;
 	return (wp);
 }
 
@@ -74,7 +69,7 @@ int	ft_calc_tex_x(t_tex *tex, t_raycasting *ray)
 	return (tex_x);
 }
 
-void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
+void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 {
 	t_tex			*tex;
 	int				tex_x;
@@ -82,7 +77,7 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
 
 	tex = ft_choose_tex(game, ray);
 	ft_fix_fisheyes(game, ray);
-	wp = ft_calc_wall_params(tex, ray, r, flag);
+	wp = ft_calc_wall_params(tex, ray, r);
 	tex_x = ft_calc_tex_x(tex, ray);
 	ft_draw_wall_column(game, tex, wp, tex_x);
 	ft_draw_floor(wp.column_x, wp.start, wp.height, ray);

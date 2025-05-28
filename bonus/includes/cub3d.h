@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 15:18:04 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:00:01 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_wall
 {
 	float			height;
 	float			start;
-	float			offset;
 	int				column_x;
 	float			ty_step;
 	float			ty_off;
@@ -101,7 +100,6 @@ typedef struct s_player
 	float			velocity;
 	float			base_velocity;
 	float			rotation_speed;
-	float			rotation_speed_base;
 }	t_player;
 
 typedef struct s_game
@@ -115,7 +113,6 @@ typedef struct s_game
 	int				mouse_prev_x;
 	int				height_w;
 	int				width_w;
-	bool			correction;
 }	t_game;
 
 /********************
@@ -135,7 +132,8 @@ void	ft_check_player(t_game *game);
  * 		Main
  ********************/
 
-void	ft_game(int flag);
+void	ft_game(void);
+void	ft_loop_mlx(t_game *game);
 
 /********************
  * 		Parsing
@@ -171,7 +169,7 @@ void	ft_fill_player(char c, int i, int j, t_game *game);
 /*	GLOBAL		*/
 int		ft_key_pressed(int key, void *data);
 int		ft_close_window(t_game *game);
-void	ft_display(t_game *game, int flag);
+void	ft_display(t_game *game);
 
 /*	IMAGE		*/
 void	ft_image_generator(t_game *game);
@@ -199,18 +197,18 @@ void	ft_display_map(t_game *game);
 void	ft_display_player(t_game *game);
 
 /*	RAYCASTING	*/
-void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag);
-void	ft_init_ray(t_raycasting *ray, t_game *game, int flag);
+void	ft_ray_casting(t_raycasting *ray, t_game *game);
+void	ft_init_ray(t_raycasting *ray, t_game *game);
 void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game);
 void	ft_vertical_raycasting(t_raycasting *ray, t_game *game);
 void	ft_dda_loop(t_raycasting *ray, t_game *game, int flag);
-void	ft_choose_ray(t_raycasting *ray, t_game *game, int flag);
+void	ft_choose_ray(t_raycasting *ray, t_game *game);
 void	ft_set_ray_hit(t_raycasting *ray, t_game *game);
 void	ft_set_ray_color(t_raycasting *ray);
-void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag);
+void	ft_draw_3d(t_raycasting *ray, t_game *game, int r);
 t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray);
 void	ft_fix_fisheyes(t_game *game, t_raycasting *ray);
-t_wall	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r, int flag);
+t_wall	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r);
 int		ft_calc_tex_x(t_tex *tex, t_raycasting *ray);
 void	ft_update_angle(t_raycasting *ray);
 

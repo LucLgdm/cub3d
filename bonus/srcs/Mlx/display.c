@@ -6,30 +6,28 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:00:18 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_display(t_game *game, int flag)
+void	ft_display(t_game *game)
 {
 	t_raycasting	ray;
 	t_mlx			*mlx;
 
 	mlx = game->mlx;
-	if (flag)
-		ft_display_all(game);
-	ft_ray_casting(&ray, game, flag);
+	ft_ray_casting(&ray, game);
 	mlx_do_sync(mlx->mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 }
 
-void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag)
+void	ft_ray_casting(t_raycasting *ray, t_game *game)
 {
 	int	r;
 
-	ft_init_ray(ray, game, flag);
+	ft_init_ray(ray, game);
 	r = -1;
 	while (++r < ray->num_rays)
 	{
@@ -43,15 +41,15 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game, int flag)
 			ray->pos.y = game->height_w;
 		if (ray->pos.y < 0)
 			ray->pos.y = 0;
-		ft_choose_ray(ray, game, flag);
-		ft_draw_3d(ray, game, r, flag);
+		ft_choose_ray(ray, game);
+		ft_draw_3d(ray, game, r);
 		ft_update_angle(ray);
 	}
 	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, game->mlx->img, 0,
 		0);
 }
 
-void	ft_init_ray(t_raycasting *ray, t_game *game, int flag)
+void	ft_init_ray(t_raycasting *ray, t_game *game)
 {
 	ray->num_rays = game->width_w;
 	ray->dof = 0;
@@ -60,9 +58,6 @@ void	ft_init_ray(t_raycasting *ray, t_game *game, int flag)
 		ray->angle += 2 * PI;
 	if (ray->angle > 2 * PI)
 		ray->angle -= 2 * PI;
-	if (flag == 1)
-		ray->width = ((float)game->width_w / 2) / ray->num_rays;
-	else
-		ray->width = (float)game->width_w / ray->num_rays;
+	ray->width = (float)game->width_w / ray->num_rays;
 	ray->p = (int)(log2((double)T_SIZE));
 }

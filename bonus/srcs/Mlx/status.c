@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:51:53 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/28 14:21:39 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:57:37 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void	ft_handle_key(t_game *game)
 	if (game->buttons.right.pressed)
 		ft_handle_right(game);
 	ft_handle_shift(game);
-	ft_display(game, (int)game->correction);
+	ft_display(game);
 }
 
