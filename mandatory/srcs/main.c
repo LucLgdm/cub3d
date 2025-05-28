@@ -6,11 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/27 16:06:54 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 t_game	*ft_get_game(void)
 {
@@ -50,6 +50,6 @@ void	ft_game(int flag)
 int	main(int argc, char **argv)
 {
 	ft_game_initialisation(argc, argv);
-	ft_game(1);
+	ft_game(0);
 	return (0);
 }

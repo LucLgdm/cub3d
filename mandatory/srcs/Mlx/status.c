@@ -6,11 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:51:53 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/27 15:53:19 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:42:41 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	ft_move_player(t_game *game, int key)
 {
