@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/02 11:45:33 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:01:56 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdlib.h>
 
 # define PI 3.1415926535
-# define T_SIZE 32.0
+# define T_SIZE 64.0
 # define PLAYER_RADIUS 10.0f
 
 typedef struct s_position
@@ -177,6 +177,7 @@ void	ft_image_east(void *mlx, t_tex *east);
 void	ft_image_west(void *mlx, t_tex *west);
 void	ft_image_floor(void *mlx, t_tex *floor);
 void	ft_image_ceiling(void *mlx, t_tex *ceiling);
+void	ft_image_doors(void *mlx, t_tex *doors);
 
 /*	DRAWING		*/
 int		ft_create_color(int t, int r, int g, int b);

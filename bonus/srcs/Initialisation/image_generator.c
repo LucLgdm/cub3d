@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:23:35 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/02 14:59:40 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:58:55 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,17 @@ void	ft_image_generator(t_game *game)
 	ft_image_west(mlx->mlx, &game->image->west);
 	ft_image_floor(mlx->mlx, &game->image->floor);
 	ft_image_ceiling(mlx->mlx, &game->image->ceiling);
+	ft_image_doors(mlx->mlx, &game->image->doors);
 }
+
+void	ft_image_doors(void *mlx, t_tex *doors)
+{
+	doors->img = mlx_xpm_file_to_image(mlx, doors->path, &(doors->width),
+			&(doors->height));
+	doors->addr = mlx_get_data_addr(doors->img, &(doors->bits_per_pixel),
+			&(doors->line_length), &(doors->endian));
+}
+
 
 void	ft_image_floor(void *mlx, t_tex *floor)
 {

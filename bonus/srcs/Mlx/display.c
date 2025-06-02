@@ -6,22 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/02 15:03:52 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:03:16 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-void	ft_display(t_game *game)
-{
-	t_raycasting	ray;
-	t_mlx			*mlx;
-
-	mlx = game->mlx;
-	ft_ray_casting(&ray, game);
-	mlx_do_sync(mlx->mlx);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
-}
 
 static unsigned int	ft_get_tex_pixel(t_tex *tex, int x, int y)
 {
@@ -94,6 +83,17 @@ static void	ft_draw_floor_and_ceiling(t_game *game)
 }
 
 
+void	ft_display(t_game *game)
+{
+	t_raycasting	ray;
+	t_mlx			*mlx;
+
+	mlx = game->mlx;
+	ft_draw_floor_and_ceiling(game);
+	ft_ray_casting(&ray, game);
+	mlx_do_sync(mlx->mlx);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
+}
 
 void	ft_ray_casting(t_raycasting *ray, t_game *game)
 {
@@ -101,7 +101,6 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game)
 
 	ft_init_ray(ray, game);
 	r = -1;
-	ft_draw_floor_and_ceiling(game);
 	while (++r < ray->num_rays)
 	{
 		ray->dof = 0;
@@ -118,8 +117,8 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game)
 		ft_draw_3d(ray, game, r);
 		ft_update_angle(ray);
 	}
-	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, game->mlx->img, 0,
-		0);
+	// mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, game->mlx->img, 0,
+	// 	0);
 }
 
 void	ft_init_ray(t_raycasting *ray, t_game *game)

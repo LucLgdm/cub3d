@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:04:54 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:57:09 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_check_content(char *line, int i)
 			line[j] = '0';
 		}
 		else if (line[j] != '0' && line[j] != '1' && line[j] != ' '
-			&& game->player)
+			&& line[j] != 'D' && game->player)
 			return (1);
 		continue ;
 	}
@@ -60,7 +60,7 @@ int	ft_check_content(char *line, int i)
 bool	ft_is_good_char(char c)
 {
 	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ');
+		|| c == ' ' || c == 'D');
 }
 
 void	ft_fill_player(char c, int i, int j, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/02 14:57:52 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:57:43 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 	wp = ft_calc_wall_params(tex, ray, r);
 	tex_x = ft_calc_tex_x(tex, ray);
 	ft_draw_wall_column(game, tex, wp, tex_x);
-	// ft_draw_floor(game, wp, ray);
-	// ft_draw_ceiling();
 }
 
 void	ft_update_angle(t_raycasting *ray)
