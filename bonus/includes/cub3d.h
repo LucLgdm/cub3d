@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 16:00:01 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/02 11:45:33 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,17 +142,15 @@ void	ft_loop_mlx(t_game *game);
 void	ft_parsing(t_game *game, char **argv);
 char	*ft_get_info(int fd);
 
-/*   LINK    */
+/*	LINK		*/
 bool	ft_is_link(char *line);
 void	ft_fill_link(char *line, int fd);
 
-/*   COLOR   */
-void	ft_fill_game_color(char *line, t_color *color);
-char	**ft_fill_color_2(char *line, int fd);
-void	ft_fill_color(char *line, int fd);
-bool	ft_is_color(char *line);
+/*	FLOOR		*/
 
-/*    MAP    */
+/*	CEILING		*/
+
+/*	MAP			*/
 void	ft_get_map(t_game *game, int fd, char *line);
 void	ft_new_line(int fd, char *line, t_game *game);
 void	ft_check_map(t_game *game);
@@ -177,6 +175,8 @@ void	ft_image_north(void *mlx, t_tex *north);
 void	ft_image_south(void *mlx, t_tex *south);
 void	ft_image_east(void *mlx, t_tex *east);
 void	ft_image_west(void *mlx, t_tex *west);
+void	ft_image_floor(void *mlx, t_tex *floor);
+void	ft_image_ceiling(void *mlx, t_tex *ceiling);
 
 /*	DRAWING		*/
 int		ft_create_color(int t, int r, int g, int b);
@@ -185,10 +185,7 @@ void	ft_draw_square(t_game *game, int x, int y, int color);
 void	ft_draw_line(t_mlx *mlx, t_position x1, t_position x2, int color);
 void	ft_draw_rectangle(t_position start, int height, int width, int color);
 void	ft_draw_wall_column(t_game *game, t_tex *tex, t_wall wp, int tex_x);
-void	ft_draw_ceiling(int column_x, int wall_start, t_raycasting *ray);
-void	ft_draw_floor(int column_x, int wall_start, int wall_height,
-			t_raycasting *ray);
-void	ft_draw_ray(t_game *game, t_raycasting *ray);
+void	ft_draw_floor(t_game *game, t_wall wp, t_raycasting *ray);
 
 /*	CORRECTION	*/
 void	ft_display_all(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 16:00:36 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:57:52 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray)
 
 t_wall	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r)
 {
-	t_game			*game;
+	t_game	*game;
 	t_wall	wp;
 
 	game = ft_get_game();
@@ -69,10 +69,11 @@ int	ft_calc_tex_x(t_tex *tex, t_raycasting *ray)
 	return (tex_x);
 }
 
+
 void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 {
-	t_tex			*tex;
-	int				tex_x;
+	t_tex	*tex;
+	int		tex_x;
 	t_wall	wp;
 
 	tex = ft_choose_tex(game, ray);
@@ -80,8 +81,8 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 	wp = ft_calc_wall_params(tex, ray, r);
 	tex_x = ft_calc_tex_x(tex, ray);
 	ft_draw_wall_column(game, tex, wp, tex_x);
-	ft_draw_floor(wp.column_x, wp.start, wp.height, ray);
-	ft_draw_ceiling(wp.column_x, wp.start, ray);
+	// ft_draw_floor(game, wp, ray);
+	// ft_draw_ceiling();
 }
 
 void	ft_update_angle(t_raycasting *ray)

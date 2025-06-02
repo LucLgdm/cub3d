@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/05/28 12:35:56 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/02 11:44:46 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(MLX_DIR)raycasting_3.c \
 			$(SRC_DIR)$(MLX_DIR)usefull.c \
 			$(SRC_DIR)$(MLX_DIR)draw_world.c \
+			$(SRC_DIR)$(MLX_DIR)draw_floor.c \
 			$(SRC_DIR)$(MLX_DIR)status.c \
 			$(SRC_DIR)$(MLX_DIR)move.c \
 			$(SRC_DIR)$(MLX_DIR)move_2.c
@@ -76,7 +77,7 @@ mkdir_obj:
 # Compilation finale
 $(NAME): $(OBJS)
 	@echo "\033[32mmlx en cours\033[0m"
-	@make -C mlx all --silent
+	@make -C mlx all > /dev/null 2>&1
 	@echo "\033[0;32mSUCCESS !\033[0m \033[0;33mmlx\033[0m"
 	@echo "\033[32mlibft en cours\033[0m"
 	@make -C libft all --silent
@@ -93,11 +94,11 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "\033[0;35mDeleting everything !\033[0m"
 	@make -C libft fclean --silent
-	@make -C mlx clean --silent
+	@make -C mlx clean > /dev/null 2>&1
 
 re: fclean all
 
 val: all
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) map/valid_map/map_3.cub
 
 .PHONY: all clean fclean re

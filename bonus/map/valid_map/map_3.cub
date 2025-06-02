@@ -1,12 +1,10 @@
-
-
 NO ./texture/pics/greystone.xpm
 SO ./texture/pics/bluestone.xpm
-WE ./texture/pics/colorstone.xpm
-EA ./texture/pics/purplestone.xpm
-
-F 255, 255,255
-C 0,0, 0
+WE ./texture/pics/barrel.xpm
+EA ./texture/pics/floor.xpm
+FL ./texture/pics/purplestone.xpm
+CE ./texture/pics/ceiling.xpm
+DO ./texture/pics/doors.xpm
 
 111111111111111111111111111111111
 100000000000000000000000000000001
