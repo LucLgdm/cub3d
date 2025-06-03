@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   position.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 14:58:46 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/03 14:34:05 by lde-merc         ###   ########.fr       */
+/*   Created: 2025/06/03 14:33:25 by lde-merc          #+#    #+#             */
+/*   Updated: 2025/06/03 14:33:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef POSITION_H
+# define POSITION_H
 
-# include "position.h"
-# include <fcntl.h>
-# include <stdbool.h>
-# include <unistd.h>
-
-
-typedef struct s_map
+typedef struct s_position
 {
-	char		**map;
-	int			height;
-	int			width;
-	t_position	*teleporters;
-	int			num_teleporters;
-}	t_map;
+	float			x;
+	float			y;
+}	t_position;
 
 #endif

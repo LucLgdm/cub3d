@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:27:09 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/03 12:18:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/03 14:48:35 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ void	ft_check_player(t_game *game)
 	game->player->rotation_speed = 0.0002;
 	game->player->base_velocity = 1.0f;
 	game->player->velocity = game->player->base_velocity;
+	game->player->can_teleport = true;
 }

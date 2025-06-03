@@ -6,13 +6,14 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/03 13:57:29 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/03 14:43:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "position.h"
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
@@ -27,79 +28,75 @@
 # define T_SIZE 32.0
 # define PLAYER_RADIUS 10.0f
 
-typedef struct s_position
-{
-	float			x;
-	float			y;
-}	t_position;
 
 typedef struct s_mlx
 {
-	void			*mlx;
-	void			*win;
-	void			*img;
-	char			*addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_mlx;
 
 typedef struct s_wall
 {
-	float			height;
-	float			start;
-	int				column_x;
-	float			ty_step;
-	float			ty_off;
+	float	height;
+	float	start;
+	int		column_x;
+	float	ty_step;
+	float	ty_off;
 }	t_wall;
 
 typedef struct s_raycasting
 {
-	int				num_rays;
-	float			angle;
-	float			width;
-	t_position		pos;
-	t_position		next;
-	t_position		final;
-	int				map_x;
-	int				map_y;
-	int				dof;
-	int				color;
-	float			dist_v;
-	float			dist_h;
-	float			dist_min;
-	bool			hit_v;
-	int				p;
+	int			num_rays;
+	float		angle;
+	float		width;
+	t_position	pos;
+	t_position	next;
+	t_position	final;
+	int			map_x;
+	int			map_y;
+	int			dof;
+	int			color;
+	float		dist_v;
+	float		dist_h;
+	float		dist_min;
+	bool		hit_v;
+	int			p;
 }	t_raycasting;
 
 typedef struct s_key
 {
-	char			*key;
-	bool			pressed;
+	char	*key;
+	bool	pressed;
 }	t_key;
 
 typedef struct s_buttons
 {
-	t_key			a;
-	t_key			d;
-	t_key			w;
-	t_key			s;
-	t_key			e;
-	t_key			left;
-	t_key			right;
-	t_key			shift;
+	t_key	a;
+	t_key	d;
+	t_key	w;
+	t_key	s;
+	t_key	e;
+	t_key	left;
+	t_key	right;
+	t_key	shift;
 }	t_buttons;
 
 typedef struct s_player
 {
-	t_position		pos;
-	char			direction;
-	float			angle;
-	float			dx;
-	float			dy;
-	float			velocity;
-	float			base_velocity;
-	float			rotation_speed;
+	t_position	pos;
+	char		direction;
+	float		angle;
+	float		dx;
+	float		dy;
+	float		velocity;
+	float		base_velocity;
+	float		rotation_speed;
+	bool		can_teleport;
 }	t_player;
 
 typedef struct s_game
@@ -156,9 +153,10 @@ void	ft_new_line(int fd, char *line, t_game *game);
 void	ft_check_map(t_game *game);
 int		ft_check_border(t_map *map);
 int		ft_check_content(char *line, int i);
-bool	ft_is_good_char(char c);
 int		ft_check_wall(char *line);
 void	ft_fill_player(char c, int i, int j, t_game *game);
+void	ft_fill_teleporter(int i, int j, t_game *game);
+bool	ft_is_good_char(char c);
 
 /********************
  * 		Mlx
@@ -226,6 +224,8 @@ int		ft_key_release(int key, void *data);
 int		ft_game_loop(void *data);
 int		ft_mouse_handle(int x, int y, void *data);
 
+void	ft_teleport_player(t_game *game);
+
 /********************
  * 		Memory
  ********************/
@@ -236,8 +236,8 @@ void	ft_malloc_image(t_game *game);
 void	ft_malloc_map(t_game *game);
 void	ft_free_game(t_game *game);
 void	ft_free_mlx(t_mlx *mlx);
-void	ft_free_player(t_player *player);
 void	ft_free_image(t_game *game);
+void	ft_destroy_image(t_game *game);
 void	ft_free_map(t_map *map);
 
 /********************
