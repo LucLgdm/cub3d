@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/03 12:44:55 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game)
 	atan = -1 / tan(ray->angle);
 	if (ray->angle > PI)
 	{
-		ray->pos.y = (((int)game->player->pos.y >> ray->p) << ray->p) - 0.0001;
+		ray->pos.y = (((int)game->player->pos.y >> ray->p) << ray->p) - 0.0001f;
 		ray->pos.x = (game->player->pos.y - ray->pos.y) * atan
 			+ game->player->pos.x;
 		ray->next.y = -T_SIZE;
@@ -48,7 +48,7 @@ void	ft_vertical_raycasting(t_raycasting *ray, t_game *game)
 	ntan = -tan(ray->angle);
 	if (ray->angle > PI / 2 && ray->angle < 3 * PI / 2)
 	{
-		ray->pos.x = (((int)game->player->pos.x >> ray->p) << ray->p) - 0.0001;
+		ray->pos.x = (((int)game->player->pos.x >> ray->p) << ray->p) - 0.0001f;
 		ray->pos.y = (game->player->pos.x - ray->pos.x) * ntan
 			+ game->player->pos.y;
 		ray->next.x = -T_SIZE;
@@ -77,12 +77,22 @@ void	ft_dda_loop(t_raycasting *ray, t_game *game, int flag)
 
 	while (ray->dof < 50)
 	{
-		map_x = (int)ray->pos.x / T_SIZE;
-		map_y = (int)ray->pos.y / T_SIZE;
+		map_x = (int)(ray->pos.x) >> ray->p; // T_SIZE;
+		map_y = (int)(ray->pos.y) >> ray->p; // T_SIZE;
+		// if (flag == 1) // horizontal
+        // {
+        //     if (ray->angle > PI)
+        //         map_y = (int)((ray->pos.y - 1) / T_SIZE);
+        //     else
+        //         map_y = (int)(ray->pos.y / T_SIZE);
+        // }
+        // else // vertical
+        //     map_y = (int)(ray->pos.y / T_SIZE);
+
 		if (map_x < 0 || map_y < 0 || map_y >= game->map->height
 			|| map_x >= (int)ft_strlen(game->map->map[map_y]))
 			break ;
-		if (game->map->map[map_y][map_x] == '1')
+		if (game->map->map[map_y][map_x] == '1' || game->map->map[map_y][map_x] == 'D')
 			ray->dof = 50;
 		else
 		{

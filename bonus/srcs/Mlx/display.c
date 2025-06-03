@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/02 17:03:16 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/03 13:53:08 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game)
 		ft_draw_3d(ray, game, r);
 		ft_update_angle(ray);
 	}
-	// mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, game->mlx->img, 0,
-	// 	0);
 }
 
 void	ft_init_ray(t_raycasting *ray, t_game *game)

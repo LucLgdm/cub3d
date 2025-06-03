@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/02 16:57:43 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/03 13:54:35 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,21 @@ t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray)
 	if (ray->hit_v)
 	{
 		if (ray->angle < PI / 2 || ray->angle > 3 * PI / 2)
-			tex = &game->image->north;
+			tex = &game->image->east;
 		else
-			tex = &game->image->south;
+			tex = &game->image->west;
 	}
 	else
 	{
-		if (ray->angle < PI)
-			tex = &game->image->west;
+		if (ray->angle < PI )
+			tex = &game->image->south;
 		else
-			tex = &game->image->east;
+			tex = &game->image->north;
 	}
+	ray->map_x = (int)ray->final.x / T_SIZE;
+	ray->map_y = (int)ray->final.y / T_SIZE;
+	if (game->map->map[ray->map_y][ray->map_x] == 'D')
+		tex = &game->image->doors;
 	return (tex);
 }
 
@@ -68,7 +72,6 @@ int	ft_calc_tex_x(t_tex *tex, t_raycasting *ray)
 		tex_x = tex->width - 1;
 	return (tex_x);
 }
-
 
 void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 {

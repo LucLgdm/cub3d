@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:51:53 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/02 09:50:57 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/03 13:56:52 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_key_pressed(int key, void *data)
 		game->buttons.a.pressed = 1;
 	if (key == 100)
 		game->buttons.d.pressed = 1;
+	if (key == 101)
+		game->buttons.e.pressed = 1;
 	if (key == 65361)
 		game->buttons.left.pressed = 1;
 	if (key == 65363)
@@ -49,6 +51,8 @@ int	ft_key_release(int key, void *data)
 		game->buttons.a.pressed = 0;
 	if (key == 100)
 		game->buttons.d.pressed = 0;
+	if (key == 101)
+		game->buttons.e.pressed = 0;
 	if (key == 65361)
 		game->buttons.left.pressed = 0;
 	if (key == 65363)
@@ -77,6 +81,8 @@ void	ft_handle_key(t_game *game)
 		ft_handle_a(game);
 	if (game->buttons.d.pressed)
 		ft_handle_d(game);
+	if (game->buttons.e.pressed)
+		ft_handle_e(game);
 	if (game->buttons.left.pressed)
 		ft_handle_left(game);
 	if (game->buttons.right.pressed)

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/02 17:01:56 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/03 13:57:29 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdlib.h>
 
 # define PI 3.1415926535
-# define T_SIZE 64.0
+# define T_SIZE 32.0
 # define PLAYER_RADIUS 10.0f
 
 typedef struct s_position
@@ -57,7 +57,6 @@ typedef struct s_raycasting
 {
 	int				num_rays;
 	float			angle;
-	float			dist;
 	float			width;
 	t_position		pos;
 	t_position		next;
@@ -85,6 +84,7 @@ typedef struct s_buttons
 	t_key			d;
 	t_key			w;
 	t_key			s;
+	t_key			e;
 	t_key			left;
 	t_key			right;
 	t_key			shift;
@@ -218,6 +218,7 @@ void	ft_handle_w(t_game *game);
 void	ft_handle_s(t_game *game);
 void	ft_handle_a(t_game *game);
 void	ft_handle_d(t_game *game);
+void	ft_handle_e(t_game *game);
 void	ft_handle_left(t_game *game);
 void	ft_handle_right(t_game *game);
 void	ft_handle_shift(t_game *game);

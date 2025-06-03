@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:31:26 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/28 15:45:31 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/03 09:22:38 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_is_wall_at(t_game *game, float x, float y)
 
 	map_x = (int)(x / T_SIZE);
 	map_y = (int)(y / T_SIZE);
+	if (map_x < 0 || map_y < 0 || map_y >= game->map->height || map_x >= game->map->width)
+        return (1);
 	return (game->map->map[map_y][map_x] != '0');
 }
 
@@ -40,8 +42,8 @@ void	ft_handle_left(t_game *game)
 	game->player->angle -= 0.1;
 	if (game->player->angle < 0)
 		game->player->angle += 2 * PI;
-	game->player->dx = 5 * cos(game->player->angle);
-	game->player->dy = 5 * sin(game->player->angle);
+	game->player->dx = 3 * cos(game->player->angle);
+	game->player->dy = 3 * sin(game->player->angle);
 }
 
 void	ft_handle_right(t_game *game)
