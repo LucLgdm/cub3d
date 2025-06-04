@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:56:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/02 11:10:11 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/04 09:29:18 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,33 @@ void	ft_print_map(void)
 	i = -1;
 	while (++i < game->map->height)
 		printf("%s\n", game->map->map[i]);
+}
+
+void	ft_print_teleporter()
+{
+	int i = -1;
+	t_position *teleport;
+
+	teleport = ft_get_game()->map->teleporters;
+	
+	printf("ft_print_teleporter\n");
+	while (++i < ft_get_game()->map->num_teleporters)
+	{
+		printf("Teleporter %d: x = %.2f, y = %.2f\n", i,
+			teleport[i].x, teleport[i].y);
+	}
+}
+
+void	ft_print_doors()
+{
+	int i = -1;
+	t_door *doors;
+
+	doors = ft_get_game()->map->doors;
+	printf("ft_print_doors\n");
+	while (++i < ft_get_game()->map->num_doors)
+	{
+		printf("Door %d: x = %d, y = %d, is_open = %s\n", i,
+			doors[i].x, doors[i].y, doors[i].is_open ? "true" : "false");
+	}
 }

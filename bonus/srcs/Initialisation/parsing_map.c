@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 09:54:21 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/04 09:37:03 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_check_map(t_game *game)
 	t_map	*transposed_map;
 	int		res;
 
-	res = ft_check_border(game->map);
+	res = ft_check_border(game->map, true);
 	if (res == 1)
 		ft_print_error_and_exit("Error\nMap not closed\n");
 	else if (res == 2)
@@ -80,7 +80,7 @@ void	ft_check_map(t_game *game)
 	}
 	transposed_map->height = game->map->width;
 	transposed_map->width = game->map->height;
-	res = ft_check_border(transposed_map);
+	res = ft_check_border(transposed_map, false);
 	ft_free_map(transposed_map);
 	if (res == 1)
 		ft_print_error_and_exit("Error\nMap not closed\n");
@@ -88,7 +88,7 @@ void	ft_check_map(t_game *game)
 		ft_print_error_and_exit("Error\nInvalid character in map\n");
 }
 
-int	ft_check_border(t_map *map)
+int	ft_check_border(t_map *map, bool fill_struct)
 {
 	int	i;
 	int	res;
@@ -101,9 +101,12 @@ int	ft_check_border(t_map *map)
 		res = ft_check_wall(map->map[i]);
 		if (res)
 			return (1);
-		res = ft_check_content(map->map[i], i);
-		if (res)
-			return (2);
+		if (fill_struct)
+		{
+			res = ft_check_content(map->map[i], i);
+			if (res)
+				return (2);
+		}
 	}
 	return (0);
 }

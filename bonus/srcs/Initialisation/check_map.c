@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:04:54 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/03 14:45:05 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/04 09:29:56 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@ int	ft_check_content(char *line, int i)
 	game = ft_get_game();
 	while (++j < size && ft_is_good_char(line[j]))
 	{
+		if (line[j] == 'D')
+			ft_fill_door(i, j, game);
 		if (line[j] == 'T')
 			ft_fill_teleporter(i, j, game);
-		if (line[j] != '0' && line[j] != '1' && line[j] != ' ' && line[j] != 'D' && line[j] != 'T' && !game->player)
+		if (line[j] != '0' && line[j] != '1' && line[j] != ' ' && line[j] != 'D'
+			&& line[j] != 'T' && !game->player)
 		{
 			ft_fill_player(line[j], i, j, game);
 			line[j] = '0';
@@ -98,11 +101,37 @@ void	ft_fill_teleporter(int i, int j, t_game *game)
 				sizeof(t_position));
 		if (!game->map->teleporters)
 			ft_print_error_and_exit("Error: Memory allocation teleporter failed\n");
-		ft_memcpy(game->map->teleporters, tmp,
-			game->map->num_teleporters * sizeof(t_position));
+		ft_memcpy(game->map->teleporters, tmp, game->map->num_teleporters
+			* sizeof(t_position));
 		free(tmp);
 		game->map->num_teleporters++;
 	}
 	game->map->teleporters[game->map->num_teleporters - 1].x = (float)j;
 	game->map->teleporters[game->map->num_teleporters - 1].y = (float)i;
+}
+
+void	ft_fill_door(int i, int j, t_game *game)
+{
+	t_door	*tmp;
+
+	if (!game->map->doors)
+	{
+		game->map->doors = ft_calloc(1, sizeof(t_door));
+		if (!game->map->doors)
+			ft_print_error_and_exit("Error: Memory allocation door failed\n");
+		game->map->num_doors = 1;
+	}
+	else
+	{
+		tmp = game->map->doors;
+		game->map->doors = ft_calloc(game->map->num_doors + 1, sizeof(t_door));
+		if (!game->map->doors)
+			ft_print_error_and_exit("Error: Memory allocation door failed\n");
+		ft_memcpy(game->map->doors, tmp, game->map->num_doors * sizeof(t_door));
+		free(tmp);
+		game->map->num_doors++;
+	}
+	game->map->doors[game->map->num_doors - 1].x = j;
+	game->map->doors[game->map->num_doors - 1].y = i;
+	game->map->doors[game->map->num_doors - 1].is_open = false;
 }

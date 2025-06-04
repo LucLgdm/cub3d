@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/03 14:43:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/04 09:36:24 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ typedef struct s_mlx
 	int		endian;
 }	t_mlx;
 
-typedef struct s_wall
-{
-	float	height;
-	float	start;
-	int		column_x;
-	float	ty_step;
-	float	ty_off;
-}	t_wall;
 
 typedef struct s_raycasting
 {
@@ -85,19 +77,6 @@ typedef struct s_buttons
 	t_key	right;
 	t_key	shift;
 }	t_buttons;
-
-typedef struct s_player
-{
-	t_position	pos;
-	char		direction;
-	float		angle;
-	float		dx;
-	float		dy;
-	float		velocity;
-	float		base_velocity;
-	float		rotation_speed;
-	bool		can_teleport;
-}	t_player;
 
 typedef struct s_game
 {
@@ -151,12 +130,14 @@ void	ft_fill_link(char *line, int fd);
 void	ft_get_map(t_game *game, int fd, char *line);
 void	ft_new_line(int fd, char *line, t_game *game);
 void	ft_check_map(t_game *game);
-int		ft_check_border(t_map *map);
+int		ft_check_border(t_map *map, bool fill_struct);
 int		ft_check_content(char *line, int i);
 int		ft_check_wall(char *line);
 void	ft_fill_player(char c, int i, int j, t_game *game);
-void	ft_fill_teleporter(int i, int j, t_game *game);
 bool	ft_is_good_char(char c);
+/*	EXTRA		*/
+void	ft_fill_teleporter(int i, int j, t_game *game);
+void	ft_fill_door(int i, int j, t_game *game);
 
 /********************
  * 		Mlx
@@ -249,6 +230,8 @@ void	ft_exit_parsing(int fd, char *line, char *error_message);
 void	ft_print_image(void);
 void	ft_print_map(void);
 void	ft_print_game(void);
+void	ft_print_teleporter(void);
+void	ft_print_doors(void);
 
 /********************
  * 		Usefull

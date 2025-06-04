@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/03 14:18:04 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/04 09:15:01 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ void	ft_free_map(t_map *map)
 	}
 	free(map->map[i]);
 	free(map->map);
+	if (map->teleporters)
+		free(map->teleporters);
+	if (map->doors)
+		free(map->doors);
 	free(map);
 }
 
