@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/05/27 16:02:32 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/03 09:37:52 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,13 +74,13 @@ mkdir_obj:
 
 # Compilation finale
 $(NAME): $(OBJS)
-	@echo "\033[32mmlx en cours\033[0m"
-	@make -C mlx all --silent
+	@echo "\033[34mmlx en cours\033[0m"
+	@make -C mlx all > /dev/null 2>&1
 	@echo "\033[0;32mSUCCESS !\033[0m \033[0;33mmlx\033[0m"
-	@echo "\033[32mlibft en cours\033[0m"
+	@echo "\033[34mlibft en cours\033[0m"
 	@make -C libft all --silent
 	@echo "\033[0;32mSUCCESS !\033[0m \033[0;33mlibft\033[0m"
-	@echo "\033[32mCompilation $(NAME) en cours\033[0m"
+	@echo "\033[34mCompilation $(NAME) en cours\033[0m"
 	@$(CC) $(OBJS) $(FLAGS) -o $(NAME)
 	@echo "\033[0;32mSUCCESS !\033[0m \033[0;33m$(NAME)\033[0m"
 
@@ -92,7 +92,7 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "\033[0;35mDeleting everything !\033[0m"
 	@make -C libft fclean --silent
-	@make -C mlx clean --silent
+	@make -C mlx clean > /dev/null 2>&1
 
 re: fclean all
 
