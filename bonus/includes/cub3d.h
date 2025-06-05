@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/04 09:36:24 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/05 09:59:38 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define PI 3.1415926535
 # define T_SIZE 32.0
 # define PLAYER_RADIUS 10.0f
-
 
 typedef struct s_mlx
 {
@@ -165,7 +164,10 @@ void	ft_draw_square(t_game *game, int x, int y, int color);
 void	ft_draw_line(t_mlx *mlx, t_position x1, t_position x2, int color);
 void	ft_draw_rectangle(t_position start, int height, int width, int color);
 void	ft_draw_wall_column(t_game *game, t_tex *tex, t_wall wp, int tex_x);
-void	ft_draw_floor(t_game *game, t_wall wp, t_raycasting *ray);
+// void	ft_draw_floor(t_game *game, t_wall wp, t_raycasting *ray);
+void	ft_draw_floor_and_ceiling(t_game *game);
+
+void	draw_minimap(t_game *game);
 
 /*	CORRECTION	*/
 void	ft_display_all(t_game *game);
@@ -189,10 +191,12 @@ t_wall	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r);
 int		ft_calc_tex_x(t_tex *tex, t_raycasting *ray);
 void	ft_update_angle(t_raycasting *ray);
 
-/*	HOOK		*/
+/*	GAMEPLAY	*/
+int		ft_game_loop(void *data);
 int		ft_can_move_to(t_game *game, float x, float y);
 int		ft_is_wall_at(t_game *game, float x, float y);
 void	ft_handle_key(t_game *game);
+int		ft_key_release(int key, void *data);
 void	ft_handle_w(t_game *game);
 void	ft_handle_s(t_game *game);
 void	ft_handle_a(t_game *game);
@@ -201,12 +205,15 @@ void	ft_handle_e(t_game *game);
 void	ft_handle_left(t_game *game);
 void	ft_handle_right(t_game *game);
 void	ft_handle_shift(t_game *game);
-int		ft_key_release(int key, void *data);
-int		ft_game_loop(void *data);
 int		ft_mouse_handle(int x, int y, void *data);
 
+void	ft_handle_teleport(t_game *game);
 void	ft_teleport_player(t_game *game);
+void	ft_handle_door(t_game *game);
 
+/*	MINI MAP	*/
+void	draw_minimap(t_game *game);
+void	ft_draw_player_mini(t_game *game);
 /********************
  * 		Memory
  ********************/

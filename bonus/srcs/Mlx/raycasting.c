@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/03 12:44:55 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/04 10:30:40 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,15 @@ void	ft_vertical_raycasting(t_raycasting *ray, t_game *game)
 	}
 }
 
+static bool	ft_check(int map_x, int map_y)
+{
+	t_game	*game;
+
+	game = ft_get_game();
+	return (game->map->map[map_y][map_x] == '1'
+		|| game->map->map[map_y][map_x] == 'D');
+}
+
 void	ft_dda_loop(t_raycasting *ray, t_game *game, int flag)
 {
 	int	map_x;
@@ -77,22 +86,12 @@ void	ft_dda_loop(t_raycasting *ray, t_game *game, int flag)
 
 	while (ray->dof < 50)
 	{
-		map_x = (int)(ray->pos.x) >> ray->p; // T_SIZE;
-		map_y = (int)(ray->pos.y) >> ray->p; // T_SIZE;
-		// if (flag == 1) // horizontal
-        // {
-        //     if (ray->angle > PI)
-        //         map_y = (int)((ray->pos.y - 1) / T_SIZE);
-        //     else
-        //         map_y = (int)(ray->pos.y / T_SIZE);
-        // }
-        // else // vertical
-        //     map_y = (int)(ray->pos.y / T_SIZE);
-
+		map_x = (int)(ray->pos.x) >> ray->p;
+		map_y = (int)(ray->pos.y) >> ray->p;
 		if (map_x < 0 || map_y < 0 || map_y >= game->map->height
 			|| map_x >= (int)ft_strlen(game->map->map[map_y]))
 			break ;
-		if (game->map->map[map_y][map_x] == '1' || game->map->map[map_y][map_x] == 'D')
+		if (ft_check(map_x, map_y))
 			ray->dof = 50;
 		else
 		{

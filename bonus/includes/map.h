@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:58:46 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/03 15:23:35 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/05 10:02:12 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,25 @@ typedef struct s_player
 
 typedef struct s_map
 {
+	t_position	*teleporters;
+	t_door		*doors;
 	char		**map;
 	int			height;
 	int			width;
-	t_position	*teleporters;
 	int			num_teleporters;
-	t_door		*doors;
 	int			num_doors;
 }	t_map;
+
+typedef struct s_mini_map
+{
+	int		dx;
+	int		dy;
+	float	dist;
+	float	angle;
+	float	map_x;
+	float	map_y;
+	int		cell_x;
+	int		cell_y;
+} t_mini_map;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:23:35 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/02 16:58:55 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/04 10:23:27 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,6 @@ void	ft_image_generator(t_game *game)
 	ft_image_floor(mlx->mlx, &game->image->floor);
 	ft_image_ceiling(mlx->mlx, &game->image->ceiling);
 	ft_image_doors(mlx->mlx, &game->image->doors);
-}
-
-void	ft_image_doors(void *mlx, t_tex *doors)
-{
-	doors->img = mlx_xpm_file_to_image(mlx, doors->path, &(doors->width),
-			&(doors->height));
-	doors->addr = mlx_get_data_addr(doors->img, &(doors->bits_per_pixel),
-			&(doors->line_length), &(doors->endian));
-}
-
-
-void	ft_image_floor(void *mlx, t_tex *floor)
-{
-	floor->img = mlx_xpm_file_to_image(mlx, floor->path, &(floor->width),
-			&(floor->height));
-	floor->addr = mlx_get_data_addr(floor->img, &(floor->bits_per_pixel),
-			&(floor->line_length), &(floor->endian));
-}
-
-void	ft_image_ceiling(void *mlx, t_tex *ceiling)
-{
-	ceiling->img = mlx_xpm_file_to_image(mlx, ceiling->path, &(ceiling->width),
-			&(ceiling->height));
-	ceiling->addr = mlx_get_data_addr(ceiling->img, &(ceiling->bits_per_pixel),
-			&(ceiling->line_length), &(ceiling->endian));
 }
 
 void	ft_image_north(void *mlx, t_tex *north)

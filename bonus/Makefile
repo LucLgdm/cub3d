@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/03 09:51:21 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/04 14:41:05 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ MEM_DIR = Memory/
 INI_DIR = Initialisation/
 ERR_DIR = Error/
 MLX_DIR = Mlx/
+GME_DIR = Gameplay/
 
 # Liste des fichiers source
 SRC_FILES = $(SRC_DIR)main.c \
@@ -35,14 +36,13 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(INI_DIR)game_init.c \
 			$(SRC_DIR)$(INI_DIR)parsing.c \
 			$(SRC_DIR)$(INI_DIR)parsing_link.c \
-			$(SRC_DIR)$(INI_DIR)parsing_color.c \
+			$(SRC_DIR)$(INI_DIR)image_tools.c \
 			$(SRC_DIR)$(INI_DIR)parsing_map.c \
+			$(SRC_DIR)$(INI_DIR)fill_struct.c \
 			$(SRC_DIR)$(INI_DIR)check_map.c \
 			$(SRC_DIR)$(INI_DIR)image_generator.c \
 			$(SRC_DIR)$(ERR_DIR)error.c \
 			$(SRC_DIR)$(ERR_DIR)print.c \
-			$(SRC_DIR)$(MLX_DIR)hook.c \
-			$(SRC_DIR)$(MLX_DIR)quit.c \
 			$(SRC_DIR)$(MLX_DIR)display.c \
 			$(SRC_DIR)$(MLX_DIR)correction.c \
 			$(SRC_DIR)$(MLX_DIR)drawing.c \
@@ -52,9 +52,13 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(MLX_DIR)usefull.c \
 			$(SRC_DIR)$(MLX_DIR)draw_world.c \
 			$(SRC_DIR)$(MLX_DIR)draw_floor.c \
-			$(SRC_DIR)$(MLX_DIR)status.c \
-			$(SRC_DIR)$(MLX_DIR)move.c \
-			$(SRC_DIR)$(MLX_DIR)move_2.c
+			$(SRC_DIR)$(GME_DIR)status.c \
+			$(SRC_DIR)$(GME_DIR)quit.c \
+			$(SRC_DIR)$(GME_DIR)extra.c \
+			$(SRC_DIR)$(GME_DIR)move.c \
+			$(SRC_DIR)$(GME_DIR)doors.c \
+			$(SRC_DIR)$(GME_DIR)move_use.c \
+			$(SRC_DIR)$(GME_DIR)mini_map.c
 			
 # Transforme chaque fichier source en un fichier objet dans $(OBJ_DIR)
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
@@ -73,6 +77,7 @@ mkdir_obj:
 	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(INI_DIR)
 	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(ERR_DIR)
 	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(MLX_DIR)
+	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(GME_DIR)
 
 # Compilation finale
 $(NAME): $(OBJS)

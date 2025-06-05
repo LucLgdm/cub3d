@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:31:26 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/03 14:54:19 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/04 10:30:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int	ft_is_wall_at(t_game *game, float x, float y)
 
 	map_x = (int)(x / T_SIZE);
 	map_y = (int)(y / T_SIZE);
-	if (map_x < 0 || map_y < 0 || map_y >= game->map->height || map_x >= game->map->width)
-        return (1);
-	return (game->map->map[map_y][map_x] != '0' && game->map->map[map_y][map_x] != 'T');
+	if (map_x < 0 || map_y < 0 || map_y >= game->map->height
+		|| map_x >= game->map->width)
+		return (1);
+	return (game->map->map[map_y][map_x] != '0'
+		&& game->map->map[map_y][map_x] != 'T');
 }
 
 int	ft_can_move_to(t_game *game, float x, float y)
