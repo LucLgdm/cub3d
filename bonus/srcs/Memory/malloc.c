@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:36:24 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/05 10:26:04 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	ft_malloc_image(t_game *game)
 	if (!game->image)
 	{
 		fprintf(stderr, "Error malloc image: %s\n", strerror(errno));
+		exit(EXIT_FAILURE);
+	}
+	game->image_resized = ft_calloc(1, sizeof(t_image));
+	if (!game->image_resized)
+	{
+		fprintf(stderr, "Error malloc image resized: %s\n", strerror(errno));
 		exit(EXIT_FAILURE);
 	}
 }

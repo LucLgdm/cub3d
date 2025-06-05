@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/05 09:59:38 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/05 10:24:05 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_game
 	t_mlx			*mlx;
 	t_map			*map;
 	t_image			*image;
+	t_image			*image_resized;
 	t_player		*player;
 	t_raycasting	raycasting;
 	t_buttons		buttons;

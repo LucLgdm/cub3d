@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 11:39:38 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/04 12:25:22 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/05 10:37:00 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void	ft_draw_floor_and_ceiling(t_game *game)
     float	dirY = sin(game->player->angle);
     float	planeX = cos(game->player->angle + PI / 2) * 0.60f; // 0.66 = fov
     float	planeY = sin(game->player->angle + PI / 2) * 0.60f;
-    t_tex	*floor_tex = &game->image->floor;
-    t_tex	*ceil_tex = &game->image->ceiling; // si tu as une texture plafond
+    t_tex	*floor_tex = &game->image_resized->floor;
+    t_tex	*ceil_tex = &game->image_resized->ceiling; // si tu as une texture plafond
 
     for (y = game->height_w / 2 + 1; y < game->height_w; ++y)
     {
