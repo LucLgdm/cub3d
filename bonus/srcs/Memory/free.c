@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/04 10:28:05 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:34:13 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@ void	ft_free_game(t_game *game)
 	ft_free_map(game->map);
 	if (game->player)
 		free(game->player);
+	if (game->raycasting)
+		free(game->raycasting);
+	if (game->buttons)
+		free(game->buttons);
+	if (game->mini_map)
+		free(game->mini_map);
 }
 
 void	ft_free_image(t_game *game)
 {
-	if (game->image)
+	if (game->image && game->image_resized)
 	{
 		if (game->mlx)
 			ft_destroy_image(game);
@@ -35,6 +41,7 @@ void	ft_free_image(t_game *game)
 		free(game->image->ceiling.path);
 		free(game->image->doors.path);
 		free(game->image);
+		free(game->image_resized);
 	}
 }
 
@@ -67,6 +74,8 @@ void	ft_free_map(t_map *map)
 		free(map->teleporters);
 	if (map->doors)
 		free(map->doors);
+	if (map->line_lengths)
+		free(map->line_lengths);
 	free(map);
 }
 
@@ -80,4 +89,11 @@ void	ft_destroy_image(t_game *game)
 	mlx_destroy_image(game->mlx->mlx, game->image->floor.img);
 	mlx_destroy_image(game->mlx->mlx, game->image->ceiling.img);
 	mlx_destroy_image(game->mlx->mlx, game->image->doors.img);
+	mlx_destroy_image(game->mlx->mlx, game->image_resized->north.img);
+	mlx_destroy_image(game->mlx->mlx, game->image_resized->south.img);
+	mlx_destroy_image(game->mlx->mlx, game->image_resized->west.img);
+	mlx_destroy_image(game->mlx->mlx, game->image_resized->east.img);
+	mlx_destroy_image(game->mlx->mlx, game->image_resized->floor.img);
+	mlx_destroy_image(game->mlx->mlx, game->image_resized->ceiling.img);
+	mlx_destroy_image(game->mlx->mlx, game->image_resized->doors.img);
 }

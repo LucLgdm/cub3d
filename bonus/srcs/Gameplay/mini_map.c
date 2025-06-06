@@ -6,15 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 14:40:04 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/05 10:11:26 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:30:10 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-#define MINIMAP_RADIUS 80
-#define MINIMAP_CENTER_X (MINIMAP_RADIUS + 50)
-#define MINIMAP_CENTER_Y (game->height_w - MINIMAP_RADIUS - 100)
 
 static void	ft_init_mini_map(t_game *game, t_mini_map *map)
 {
@@ -36,7 +32,7 @@ static void	ft_color_mini_map(t_game *game, t_mini_map *map)
 
 	color = 0x000000;
 	if (map->cell_x >= 0 && map->cell_y >= 0 && map->cell_y < game->map->height
-		&& map->cell_x < (int)ft_strlen(game->map->map[map->cell_y]))
+		&& map->cell_x < game->map->line_lengths[map->cell_y])
 	{
 		c = game->map->map[map->cell_y][map->cell_x];
 		if (c == '1')
@@ -58,9 +54,7 @@ void	draw_minimap(t_game *game)
 	int			mx;
 	int			my;
 
-	map = ft_calloc(1, sizeof(t_mini_map));
-	if (!map)
-		ft_print_error_and_exit("Error\nAllocation failed for minimap\n");
+	map = game->mini_map;
 	my = -1;
 	while (++my < 2 * MINIMAP_RADIUS)
 	{

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:36:24 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/05 10:26:04 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:50:22 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,7 @@ void	ft_malloc_map(t_game *game)
 		ft_print_error_and_exit("Error malloc t_map\n");
 	game->map->height = 0;
 	game->map->width = 0;
+	game->map->line_lengths = ft_calloc(game->map->height + 2, sizeof(int));
+	if (!game->map->line_lengths)
+		ft_print_error_and_exit("Error malloc t_map\n");
 }

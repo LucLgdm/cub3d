@@ -6,19 +6,17 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:04:54 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/04 10:27:39 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:56:33 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	ft_check_wall(char *line)
+int	ft_check_wall(char *line, int size)
 {
 	int	i;
-	int	size;
 
 	i = 0;
-	size = ft_strlen(line);
 	if ((line[0] != '1' && line[0] != ' ') || (line[size - 1] != '1'
 			&& line[size - 1] != ' '))
 		return (1);
@@ -42,14 +40,12 @@ static void	ft_d_t(char c, int i, int j)
 		ft_fill_teleporter(i, j, game);
 }
 
-int	ft_check_content(char *line, int i)
+int	ft_check_content(char *line, int i, int size)
 {
 	int		j;
-	int		size;
 	t_game	*game;
 
 	j = -1;
-	size = ft_strlen(line);
 	game = ft_get_game();
 	while (++j < size && ft_is_good_char(line[j]))
 	{

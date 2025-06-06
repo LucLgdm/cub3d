@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:23:35 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/05 10:33:23 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/05 12:28:20 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	ft_image_north(void *mlx, t_tex *north)
 	north->addr = mlx_get_data_addr(north->img, &(north->bits_per_pixel),
 			&(north->line_length), &(north->endian));
 	game->image_resized->north.img = mlx_new_image(mlx, 32, 32);
-	game->image_resized->north.addr = mlx_get_data_addr(game->image_resized->north.img,
+	game->image_resized->north.addr = mlx_get_data_addr(
+			game->image_resized->north.img,
 			&game->image_resized->north.bits_per_pixel,
 			&game->image_resized->north.line_length,
 			&game->image_resized->north.endian);
@@ -54,7 +55,8 @@ void	ft_image_south(void *mlx, t_tex *south)
 	south->addr = mlx_get_data_addr(south->img, &(south->bits_per_pixel),
 			&(south->line_length), &(south->endian));
 	game->image_resized->south.img = mlx_new_image(mlx, 32, 32);
-	game->image_resized->south.addr = mlx_get_data_addr(game->image_resized->south.img,
+	game->image_resized->south.addr = mlx_get_data_addr(
+			game->image_resized->south.img,
 			&game->image_resized->south.bits_per_pixel,
 			&game->image_resized->south.line_length,
 			&game->image_resized->south.endian);
@@ -72,7 +74,8 @@ void	ft_image_east(void *mlx, t_tex *east)
 	east->addr = mlx_get_data_addr(east->img, &(east->bits_per_pixel),
 			&(east->line_length), &(east->endian));
 	game->image_resized->east.img = mlx_new_image(mlx, 32, 32);
-	game->image_resized->east.addr = mlx_get_data_addr(game->image_resized->east.img,
+	game->image_resized->east.addr = mlx_get_data_addr(
+			game->image_resized->east.img,
 			&game->image_resized->east.bits_per_pixel,
 			&game->image_resized->east.line_length,
 			&game->image_resized->east.endian);
@@ -90,7 +93,8 @@ void	ft_image_west(void *mlx, t_tex *west)
 	west->addr = mlx_get_data_addr(west->img, &(west->bits_per_pixel),
 			&(west->line_length), &(west->endian));
 	game->image_resized->west.img = mlx_new_image(mlx, 32, 32);
-	game->image_resized->west.addr = mlx_get_data_addr(game->image_resized->west.img,
+	game->image_resized->west.addr = mlx_get_data_addr(
+			game->image_resized->west.img,
 			&game->image_resized->west.bits_per_pixel,
 			&game->image_resized->west.line_length,
 			&game->image_resized->west.endian);

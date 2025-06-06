@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/04 14:43:36 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:15:23 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 void	ft_display(t_game *game)
 {
-	t_raycasting	ray;
 	t_mlx			*mlx;
+	t_raycasting	*ray;
 
 	mlx = game->mlx;
-	ft_draw_floor_and_ceiling(game);
-	ft_ray_casting(&ray, game);
+	if (!game->raycasting)
+	{
+		game->raycasting = ft_calloc(1, sizeof(t_raycasting));
+		if (!game->raycasting)
+			ft_print_error_and_exit("Error\nAllocation raycasting failed\n");
+	}
+	ray = game->raycasting;
+	ft_ray_casting(ray, game);
 	draw_minimap(game);
 	mlx_do_sync(mlx->mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);

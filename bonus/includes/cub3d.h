@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/05 10:24:05 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:23:48 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ typedef struct s_game
 	t_image			*image;
 	t_image			*image_resized;
 	t_player		*player;
-	t_raycasting	raycasting;
-	t_buttons		buttons;
+	t_raycasting	*raycasting;
+	t_buttons		*buttons;
+	t_mini_map		*mini_map;
 	int				mouse_prev_x;
 	int				height_w;
 	int				width_w;
@@ -122,17 +123,14 @@ char	*ft_get_info(int fd);
 bool	ft_is_link(char *line);
 void	ft_fill_link(char *line, int fd);
 
-/*	FLOOR		*/
-
-/*	CEILING		*/
 
 /*	MAP			*/
 void	ft_get_map(t_game *game, int fd, char *line);
 void	ft_new_line(int fd, char *line, t_game *game);
 void	ft_check_map(t_game *game);
 int		ft_check_border(t_map *map, bool fill_struct);
-int		ft_check_content(char *line, int i);
-int		ft_check_wall(char *line);
+int		ft_check_content(char *line, int i, int size);
+int		ft_check_wall(char *line, int size);
 void	ft_fill_player(char c, int i, int j, t_game *game);
 bool	ft_is_good_char(char c);
 /*	EXTRA		*/
@@ -157,6 +155,8 @@ void	ft_image_west(void *mlx, t_tex *west);
 void	ft_image_floor(void *mlx, t_tex *floor);
 void	ft_image_ceiling(void *mlx, t_tex *ceiling);
 void	ft_image_doors(void *mlx, t_tex *doors);
+void	resize_tex(t_tex *src, t_tex *dst);
+void	ft_resize_all_images(t_image *source, t_image *dest);
 
 /*	DRAWING		*/
 int		ft_create_color(int t, int r, int g, int b);
@@ -164,7 +164,7 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void	ft_draw_square(t_game *game, int x, int y, int color);
 void	ft_draw_line(t_mlx *mlx, t_position x1, t_position x2, int color);
 void	ft_draw_rectangle(t_position start, int height, int width, int color);
-void	ft_draw_wall_column(t_game *game, t_tex *tex, t_wall wp, int tex_x);
+void	ft_draw_wall_column(t_game *game, t_tex *tex, t_wall *wp, int tex_x);
 // void	ft_draw_floor(t_game *game, t_wall wp, t_raycasting *ray);
 void	ft_draw_floor_and_ceiling(t_game *game);
 
@@ -188,7 +188,7 @@ void	ft_set_ray_color(t_raycasting *ray);
 void	ft_draw_3d(t_raycasting *ray, t_game *game, int r);
 t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray);
 void	ft_fix_fisheyes(t_game *game, t_raycasting *ray);
-t_wall	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r);
+t_wall	*ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r);
 int		ft_calc_tex_x(t_tex *tex, t_raycasting *ray);
 void	ft_update_angle(t_raycasting *ray);
 

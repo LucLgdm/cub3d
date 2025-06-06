@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_2.c                                           :+:      :+:    :+:   */
+/*   move_use.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:31:26 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/04 10:30:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/06 13:20:58 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_handle_right(t_game *game)
 
 void	ft_handle_shift(t_game *game)
 {
-	if (game->buttons.shift.pressed)
+	if (game->buttons->shift.pressed)
 		game->player->velocity = game->player->base_velocity * 1.5;
 	else
 		game->player->velocity = game->player->base_velocity;

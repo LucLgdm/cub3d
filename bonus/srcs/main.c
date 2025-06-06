@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/05 10:24:17 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:29:37 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,6 @@ t_game	*ft_get_game(void)
 	static t_game	game;
 
 	return (&game);
-}
-
-static void	resize_tex(t_tex *src, t_tex *dst)
-{
-    for (int y = 0; y < dst->height; y++)
-    {
-        for (int x = 0; x < dst->width; x++)
-        {
-            int src_x = x * src->width / dst->width;
-            int src_y = y * src->height / dst->height;
-            char *src_pixel = src->addr + (src_y * src->line_length + src_x * (src->bits_per_pixel / 8));
-            char *dst_pixel = dst->addr + (y * dst->line_length + x * (dst->bits_per_pixel / 8));
-            for (int b = 0; b < dst->bits_per_pixel / 8; b++)
-                dst_pixel[b] = src_pixel[b];
-        }
-    }
-}
-
-static void	resize_all_images(t_image *source, t_image *dest)
-{
-    resize_tex(&source->north, &dest->north);
-    resize_tex(&source->south, &dest->south);
-    resize_tex(&source->east, &dest->east);
-    resize_tex(&source->west, &dest->west);
-    resize_tex(&source->floor, &dest->floor);
-    resize_tex(&source->ceiling, &dest->ceiling);
-    resize_tex(&source->doors, &dest->doors);
 }
 
 void	ft_loop_mlx(t_game *game)
@@ -75,7 +48,7 @@ void	ft_game(void)
 			&mlx->line_length, &mlx->endian);
 	game->mlx = mlx;
 	ft_image_generator(game);
-	resize_all_images(game->image , game->image_resized);
+	ft_resize_all_images(game->image, game->image_resized);
 	ft_display(game);
 	ft_loop_mlx(game);
 }

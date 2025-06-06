@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/04 10:30:40 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:33:18 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ft_dda_loop(t_raycasting *ray, t_game *game, int flag)
 		map_x = (int)(ray->pos.x) >> ray->p;
 		map_y = (int)(ray->pos.y) >> ray->p;
 		if (map_x < 0 || map_y < 0 || map_y >= game->map->height
-			|| map_x >= (int)ft_strlen(game->map->map[map_y]))
+			|| map_x >= game->map->line_lengths[map_y])
 			break ;
 		if (ft_check(map_x, map_y))
 			ray->dof = 50;

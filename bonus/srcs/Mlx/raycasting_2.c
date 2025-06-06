@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/05 10:34:28 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:31:16 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,25 @@ t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray)
 	return (tex);
 }
 
-t_wall	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r)
+t_wall	*ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r)
 {
 	t_game	*game;
-	t_wall	wp;
+	t_wall	*wp;
 
 	game = ft_get_game();
-	wp.height = (game->height_w * tex->height) / ray->dist_min;
-	wp.ty_step = tex->height / wp.height;
-	wp.ty_off = 0.0f;
-	if (wp.height > game->height_w)
+	wp = ft_calloc(1, sizeof(t_wall));
+	if (!wp)
+		ft_print_error_and_exit("Error\nAllocation wall params failed\n");
+	wp->height = (game->height_w * tex->height) / ray->dist_min;
+	wp->ty_step = tex->height / wp->height;
+	wp->ty_off = 0.0f;
+	if (wp->height > game->height_w)
 	{
-		wp.ty_off = (wp.height - game->height_w) / 2.0f;
-		wp.height = game->height_w;
+		wp->ty_off = (wp->height - game->height_w) / 2.0f;
+		wp->height = game->height_w;
 	}
-	wp.start = (game->height_w / 2) - (wp.height / 2);
-	wp.column_x = r * ray->width;
+	wp->start = (game->height_w / 2) - (wp->height / 2);
+	wp->column_x = r * ray->width;
 	return (wp);
 }
 
@@ -75,15 +78,23 @@ int	ft_calc_tex_x(t_tex *tex, t_raycasting *ray)
 
 void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 {
-	t_tex	*tex;
-	int		tex_x;
-	t_wall	wp;
+	t_tex			*tex;
+	t_wall			*wp;
+	int				tex_x;
+	int				i;
 
 	tex = ft_choose_tex(game, ray);
 	ft_fix_fisheyes(game, ray);
 	wp = ft_calc_wall_params(tex, ray, r);
 	tex_x = ft_calc_tex_x(tex, ray);
 	ft_draw_wall_column(game, tex, wp, tex_x);
+	i = -1;
+	while (++i < wp->start)
+		my_mlx_pixel_put(game->mlx, wp->column_x, i, 0xAAAAAA);
+	i = wp->start + wp->height - 1;
+	while (++i < game->height_w)
+		my_mlx_pixel_put(game->mlx, wp->column_x, i, 0x444444);
+	free(wp);
 }
 
 void	ft_update_angle(t_raycasting *ray)
