@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:36:26 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/06 16:23:30 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:25:48 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_draw_wall_column(t_game *game, t_tex *tex, t_wall *wp,
 		int tex_x)
 {
-	float	ty;
+	double	ty;
 	int		screen_y;
 	int		tex_y;
 	char	*dst;

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:33:25 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/03 14:33:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:25:48 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct s_position
 {
-	float			x;
-	float			y;
+	double			x;
+	double			y;
 }	t_position;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:50:03 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/16 12:26:25 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:25:48 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_handle_w(t_game *game)
 {
-	float	new_x;
-	float	new_y;
+	double	new_x;
+	double	new_y;
 
 	new_x = game->player->pos.x + game->player->dx * game->player->velocity;
 	new_y = game->player->pos.y + game->player->dy * game->player->velocity;
@@ -30,8 +30,8 @@ void	ft_handle_w(t_game *game)
 
 void	ft_handle_s(t_game *game)
 {
-	float	new_x;
-	float	new_y;
+	double	new_x;
+	double	new_y;
 
 	new_x = game->player->pos.x - game->player->dx * game->player->velocity;
 	new_y = game->player->pos.y - game->player->dy * game->player->velocity;
@@ -46,8 +46,8 @@ void	ft_handle_s(t_game *game)
 
 void	ft_handle_a(t_game *game)
 {
-	float	new_x;
-	float	new_y;
+	double	new_x;
+	double	new_y;
 
 	new_x = game->player->pos.x + game->player->dy * game->player->velocity;
 	new_y = game->player->pos.y - game->player->dx * game->player->velocity;
@@ -62,8 +62,8 @@ void	ft_handle_a(t_game *game)
 
 void	ft_handle_d(t_game *game)
 {
-	float	new_x;
-	float	new_y;
+	double	new_x;
+	double	new_y;
 
 	new_x = game->player->pos.x - game->player->dy * game->player->velocity;
 	new_y = game->player->pos.y + game->player->dx * game->player->velocity;

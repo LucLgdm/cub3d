@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 10:39:57 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/04 10:49:32 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:27:07 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_handle_door(t_game *game)
 	t_door		*door;
 	t_position	door_c;
 	t_position	delta;
-	float		dist;
+	double		dist;
 	int			i;
 
 	ft_player_on_door(game);

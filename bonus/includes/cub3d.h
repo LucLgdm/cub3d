@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/16 13:28:51 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:10:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define T_SIZE 32.0
 # define PLAYER_RADIUS 10.0f
 # define ASPECT_RATIO (16.0 / 9.0)
-
+# define EPSILON 0.0001
 
 typedef struct s_mlx
 {
@@ -46,8 +46,8 @@ typedef struct s_mlx
 typedef struct s_raycasting
 {
 	int			num_rays;
-	float		angle;
-	float		width;
+	double		angle;
+	double		width;
 	t_position	pos;
 	t_position	next;
 	t_position	final;
@@ -55,9 +55,9 @@ typedef struct s_raycasting
 	int			map_y;
 	int			dof;
 	int			color;
-	float		dist_v;
-	float		dist_h;
-	float		dist_min;
+	double		dist_v;
+	double		dist_h;
+	double		dist_min;
 	bool		hit_v;
 	int			p;
 }	t_raycasting;
@@ -198,8 +198,8 @@ void	ft_update_angle(t_raycasting *ray, int r);
 
 /*	GAMEPLAY	*/
 int		ft_game_loop(void *data);
-int		ft_can_move_to(t_game *game, float x, float y);
-int		ft_is_wall_at(t_game *game, float x, float y);
+int		ft_can_move_to(t_game *game, double x, double y);
+int		ft_is_wall_at(t_game *game, double x, double y);
 void	ft_handle_key(t_game *game);
 int		ft_key_release(int key, void *data);
 void	ft_handle_w(t_game *game);
@@ -249,6 +249,6 @@ void	ft_print_doors(void);
  * 		Usefull
  ********************/
 
-float	ft_distance(t_position *pos1, t_position *pos2);
+double	ft_distance(t_position *pos1, t_position *pos2);
 
 #endif

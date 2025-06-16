@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/16 12:26:12 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:15:30 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game)
 		ray->dof = 0;
 		ft_vertical_raycasting(ray, game);
 		ft_dda_loop(ray, game, 2);
-		if (ray->pos.y > game->height_w)
-			ray->pos.y = game->height_w;
-		if (ray->pos.y < 0)
-			ray->pos.y = 0;
 		ft_choose_ray(ray, game);
 		ft_draw_3d(ray, game, r);
 		ft_update_angle(ray, r);
@@ -64,6 +60,6 @@ void	ft_init_ray(t_raycasting *ray, t_game *game)
 		ray->angle += 2 * PI;
 	if (ray->angle > 2 * PI)
 		ray->angle -= 2 * PI;
-	ray->width = (float)game->width_w / ray->num_rays;
+	ray->width = (double)game->width_w / ray->num_rays;
 	ray->p = (int)(log2((double)T_SIZE));
 }

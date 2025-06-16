@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:38:14 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/28 15:57:23 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:25:48 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_fix_fisheyes(t_game *game, t_raycasting *ray)
 {
-	float	ca;
+	double	ca;
 
 	ca = game->player->angle - ray->angle;
 	if (ca > PI)
 		ca -= 2 * PI;
 	if (ca < -PI)
 		ca += 2 * PI;
-	ray->dist_min *= (float)cos(ca);
+	ray->dist_min *= (double)cos(ca);
 }
 
 void	ft_set_ray_hit(t_raycasting *ray, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 10:24:54 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/04 10:24:59 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:25:48 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_fill_player(char c, int i, int j, t_game *game)
 		if (!game->player)
 			ft_print_error_and_exit("Error: Memory allocation player failed\n");
 	}
-	game->player->pos.x = (float)j;
-	game->player->pos.y = (float)i;
+	game->player->pos.x = (double)j;
+	game->player->pos.y = (double)i;
 	game->player->pos.x = T_SIZE * game->player->pos.x + T_SIZE / 2;
 	game->player->pos.y = T_SIZE * game->player->pos.y + T_SIZE / 2;
 	game->player->direction = c;
@@ -50,8 +50,8 @@ void	ft_fill_teleporter(int i, int j, t_game *game)
 		free(tmp);
 		game->map->num_teleporters++;
 	}
-	game->map->teleporters[game->map->num_teleporters - 1].x = (float)j;
-	game->map->teleporters[game->map->num_teleporters - 1].y = (float)i;
+	game->map->teleporters[game->map->num_teleporters - 1].x = (double)j;
+	game->map->teleporters[game->map->num_teleporters - 1].y = (double)i;
 }
 
 void	ft_fill_door(int i, int j, t_game *game)

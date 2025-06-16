@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/16 12:27:55 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:25:51 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ t_wall	*ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r)
 
 int	ft_calc_tex_x(t_tex *tex, t_raycasting *ray)
 {
-	float	wall_x;
+	double	wall_x;
 	int		tex_x;
 
 	if (ray->hit_v)
 		wall_x = ray->final.y / tex->width - floor(ray->final.y / tex->width);
 	else
 		wall_x = ray->final.x / tex->height - floor(ray->final.x / tex->height);
-	tex_x = (int)(wall_x * (float)tex->width);
+	tex_x = (int)(wall_x * (double)tex->width);
 	if (tex_x < 0)
 		tex_x = 0;
 	if (tex_x >= tex->width)
@@ -97,9 +97,8 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 	free(wp);
 }
 
-void	ft_update_angle(t_raycasting *ray, int r)
+void	ft_update_angle(t_raycasting *ray)
 {
-	(void)r;
 	ray->angle += (60 * PI / 180) / ray->num_rays;
 	if (ray->angle < 0)
 		ray->angle += 2 * PI;
