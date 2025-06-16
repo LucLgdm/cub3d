@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:54:44 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/04 14:37:01 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:31:46 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ int	ft_mouse_handle(int x, int y, void *data)
 		game->player->dx = 5 * cos(game->player->angle);
 		game->player->dy = 5 * sin(game->player->angle);
 	}
-	mlx_mouse_move(game->mlx->mlx, game->mlx->win, game->width_w / 2,
-		game->height_w / 2);
-	game->mouse_prev_x = game->width_w / 2;
+	if (abs(x - game->width_w / 2) > 20)
+	{
+		mlx_mouse_move(game->mlx->mlx, game->mlx->win, game->width_w / 2,
+			game->height_w / 2);
+		game->mouse_prev_x = game->width_w / 2;
+	}
+	game->need_redraw = true;
 	return (0);
 }
 
@@ -51,15 +55,13 @@ void	ft_handle_teleport(t_game *game)
 		game->player->can_teleport = true;
 }
 
-void	ft_handle_e(t_game *game)
+void	ft_handle_e(t_game *game, t_player *player)
 {
-	t_player	*player;
 	t_position	check_pos;
 	t_position	door_pos;
 	t_door		*door;
 	int			i;
 
-	player = game->player;
 	check_pos.x = player->pos.x + cos(player->angle) * (2 * PLAYER_RADIUS);
 	check_pos.y = player->pos.y + sin(player->angle) * (2 * PLAYER_RADIUS);
 	door_pos.x = (int)(check_pos.x / T_SIZE);
@@ -78,6 +80,7 @@ void	ft_handle_e(t_game *game)
 			break ;
 		}
 	}
+	game->need_redraw = true;
 }
 
 void	ft_teleport_player(t_game *game)

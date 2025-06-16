@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/06 16:15:23 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:26:12 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game)
 			ray->pos.y = 0;
 		ft_choose_ray(ray, game);
 		ft_draw_3d(ray, game, r);
-		ft_update_angle(ray);
+		ft_update_angle(ray, r);
 	}
 }
 

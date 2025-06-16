@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/06 16:23:48 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:28:51 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@
 # include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/time.h> 
 
 # define PI 3.1415926535
 # define T_SIZE 32.0
 # define PLAYER_RADIUS 10.0f
+# define ASPECT_RATIO (16.0 / 9.0)
+
 
 typedef struct s_mlx
 {
@@ -90,6 +93,7 @@ typedef struct s_game
 	int				mouse_prev_x;
 	int				height_w;
 	int				width_w;
+	bool			need_redraw;
 }	t_game;
 
 /********************
@@ -190,7 +194,7 @@ t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray);
 void	ft_fix_fisheyes(t_game *game, t_raycasting *ray);
 t_wall	*ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r);
 int		ft_calc_tex_x(t_tex *tex, t_raycasting *ray);
-void	ft_update_angle(t_raycasting *ray);
+void	ft_update_angle(t_raycasting *ray, int r);
 
 /*	GAMEPLAY	*/
 int		ft_game_loop(void *data);
@@ -202,7 +206,7 @@ void	ft_handle_w(t_game *game);
 void	ft_handle_s(t_game *game);
 void	ft_handle_a(t_game *game);
 void	ft_handle_d(t_game *game);
-void	ft_handle_e(t_game *game);
+void	ft_handle_e(t_game *game, t_player *player);
 void	ft_handle_left(t_game *game);
 void	ft_handle_right(t_game *game);
 void	ft_handle_shift(t_game *game);

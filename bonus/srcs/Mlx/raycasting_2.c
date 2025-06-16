@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/06 16:31:16 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:27:55 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ int	ft_calc_tex_x(t_tex *tex, t_raycasting *ray)
 
 void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 {
-	t_tex			*tex;
-	t_wall			*wp;
-	int				tex_x;
-	int				i;
+	t_tex	*tex;
+	t_wall	*wp;
+	int		tex_x;
+	int		i;
 
 	tex = ft_choose_tex(game, ray);
 	ft_fix_fisheyes(game, ray);
@@ -97,8 +97,9 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 	free(wp);
 }
 
-void	ft_update_angle(t_raycasting *ray)
+void	ft_update_angle(t_raycasting *ray, int r)
 {
+	(void)r;
 	ray->angle += (60 * PI / 180) / ray->num_rays;
 	if (ray->angle < 0)
 		ray->angle += 2 * PI;

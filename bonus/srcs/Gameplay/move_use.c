@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:31:26 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/06 13:20:58 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:35:43 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,22 @@ int	ft_can_move_to(t_game *game, float x, float y)
 
 void	ft_handle_left(t_game *game)
 {
-	game->player->angle -= 0.1;
+	game->player->angle -= 100 *game->player->rotation_speed;
 	if (game->player->angle < 0)
 		game->player->angle += 2 * PI;
-	game->player->dx = 3 * cos(game->player->angle);
-	game->player->dy = 3 * sin(game->player->angle);
+	game->player->dx = 5 * cos(game->player->angle);
+	game->player->dy = 5 * sin(game->player->angle);
+	game->need_redraw = true;
 }
 
 void	ft_handle_right(t_game *game)
 {
-	game->player->angle += 0.1;
+	game->player->angle += 100 * game->player->rotation_speed;
 	if (game->player->angle > 2 * PI)
 		game->player->angle -= 2 * PI;
 	game->player->dx = 5 * cos(game->player->angle);
 	game->player->dy = 5 * sin(game->player->angle);
+	game->need_redraw = true;
 }
 
 void	ft_handle_shift(t_game *game)

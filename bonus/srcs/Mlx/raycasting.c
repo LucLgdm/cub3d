@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/06 15:33:18 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:10:15 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_horizontal_raycasting(t_raycasting *ray, t_game *game)
 	{
 		ray->pos.x = game->player->pos.x;
 		ray->pos.y = game->player->pos.y;
-		ray->dof = 50;
+		ray->dof = 1024;
 	}
 }
 
@@ -66,7 +66,7 @@ void	ft_vertical_raycasting(t_raycasting *ray, t_game *game)
 	{
 		ray->pos.x = game->player->pos.x;
 		ray->pos.y = game->player->pos.y;
-		ray->dof = 50;
+		ray->dof = 1024;
 	}
 }
 
@@ -84,7 +84,7 @@ void	ft_dda_loop(t_raycasting *ray, t_game *game, int flag)
 	int	map_x;
 	int	map_y;
 
-	while (ray->dof < 50)
+	while (ray->dof < 1024)
 	{
 		map_x = (int)(ray->pos.x) >> ray->p;
 		map_y = (int)(ray->pos.y) >> ray->p;
@@ -92,7 +92,7 @@ void	ft_dda_loop(t_raycasting *ray, t_game *game, int flag)
 			|| map_x >= game->map->line_lengths[map_y])
 			break ;
 		if (ft_check(map_x, map_y))
-			ray->dof = 50;
+			ray->dof = 1024;
 		else
 		{
 			ray->pos.x += ray->next.x;

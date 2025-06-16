@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:27:09 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/06 15:43:01 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:39:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_game_initialisation(int argc, char **argv)
 	game->mini_map = ft_calloc(1, sizeof(t_mini_map));
 	if (!game->mini_map)
 		ft_print_error_and_exit("Error\nAllocation failed for minimap\n");
+	game->need_redraw = true;
 }
 
 void	ft_check_player(t_game *game)
@@ -49,7 +50,7 @@ void	ft_check_player(t_game *game)
 	game->player->dx = 5 * cos(game->player->angle);
 	game->player->dy = 5 * sin(game->player->angle);
 	game->player->rotation_speed = 0.0001;
-	game->player->base_velocity = 0.4f;
+	game->player->base_velocity = 0.3f;
 	game->player->velocity = game->player->base_velocity;
 	game->player->can_teleport = true;
 	game->player->on_door = false;

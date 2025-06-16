@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:50:03 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/04 10:49:23 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:26:25 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_handle_w(t_game *game)
 		game->player->pos.y = new_y;
 	ft_handle_door(game);
 	ft_handle_teleport(game);
+	game->need_redraw = true;
 }
 
 void	ft_handle_s(t_game *game)
@@ -40,6 +41,7 @@ void	ft_handle_s(t_game *game)
 		game->player->pos.y = new_y;
 	ft_handle_door(game);
 	ft_handle_teleport(game);
+	game->need_redraw = true;
 }
 
 void	ft_handle_a(t_game *game)
@@ -55,6 +57,7 @@ void	ft_handle_a(t_game *game)
 		game->player->pos.y = new_y;
 	ft_handle_door(game);
 	ft_handle_teleport(game);
+	game->need_redraw = true;
 }
 
 void	ft_handle_d(t_game *game)
@@ -70,4 +73,5 @@ void	ft_handle_d(t_game *game)
 		game->player->pos.y = new_y;
 	ft_handle_door(game);
 	ft_handle_teleport(game);
+	game->need_redraw = true;
 }

@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/06 14:44:45 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/10 12:29:51 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,4 +106,9 @@ re: fclean all
 val: re
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) map/map.cub
 
+cal: re
+	valgrind --tool=callgrind ./$(NAME) map/map.cub
+	@echo "\033[0;32mCallgrind finished !\033[0m"
+	@echo "\033[0;33mRunning: kcachegrind callgrind.out.*\033[0m"
+	kcachegrind callgrind.out.*
 .PHONY: all clean fclean re

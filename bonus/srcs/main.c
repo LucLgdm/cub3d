@@ -6,11 +6,13 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/06 16:29:37 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:29:38 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+double	g_current_time;
 
 t_game	*ft_get_game(void)
 {
@@ -41,8 +43,8 @@ void	ft_game(void)
 		ft_print_error_and_exit("Error\nAllocation failed\n");
 	mlx->mlx = mlx_init();
 	mlx_get_screen_size(mlx->mlx, &game->width_w, &game->height_w);
+	game->height_w = (int)(game->width_w / ASPECT_RATIO);
 	mlx->win = mlx_new_window(mlx->mlx, game->width_w, game->height_w, "cub3D");
-	mlx_mouse_hide(mlx->mlx, mlx->win);
 	mlx->img = mlx_new_image(mlx->mlx, game->width_w, game->height_w);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel,
 			&mlx->line_length, &mlx->endian);
@@ -55,6 +57,10 @@ void	ft_game(void)
 
 int	main(int argc, char **argv)
 {
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	g_current_time = tv.tv_sec + tv.tv_usec / 1000000.0;
 	ft_game_initialisation(argc, argv);
 	ft_game();
 	return (0);
