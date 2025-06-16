@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/05 12:02:25 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:30:28 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,40 +33,42 @@ t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray)
 	return (tex);
 }
 
-t_wall_params	ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r,
-		int flag)
+t_wall	*ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r, int flag)
 {
-	t_game			*game;
-	t_wall_params	wp;
+	t_game	*game;
+	t_wall	*wp;
 
 	game = ft_get_game();
-	wp.height = (game->height_w * tex->height) / ray->dist_min;
-	wp.ty_step = tex->height / wp.height;
-	wp.ty_off = 0.0f;
-	if (wp.height > game->height_w)
+	wp = ft_calloc(1, sizeof(t_wall));
+	if (!wp)
+		ft_print_error_and_exit("Error\nAllocation wall params failed\n");
+	wp->height = (game->height_w * tex->height) / ray->dist_min;
+	wp->ty_step = tex->height / wp->height;
+	wp->ty_off = 0.0f;
+	if (wp->height > game->height_w)
 	{
-		wp.ty_off = (wp.height - game->height_w) / 2.0f;
-		wp.height = game->height_w;
+		wp->ty_off = (wp->height - game->height_w) / 2.0f;
+		wp->height = game->height_w;
 	}
-	wp.start = (game->height_w / 2) - (wp.height / 2);
+	wp->start = (game->height_w / 2) - (wp->height / 2);
 	if (flag == 1)
-		wp.offset = game->width_w / 2;
+		wp->offset = game->width_w / 2;
 	else
-		wp.offset = 0;
-	wp.column_x = r * ray->width + wp.offset;
+		wp->offset = 0;
+	wp->column_x = r * ray->width + wp->offset;
 	return (wp);
 }
 
 int	ft_calc_tex_x(t_tex *tex, t_raycasting *ray)
 {
-	float	wall_x;
+	double	wall_x;
 	int		tex_x;
 
 	if (ray->hit_v)
 		wall_x = ray->final.y / tex->width - floor(ray->final.y / tex->width);
 	else
 		wall_x = ray->final.x / tex->height - floor(ray->final.x / tex->height);
-	tex_x = (int)(wall_x * (float)tex->width);
+	tex_x = (int)(wall_x * (double)tex->width);
 	if (tex_x < 0)
 		tex_x = 0;
 	if (tex_x >= tex->width)
@@ -76,17 +78,18 @@ int	ft_calc_tex_x(t_tex *tex, t_raycasting *ray)
 
 void	ft_draw_3d(t_raycasting *ray, t_game *game, int r, int flag)
 {
-	t_tex			*tex;
-	int				tex_x;
-	t_wall_params	wp;
+	t_tex	*tex;
+	int		tex_x;
+	t_wall	*wp;
 
 	tex = ft_choose_tex(game, ray);
 	ft_fix_fisheyes(game, ray);
 	wp = ft_calc_wall_params(tex, ray, r, flag);
 	tex_x = ft_calc_tex_x(tex, ray);
 	ft_draw_wall_column(game, tex, wp, tex_x);
-	ft_draw_floor(wp.column_x, wp.start, wp.height, ray);
-	ft_draw_ceiling(wp.column_x, wp.start, ray);
+	ft_draw_floor(wp->column_x, wp->start, wp->height, ray);
+	ft_draw_ceiling(wp->column_x, wp->start, ray);
+	free(wp);
 }
 
 void	ft_update_angle(t_raycasting *ray)

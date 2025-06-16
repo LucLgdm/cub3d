@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/05 12:01:35 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:30:25 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@
 
 # define PI 3.1415926535
 # define T_SIZE 32.0
+# define EPSILON 0.0001
 
 typedef struct s_position
 {
-	float			x;
-	float			y;
+	double			x;
+	double			y;
 }					t_position;
 
 typedef struct s_mlx
@@ -45,20 +46,20 @@ typedef struct s_mlx
 
 typedef struct s_wall_params
 {
-	float			height;
-	float			start;
-	float			offset;
+	double			height;
+	double			start;
+	double			offset;
 	int				column_x;
-	float			ty_step;
-	float			ty_off;
-}					t_wall_params;
+	double			ty_step;
+	double			ty_off;
+}					t_wall;
 
 typedef struct s_raycasting
 {
 	int				num_rays;
-	float			angle;
-	float			dist;
-	float			width;
+	double			angle;
+	double			dist;
+	double			width;
 	t_position		pos;
 	t_position		next;
 	t_position		final;
@@ -66,9 +67,9 @@ typedef struct s_raycasting
 	int				map_y;
 	int				dof;
 	int				color;
-	float			dist_v;
-	float			dist_h;
-	float			dist_min;
+	double			dist_v;
+	double			dist_h;
+	double			dist_min;
 	bool			hit_v;
 	int				p;
 }					t_raycasting;
@@ -93,11 +94,11 @@ typedef struct s_player
 {
 	t_position		pos;
 	char			direction;
-	float			angle;
-	float			dx;
-	float			dy;
-	float			velocity;
-	float			rotation_speed;
+	double			angle;
+	double			dx;
+	double			dy;
+	double			velocity;
+	double			rotation_speed;
 }					t_player;
 
 typedef struct s_game
@@ -184,8 +185,8 @@ void				ft_draw_line(t_mlx *mlx, t_position x1, t_position x2,
 						int color);
 void				ft_draw_rectangle(t_position start, int height, int width,
 						int color);
-void				ft_draw_wall_column(t_game *game, t_tex *tex,
-						t_wall_params wp, int tex_x);
+void				ft_draw_wall_column(t_game *game, t_tex *tex, t_wall *wp,
+						int tex_x);
 void				ft_draw_ceiling(int column_x, int wall_start,
 						t_raycasting *ray);
 void				ft_draw_floor(int column_x, int wall_start, int wall_height,
@@ -211,14 +212,14 @@ void				ft_draw_3d(t_raycasting *ray, t_game *game, int r,
 						int flag);
 t_tex				*ft_choose_tex(t_game *game, t_raycasting *ray);
 void				ft_fix_fisheyes(t_game *game, t_raycasting *ray);
-t_wall_params		ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r,
+t_wall				*ft_calc_wall_params(t_tex *tex, t_raycasting *ray, int r,
 						int flag);
 int					ft_calc_tex_x(t_tex *tex, t_raycasting *ray);
 void				ft_update_angle(t_raycasting *ray);
 
 /*	HOOK		*/
-int					ft_can_move_to(t_game *game, float x, float y);
-int					ft_is_wall_at(t_game *game, float x, float y);
+int					ft_can_move_to(t_game *game, double x, double y);
+int					ft_is_wall_at(t_game *game, double x, double y);
 void				ft_move_player(t_game *game, int key);
 void				ft_handle_key(t_game *game);
 void				ft_handle_w(t_game *game);
@@ -259,6 +260,6 @@ void				ft_print_map(void);
  * 		Usefull
  ********************/
 
-float				ft_distance(t_position *pos1, t_position *pos2);
+double				ft_distance(t_position *pos1, t_position *pos2);
 
 #endif

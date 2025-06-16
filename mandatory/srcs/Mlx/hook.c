@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:54:44 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:16:14 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_key_handle(int key, void *data)
 	return (0);
 }
 
-int	ft_is_wall_at(t_game *game, float x, float y)
+int	ft_is_wall_at(t_game *game, double x, double y)
 {
 	int	map_x;
 	int	map_y;
@@ -35,7 +35,7 @@ int	ft_is_wall_at(t_game *game, float x, float y)
 	return (game->map->map[map_y][map_x] != '0');
 }
 
-int	ft_can_move_to(t_game *game, float x, float y)
+int	ft_can_move_to(t_game *game, double x, double y)
 {
 	if (ft_is_wall_at(game, x + PLAYER_RADIUS, y))
 		return (0);

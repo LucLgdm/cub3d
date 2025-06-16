@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:50:03 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/16 13:07:48 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:16:14 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_handle_w(t_game *game)
 {
-	float	off;
-	float	new_x;
-	float	new_y;
+	double	off;
+	double	new_x;
+	double	new_y;
 
 	off = 0.5f;
 	new_x = game->player->pos.x + game->player->dx * off
@@ -31,9 +31,9 @@ void	ft_handle_w(t_game *game)
 
 void	ft_handle_s(t_game *game)
 {
-	float	off;
-	float	new_x;
-	float	new_y;
+	double	off;
+	double	new_x;
+	double	new_y;
 
 	off = 0.5f;
 	new_x = game->player->pos.x - game->player->dx * off
@@ -48,9 +48,9 @@ void	ft_handle_s(t_game *game)
 
 void	ft_handle_a(t_game *game)
 {
-	float	off;
-	float	new_x;
-	float	new_y;
+	double	off;
+	double	new_x;
+	double	new_y;
 
 	off = 0.5f;
 	new_x = game->player->pos.x + game->player->dy * off
@@ -65,9 +65,9 @@ void	ft_handle_a(t_game *game)
 
 void	ft_handle_d(t_game *game)
 {
-	float	off;
-	float	new_x;
-	float	new_y;
+	double	off;
+	double	new_x;
+	double	new_y;
 
 	off = 0.5f;
 	new_x = game->player->pos.x - game->player->dy * off

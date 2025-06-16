@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:04:54 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:16:14 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	ft_fill_player(char c, int i, int j, t_game *game)
 		if (!game->player)
 			ft_print_error_and_exit("Error: Memory allocation player failed\n");
 	}
-	game->player->pos.x = (float)j;
-	game->player->pos.y = (float)i;
+	game->player->pos.x = (double)j;
+	game->player->pos.y = (double)i;
 	game->player->pos.x = T_SIZE * game->player->pos.x + T_SIZE / 2;
 	game->player->pos.y = T_SIZE * game->player->pos.y + T_SIZE / 2;
 	game->player->direction = c;
