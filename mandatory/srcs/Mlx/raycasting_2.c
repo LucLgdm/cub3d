@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/05 12:02:25 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray)
 	if (ray->hit_v)
 	{
 		if (ray->angle < PI / 2 || ray->angle > 3 * PI / 2)
-			tex = &game->image->north;
+			tex = &game->image_resized->north;
 		else
-			tex = &game->image->south;
+			tex = &game->image_resized->south;
 	}
 	else
 	{
 		if (ray->angle < PI)
-			tex = &game->image->west;
+			tex = &game->image_resized->west;
 		else
-			tex = &game->image->east;
+			tex = &game->image_resized->east;
 	}
 	return (tex);
 }

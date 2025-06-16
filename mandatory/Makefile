@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/03 09:37:52 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/05 12:08:36 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,7 @@ fclean: clean
 
 re: fclean all
 
-val: all
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+val: re
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) map/valid_map/map_3.cub
 
 .PHONY: all clean fclean re

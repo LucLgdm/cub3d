@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/05 12:08:15 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_free_game(t_game *game)
 
 void	ft_free_image(t_game *game)
 {
-	if (game->image)
+	if (game->image && game->image_resized)
 	{
 		if (game->mlx)
 		{
@@ -31,12 +31,17 @@ void	ft_free_image(t_game *game)
 			mlx_destroy_image(game->mlx->mlx, game->image->south.img);
 			mlx_destroy_image(game->mlx->mlx, game->image->west.img);
 			mlx_destroy_image(game->mlx->mlx, game->image->east.img);
+			mlx_destroy_image(game->mlx->mlx, game->image_resized->north.img);
+			mlx_destroy_image(game->mlx->mlx, game->image_resized->south.img);
+			mlx_destroy_image(game->mlx->mlx, game->image_resized->west.img);
+			mlx_destroy_image(game->mlx->mlx, game->image_resized->east.img);
 		}
 		free(game->image->north.path);
 		free(game->image->south.path);
 		free(game->image->east.path);
 		free(game->image->west.path);
 		free(game->image);
+		free(game->image_resized);
 	}
 }
 
