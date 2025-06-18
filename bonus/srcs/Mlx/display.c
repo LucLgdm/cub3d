@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/16 17:15:30 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:15:49 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	ft_display(t_game *game)
 	}
 	ray = game->raycasting;
 	ft_ray_casting(ray, game);
-	draw_minimap(game);
+	ft_draw_sprite(game);
+	ft_draw_minimap(game);
 	mlx_do_sync(mlx->mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 }
@@ -46,8 +47,9 @@ void	ft_ray_casting(t_raycasting *ray, t_game *game)
 		ft_vertical_raycasting(ray, game);
 		ft_dda_loop(ray, game, 2);
 		ft_choose_ray(ray, game);
+		game->zbuffer[r] = ray->dist_min;
 		ft_draw_3d(ray, game, r);
-		ft_update_angle(ray, r);
+		ft_update_angle(ray);
 	}
 }
 

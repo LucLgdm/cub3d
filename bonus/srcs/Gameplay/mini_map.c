@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 14:40:04 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/16 12:25:44 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:02:07 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void	ft_init_mini_map(t_game *game, t_mini_map *map)
 		* 0.15f;
 	map->cell_x = (int)map->map_x;
 	map->cell_y = (int)map->map_y;
+	map->center_x = MINIMAP_RADIUS + 50;
+	map->center_y = game->height_w - MINIMAP_RADIUS - 100;
 }
 
 static void	ft_color_mini_map(t_game *game, t_mini_map *map)
@@ -44,11 +46,11 @@ static void	ft_color_mini_map(t_game *game, t_mini_map *map)
 		else if (c == 'T')
 			color = 0x00FFFF;
 	}
-	my_mlx_pixel_put(game->mlx, MINIMAP_CENTER_X + map->dx, MINIMAP_CENTER_Y
+	my_mlx_pixel_put(game->mlx, map->center_x + map->dx, map->center_y
 		+ map->dy, color);
 }
 
-void	draw_minimap(t_game *game)
+void	ft_draw_minimap(t_game *game)
 {
 	t_mini_map	*map;
 	int			mx;
@@ -79,12 +81,12 @@ void	ft_draw_player_mini(t_game *game)
 	t_position	dir_start;
 	t_position	dir_end;
 
-	player_icon.x = MINIMAP_CENTER_X - 3;
-	player_icon.y = MINIMAP_CENTER_Y - 3;
+	player_icon.x = game->mini_map->center_x - 3;
+	player_icon.y = game->mini_map->center_y - 3;
 	ft_draw_rectangle(player_icon, 6, 6, 0xFF0000);
-	dir_start.x = MINIMAP_CENTER_X;
-	dir_start.y = MINIMAP_CENTER_Y;
-	dir_end.x = MINIMAP_CENTER_X;
-	dir_end.y = MINIMAP_CENTER_Y - 20;
+	dir_start.x = game->mini_map->center_x;
+	dir_start.y = game->mini_map->center_y;
+	dir_end.x = game->mini_map->center_x;
+	dir_end.y = game->mini_map->center_y - 20;
 	ft_draw_line(game->mlx, dir_start, dir_end, 0xFF0000);
 }

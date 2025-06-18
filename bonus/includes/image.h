@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:43:30 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/02 11:01:05 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/17 12:54:24 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ typedef struct s_image
 	t_tex	south;
 	t_tex	east;
 	t_tex	west;
-	t_tex	floor;
-	t_tex	ceiling;
 	t_tex	doors;
+	t_tex	vilain;
 }	t_image;
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:56:40 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/04 10:21:37 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/17 12:53:48 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	ft_print_image(void)
 	printf("Path east: %s\n", game->image->east.path);
 	printf("Path north: %s\n", game->image->north.path);
 	printf("Path west: %s\n", game->image->west.path);
-	printf("Path floor: %s\n", game->image->floor.path);
-	printf("Path ceiling: %s\n", game->image->ceiling.path);
+	printf("Path doors: %s\n", game->image->doors.path);
+	printf("Path vilain: %s\n", game->image->vilain.path);
 	printf("\n");
 }
 

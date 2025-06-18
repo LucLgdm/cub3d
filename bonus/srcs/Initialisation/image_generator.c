@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:23:35 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/05 12:28:20 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 10:40:16 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ void	ft_image_generator(t_game *game)
 	ft_image_south(mlx->mlx, &game->image->south);
 	ft_image_east(mlx->mlx, &game->image->east);
 	ft_image_west(mlx->mlx, &game->image->west);
-	ft_image_floor(mlx->mlx, &game->image->floor);
-	ft_image_ceiling(mlx->mlx, &game->image->ceiling);
 	ft_image_doors(mlx->mlx, &game->image->doors);
+	ft_image_vilain(mlx->mlx, &game->image->vilain);
 }
 
 void	ft_image_north(void *mlx, t_tex *north)

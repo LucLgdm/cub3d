@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/16 17:25:51 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 10:15:01 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 	i = -1;
 	while (++i < wp->start)
 		my_mlx_pixel_put(game->mlx, wp->column_x, i, 0xAAAAAA);
-	i = wp->start + wp->height - 1;
+	i = wp->start + wp->height - 2;
 	while (++i < game->height_w)
 		my_mlx_pixel_put(game->mlx, wp->column_x, i, 0x444444);
 	free(wp);

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:45:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/16 17:10:17 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/17 11:25:36 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,16 @@ void	ft_vertical_raycasting(t_raycasting *ray, t_game *game)
 	if (ray->angle > PI / 2 && ray->angle < 3 * PI / 2)
 	{
 		ray->pos.x = floor(game->player->pos.x / T_SIZE) * T_SIZE - EPSILON;
-		ray->pos.y = game->player->pos.y + (game->player->pos.x - ray->pos.x) * -tan(ray->angle);
+		ray->pos.y = game->player->pos.y + (game->player->pos.x - ray->pos.x)
+			* -tan(ray->angle);
 		ray->next.x = -T_SIZE;
 		ray->next.y = -ray->next.x * -tan(ray->angle);
 	}
 	else if (ray->angle < PI / 2 || ray->angle > 3 * PI / 2)
 	{
 		ray->pos.x = floor(game->player->pos.x / T_SIZE) * T_SIZE + T_SIZE;
-		ray->pos.y = game->player->pos.y + (game->player->pos.x - ray->pos.x) * -tan(ray->angle);
+		ray->pos.y = game->player->pos.y + (game->player->pos.x - ray->pos.x)
+			* -tan(ray->angle);
 		ray->next.x = T_SIZE;
 		ray->next.y = -ray->next.x * -tan(ray->angle);
 	}

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:27:09 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/16 11:39:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:12:28 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	ft_game_initialisation(int argc, char **argv)
 	ft_parsing(game, argv);
 	ft_check_player(game);
 	game->mouse_prev_x = game->width_w / 2;
+	game->need_redraw = true;
 	game->buttons = ft_calloc(1, sizeof(t_buttons));
 	if (!game->buttons)
 		ft_print_error_and_exit("Error\nAllocation failed for buttons\n");
 	game->mini_map = ft_calloc(1, sizeof(t_mini_map));
 	if (!game->mini_map)
 		ft_print_error_and_exit("Error\nAllocation failed for minimap\n");
-	game->need_redraw = true;
 }
 
 void	ft_check_player(t_game *game)
