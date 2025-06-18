@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:04:54 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/18 10:18:15 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:57:30 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_check_wall(char *line, int size)
 	return (0);
 }
 
-static void	ft_d_t(char c, int i, int j)
+static void	ft_d_t_v(char c, int i, int j)
 {
 	t_game	*game;
 
@@ -38,7 +38,7 @@ static void	ft_d_t(char c, int i, int j)
 		ft_fill_door(i, j, game);
 	if (c == 'T')
 		ft_fill_teleporter(i, j, game);
-	if (c == 'E')
+	if (c == 'V')
 	{
 		ft_fill_enemy(i, j, game);
 		game->map->map[i][j] = '0';
@@ -54,15 +54,15 @@ int	ft_check_content(char *line, int i, int size)
 	game = ft_get_game();
 	while (++j < size && ft_is_good_char(line[j]))
 	{
-		ft_d_t(line[j], i, j);
+		ft_d_t_v(line[j], i, j);
 		if (line[j] != '0' && line[j] != '1' && line[j] != ' ' && line[j] != 'D'
-			&& line[j] != 'T' && line[j] != 'E' && !game->player)
+			&& line[j] != 'T' && line[j] != 'V' && !game->player)
 		{
 			ft_fill_player(line[j], i, j, game);
 			line[j] = '0';
 		}
 		else if (line[j] != '0' && line[j] != '1' && line[j] != ' '
-			&& line[j] != 'D' && line[j] != 'T' && line[j] != 'E' && game->player)
+			&& line[j] != 'D' && line[j] != 'T' && line[j] != 'V' && game->player)
 			return (1);
 		continue ;
 	}
@@ -74,5 +74,5 @@ int	ft_check_content(char *line, int i, int size)
 bool	ft_is_good_char(char c)
 {
 	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ' || c == 'D' || c == 'T' || c == 'E');
+		|| c == ' ' || c == 'D' || c == 'T' || c == 'V');
 }

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/18 10:41:46 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:43:48 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define PI 3.1415926535
 # define T_SIZE 32.0
 # define PLAYER_RADIUS 10.0f
+#define ENEMY_VIEW_RADIUS 600.0f
 # define EPSILON 0.0001
 
 typedef struct s_mlx
@@ -170,10 +171,7 @@ void				ft_draw_rectangle(t_position start, int height, int width,
 						int color);
 void				ft_draw_wall_column(t_game *game, t_tex *tex, t_wall *wp,
 						int tex_x);
-// void	ft_draw_floor(t_game *game, t_wall wp, t_raycasting *ray);
-void				ft_draw_floor_and_ceiling(t_game *game);
-
-void				ft_draw_minimap(t_game *game);
+void				ft_draw_enemy(t_game *game, t_enemy enemy);
 
 /*	CORRECTION	*/
 void				ft_display_all(t_game *game);
@@ -199,8 +197,10 @@ void				ft_update_angle(t_raycasting *ray);
 
 /*	GAMEPLAY	*/
 int					ft_game_loop(void *data);
+// USEFULL
 int					ft_can_move_to(t_game *game, double x, double y);
 int					ft_is_wall_at(t_game *game, double x, double y);
+// HOOK
 void				ft_handle_key(t_game *game);
 int					ft_key_release(int key, void *data);
 void				ft_handle_w(t_game *game);
@@ -212,15 +212,14 @@ void				ft_handle_left(t_game *game);
 void				ft_handle_right(t_game *game);
 void				ft_handle_shift(t_game *game);
 int					ft_mouse_handle(int x, int y, void *data);
-
+// EVENT
 void				ft_handle_teleport(t_game *game);
 void				ft_teleport_player(t_game *game);
 void				ft_handle_door(t_game *game);
-
+void				ft_move_enemy(t_game *game, t_enemy *enemy);
 /*	MINI MAP	*/
 void				ft_draw_minimap(t_game *game);
 void				ft_draw_sprite(t_game *game);
-void				ft_draw_enemy(t_game *game, t_enemy enemy);
 void				ft_draw_player_mini(t_game *game);
 /********************
  * 		Memory

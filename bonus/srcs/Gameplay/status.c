@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:51:53 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/16 12:32:03 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:59:51 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,7 @@ int	ft_game_loop(void *data)
 
 	game = (t_game *)data;
 	ft_handle_key(game);
-	if (game->need_redraw)
-	{
-		ft_display(game);
-		game->need_redraw = false;
-	}
+	ft_display(game);
 	return (0);
 }
 

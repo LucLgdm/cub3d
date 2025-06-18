@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/17 15:06:36 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/18 14:01:02 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,6 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(MLX_DIR)raycasting_3.c \
 			$(SRC_DIR)$(MLX_DIR)usefull.c \
 			$(SRC_DIR)$(MLX_DIR)draw_world.c \
-			$(SRC_DIR)$(MLX_DIR)draw_floor.c \
 			$(SRC_DIR)$(GME_DIR)status.c \
 			$(SRC_DIR)$(GME_DIR)quit.c \
 			$(SRC_DIR)$(GME_DIR)extra.c \
@@ -59,7 +58,8 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(GME_DIR)doors.c \
 			$(SRC_DIR)$(GME_DIR)move_use.c \
 			$(SRC_DIR)$(GME_DIR)mini_map.c \
-			$(SRC_DIR)$(GME_DIR)sprite.c
+			$(SRC_DIR)$(GME_DIR)display_enemy.c \
+			$(SRC_DIR)$(GME_DIR)move_enemy.c
 			
 # Transforme chaque fichier source en un fichier objet dans $(OBJ_DIR)
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))

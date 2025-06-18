@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite.c                                           :+:      :+:    :+:   */
+/*   display_enemy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:02:39 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/18 11:02:24 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:09:13 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	ft_draw_sprite(t_game *game)
 
 	i = -1;
 	while(++i < game->map->num_enemy)
+	{
+		ft_move_enemy(game, &game->map->enemy[i]);
 		ft_draw_enemy(game, game->map->enemy[i]);
+	}
 }
 
 void	ft_draw_enemy(t_game *game, t_enemy enemy)
@@ -44,23 +47,19 @@ void	ft_draw_enemy(t_game *game, t_enemy enemy)
         int x_start = screen_x - sprite_size / 2;
         int x_end = x_start + sprite_size;
 
-		t_tex *tex = &game->image->vilain; // Texture de l'ennemi
+		t_tex *tex = &game->image->vilain;
 
         for (int x = x_start; x < x_end; x++)
         {
             if (x < 0 || x >= game->width_w || dist >= game->zbuffer[x])
                 continue;
-            // Coordonnée X dans la texture
             int tex_x = (int)((double)(x - x_start) / sprite_size * tex->width);
             for (int y = y_start; y < y_end; y++)
             {
                 if (y < 0 || y >= game->height_w)
                     continue;
-                // Coordonnée Y dans la texture
                 int tex_y = (int)((double)(y - y_start) / sprite_size * tex->height);
-                // Récupère la couleur du pixel de la texture
                 int color = *(int *)(tex->addr + (tex_y * tex->line_length + tex_x * (tex->bits_per_pixel / 8)));
-                // Optionnel : saute la couleur de transparence (exemple : rose 0xFF00FF)
                 if ((color & 0x00FFFFFF) != 0x00FF00FF)
                 	my_mlx_pixel_put(game->mlx, x, y, color);
             }
