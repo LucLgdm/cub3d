@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/18 14:43:48 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:38:25 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_buttons
 	t_key			left;
 	t_key			right;
 	t_key			shift;
+	t_key			ctrl;
 }					t_buttons;
 
 typedef struct s_game

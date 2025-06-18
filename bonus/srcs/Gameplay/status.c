@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:51:53 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/18 14:59:51 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:38:08 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	ft_key_pressed(int key, void *data)
 		game->buttons->right.pressed = 1;
 	if (key == 65505)
 		game->buttons->shift.pressed = 1;
+	if (key == 65507)
+		game->buttons->ctrl.pressed = 1;
 	return (0);
 }
 
@@ -59,6 +61,8 @@ int	ft_key_release(int key, void *data)
 		game->buttons->right.pressed = 0;
 	if (key == 65505)
 		game->buttons->shift.pressed = 0;
+	if (key == 6557)
+		game->buttons->ctrl.pressed = 0;
 	return (0);
 }
 

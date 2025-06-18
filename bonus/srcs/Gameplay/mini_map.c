@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 14:40:04 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/17 15:02:07 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:04:39 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,57 @@ void	ft_draw_minimap(t_game *game)
 	ft_draw_player_mini(game);
 }
 
+static void	ft_fill_triangle(t_game *game, t_position a, t_position b, t_position c, int color)
+{
+    t_position pts[3] = {a, b, c};
+    int i, j;
+
+	for (i = 0; i < 3; i++)
+        for (j = i + 1; j < 3; j++)
+            if (pts[i].y > pts[j].y) {
+                t_position tmp = pts[i];
+                pts[i] = pts[j];
+                pts[j] = tmp;
+            }
+    double x1, x2, y;
+    for (y = pts[0].y; y <= pts[2].y; y++) {
+        if (y < pts[1].y) {
+            x1 = pts[0].x + (pts[1].x - pts[0].x) * (y - pts[0].y) / (pts[1].y - pts[0].y + 0.0001);
+            x2 = pts[0].x + (pts[2].x - pts[0].x) * (y - pts[0].y) / (pts[2].y - pts[0].y + 0.0001);
+        } else {
+            x1 = pts[1].x + (pts[2].x - pts[1].x) * (y - pts[1].y) / (pts[2].y - pts[1].y + 0.0001);
+            x2 = pts[0].x + (pts[2].x - pts[0].x) * (y - pts[0].y) / (pts[2].y - pts[0].y + 0.0001);
+        }
+        if (x1 > x2) {
+            double tmp = x1; x1 = x2; x2 = tmp;
+        }
+        for (int x = (int)x1; x <= (int)x2; x++)
+            my_mlx_pixel_put(game->mlx, x, (int)y, color);
+    }
+}
+
 void	ft_draw_player_mini(t_game *game)
 {
-	t_position	player_icon;
-	t_position	dir_start;
-	t_position	dir_end;
+    t_position	a, b, c, d;
+    double		front = 8;
 
-	player_icon.x = game->mini_map->center_x - 3;
-	player_icon.y = game->mini_map->center_y - 3;
-	ft_draw_rectangle(player_icon, 6, 6, 0xFF0000);
-	dir_start.x = game->mini_map->center_x;
-	dir_start.y = game->mini_map->center_y;
-	dir_end.x = game->mini_map->center_x;
-	dir_end.y = game->mini_map->center_y - 20;
-	ft_draw_line(game->mlx, dir_start, dir_end, 0xFF0000);
+    c.x = game->mini_map->center_x;
+    c.y = game->mini_map->center_y;
+
+	a.x = game->mini_map->center_x;
+	a.y = game->mini_map->center_y - front;
+
+	b.x = game->mini_map->center_x + 3 * front / 5;
+	b.y = game->mini_map->center_y + 2 * front / 3;
+
+	d.x = game->mini_map->center_x - 3 * front / 5;
+	d.y = game->mini_map->center_y + 2 * front / 3;
+
+	ft_fill_triangle(game, a, b, c, 0xFF0000);
+	ft_fill_triangle(game, a, c, d, 0xFF0000);
+}
+
+
+void	ft_draw_enemy_mini(t_game *game, t_enemy *enemy){
+
 }

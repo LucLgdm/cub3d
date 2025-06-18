@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:01:16 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/18 15:11:12 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:20:57 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,21 @@ void	ft_move_enemy(t_game *game, t_enemy *enemy)
         return;
 
     float speed = 1.0f;
-    // Normalise le vecteur direction
-    if (dist != 0)
+
+	if (dist != 0)
     {
         dx /= dist;
         dy /= dist;
     }
-    // Collision X
-    float next_x = ex + dx * speed;
-    int mx = (int)next_x / T_SIZE;
-    int my = (int)ey / T_SIZE;
-    if (game->map->map[my][mx] == '0')
-        enemy->pos.x = next_x;
-    // Collision Y
-    float next_y = ey + dy * speed;
-    mx = (int)ex / T_SIZE;
-    my = (int)next_y / T_SIZE;
-    if (game->map->map[my][mx] == '0')
-        enemy->pos.y = next_y;
+	
+	float next_x = ex + dx * speed;
+	int mx = (int)next_x / T_SIZE;
+	int my = (int)ey / T_SIZE;
+	if (game->map->map[my][mx] == '0')
+		enemy->pos.x = next_x;
+	float next_y = ey + dy * speed;
+	mx = (int)ex / T_SIZE;
+	my = (int)next_y / T_SIZE;
+	if (game->map->map[my][mx] == '0')
+		enemy->pos.y = next_y;
 }

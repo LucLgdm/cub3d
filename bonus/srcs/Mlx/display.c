@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:41:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/17 15:15:49 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:37:23 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	ft_init_ray(t_raycasting *ray, t_game *game)
 {
 	ray->num_rays = game->width_w;
 	ray->dof = 0;
-	ray->angle = game->player->angle - 30 * PI / 180;
+		ray->angle = game->player->angle - 30 * PI / 180;
 	if (ray->angle < 0)
 		ray->angle += 2 * PI;
-	if (ray->angle > 2 * PI)
+	if (ray->angle >= 2 * PI)
 		ray->angle -= 2 * PI;
 	ray->width = (double)game->width_w / ray->num_rays;
 	ray->p = (int)(log2((double)T_SIZE));

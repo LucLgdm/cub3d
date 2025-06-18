@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/18 10:15:01 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:37:32 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ void	ft_draw_3d(t_raycasting *ray, t_game *game, int r)
 
 void	ft_update_angle(t_raycasting *ray)
 {
-	ray->angle += (60 * PI / 180) / ray->num_rays;
+		ray->angle += (60 * PI / 180) / ray->num_rays;
+
 	if (ray->angle < 0)
 		ray->angle += 2 * PI;
 	if (ray->angle > 2 * PI)

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:58:46 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/18 10:18:15 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:59:12 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_map
 {
 	t_position	*teleporters;
 	t_door		*doors;
-	t_enemy	*enemy;
+	t_enemy		*enemy;
 	char		**map;
 	int			*line_lengths;
 	int			height;
