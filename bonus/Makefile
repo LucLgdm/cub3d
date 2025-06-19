@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/18 14:01:02 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/19 12:08:18 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ SRC_FILES = $(SRC_DIR)main.c \
 			$(SRC_DIR)$(GME_DIR)move_use.c \
 			$(SRC_DIR)$(GME_DIR)mini_map.c \
 			$(SRC_DIR)$(GME_DIR)display_enemy.c \
+			$(SRC_DIR)$(GME_DIR)mini_map_enemy.c \
+			$(SRC_DIR)$(GME_DIR)draw_geometrical.c \
 			$(SRC_DIR)$(GME_DIR)move_enemy.c
 			
 # Transforme chaque fichier source en un fichier objet dans $(OBJ_DIR)

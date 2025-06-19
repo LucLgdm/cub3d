@@ -6,63 +6,96 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:01:16 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/18 15:20:57 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:50:30 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+#include "cub3d.h"
 
-
-static int	has_line_of_sight(t_game *game, float ex, float ey, float px, float py)
+static void	init_los_vars(t_los *vars, float ex, float ey, t_position player)
 {
-    float dx = px - ex;
-    float dy = py - ey;
-    float dist = sqrt(dx * dx + dy * dy);
-    int steps = (int)dist;
-    float step_x = dx / steps;
-    float step_y = dy / steps;
-    float x = ex, y = ey;
-	
-    for (int i = 0; i < steps; i++)
-    {
-        int mx = (int)x / T_SIZE;
-        int my = (int)y / T_SIZE;
-        if (game->map->map[my][mx] != '0')
-            return (0);
-        x += step_x;
-        y += step_y;
-    }
-    return (1);
+	vars->dx = player.x - ex;
+	vars->dy = player.y - ey;
+	vars->dist = sqrt(vars->dx * vars->dx + vars->dy * vars->dy);
+	vars->steps = (int)vars->dist;
+	vars->step_x = vars->dx / vars->steps;
+	vars->step_y = vars->dy / vars->steps;
+	vars->x = ex;
+	vars->y = ey;
+	vars->i = 0;
+}
+
+static int	has_line_of_sight(float ex, float ey, t_position player)
+{
+	t_los	vars;
+	t_game	*game;
+
+	game = ft_get_game();
+	init_los_vars(&vars, ex, ey, player);
+	while (vars.i < vars.steps)
+	{
+		vars.mx = (int)vars.x / T_SIZE;
+		vars.my = (int)vars.y / T_SIZE;
+		if (game->map->map[vars.my][vars.mx] != '0')
+			return (0);
+		vars.x += vars.step_x;
+		vars.y += vars.step_y;
+		vars.i++;
+	}
+	return (1);
 }
 
 void	ft_move_enemy(t_game *game, t_enemy *enemy)
 {
-    float px = game->player->pos.x, py = game->player->pos.y;
-    float ex = enemy->pos.x, ey = enemy->pos.y;
-    float dx = px - ex, dy = py - ey;
-    float dist = sqrt(dx * dx + dy * dy);
+	t_position	player;
+	t_position	delta;
+	double		dist;
 
-    if (dist > ENEMY_VIEW_RADIUS)
-        return;
-    if (!has_line_of_sight(game, ex, ey, px, py))
-        return;
+	player = game->player->pos;
+	delta.x = player.x - enemy->pos.x;
+	delta.y = player.y - enemy->pos.y;
+	dist = sqrt(delta.x * delta.x + delta.y * delta.y);
+	if (dist > ENEMY_VIEW_RADIUS)
+		return ;
+	if (!has_line_of_sight(enemy->pos.x, enemy->pos.y, player))
+		return ;
+	ft_move_enemy_step(game, enemy, delta, dist);
+}
 
-    float speed = 1.0f;
+void	ft_move_enemy_step(t_game *game, t_enemy *enemy, t_position delta,
+		double dist)
+{
+	t_position	next;
+	double		speed;
+	int			mx;
+	int			my;
 
+	speed = 1.0f;
 	if (dist != 0)
-    {
-        dx /= dist;
-        dy /= dist;
-    }
-	
-	float next_x = ex + dx * speed;
-	int mx = (int)next_x / T_SIZE;
-	int my = (int)ey / T_SIZE;
+	{
+		delta.x /= dist;
+		delta.y /= dist;
+	}
+	next.x = enemy->pos.x + delta.x * speed;
+	mx = (int)next.x / T_SIZE;
+	my = (int)enemy->pos.y / T_SIZE;
 	if (game->map->map[my][mx] == '0')
-		enemy->pos.x = next_x;
-	float next_y = ey + dy * speed;
-	mx = (int)ex / T_SIZE;
-	my = (int)next_y / T_SIZE;
+		enemy->pos.x = next.x;
+	ft_move_enemy_y(game, enemy, delta, speed);
+}
+
+void	ft_move_enemy_y(t_game *game, t_enemy *enemy, t_position delta,
+		double speed)
+{
+	t_position	next;
+	int			mx;
+	int			my;
+
+	next.y = enemy->pos.y + delta.y * speed;
+	next.x = enemy->pos.x;
+	mx = (int)next.x / T_SIZE;
+	my = (int)next.y / T_SIZE;
 	if (game->map->map[my][mx] == '0')
-		enemy->pos.y = next_y;
+		enemy->pos.y = next.y;
 }

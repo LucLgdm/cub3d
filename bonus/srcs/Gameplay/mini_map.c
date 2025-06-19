@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 14:40:04 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/18 17:04:39 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:20:03 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,67 +65,30 @@ void	ft_draw_minimap(t_game *game)
 		{
 			map->dx = mx - MINIMAP_RADIUS;
 			map->dy = my - MINIMAP_RADIUS;
-			if (map->dx * map->dx + map->dy * map->dy > MINIMAP_RADIUS
-				* MINIMAP_RADIUS)
+			if (pow(map->dx, 2) + pow(map->dy, 2) > pow(MINIMAP_RADIUS, 2))
 				continue ;
 			ft_init_mini_map(game, map);
 			ft_color_mini_map(game, map);
 		}
 	}
 	ft_draw_player_mini(game);
-}
-
-static void	ft_fill_triangle(t_game *game, t_position a, t_position b, t_position c, int color)
-{
-    t_position pts[3] = {a, b, c};
-    int i, j;
-
-	for (i = 0; i < 3; i++)
-        for (j = i + 1; j < 3; j++)
-            if (pts[i].y > pts[j].y) {
-                t_position tmp = pts[i];
-                pts[i] = pts[j];
-                pts[j] = tmp;
-            }
-    double x1, x2, y;
-    for (y = pts[0].y; y <= pts[2].y; y++) {
-        if (y < pts[1].y) {
-            x1 = pts[0].x + (pts[1].x - pts[0].x) * (y - pts[0].y) / (pts[1].y - pts[0].y + 0.0001);
-            x2 = pts[0].x + (pts[2].x - pts[0].x) * (y - pts[0].y) / (pts[2].y - pts[0].y + 0.0001);
-        } else {
-            x1 = pts[1].x + (pts[2].x - pts[1].x) * (y - pts[1].y) / (pts[2].y - pts[1].y + 0.0001);
-            x2 = pts[0].x + (pts[2].x - pts[0].x) * (y - pts[0].y) / (pts[2].y - pts[0].y + 0.0001);
-        }
-        if (x1 > x2) {
-            double tmp = x1; x1 = x2; x2 = tmp;
-        }
-        for (int x = (int)x1; x <= (int)x2; x++)
-            my_mlx_pixel_put(game->mlx, x, (int)y, color);
-    }
+	ft_draw_enemy_mini(game);
 }
 
 void	ft_draw_player_mini(t_game *game)
 {
-    t_position	a, b, c, d;
-    double		front = 8;
+	double		front;
+	t_position	points[4];
 
-    c.x = game->mini_map->center_x;
-    c.y = game->mini_map->center_y;
-
-	a.x = game->mini_map->center_x;
-	a.y = game->mini_map->center_y - front;
-
-	b.x = game->mini_map->center_x + 3 * front / 5;
-	b.y = game->mini_map->center_y + 2 * front / 3;
-
-	d.x = game->mini_map->center_x - 3 * front / 5;
-	d.y = game->mini_map->center_y + 2 * front / 3;
-
-	ft_fill_triangle(game, a, b, c, 0xFF0000);
-	ft_fill_triangle(game, a, c, d, 0xFF0000);
-}
-
-
-void	ft_draw_enemy_mini(t_game *game, t_enemy *enemy){
-
+	front = 8;
+	points[2].x = game->mini_map->center_x;
+	points[2].y = game->mini_map->center_y;
+	points[0].x = game->mini_map->center_x;
+	points[0].y = game->mini_map->center_y - front;
+	points[1].x = game->mini_map->center_x + 3 * front / 5;
+	points[1].y = game->mini_map->center_y + 2 * front / 3;
+	points[3].x = game->mini_map->center_x - 3 * front / 5;
+	points[3].y = game->mini_map->center_y + 2 * front / 3;
+	ft_fill_triangle(points[0], points[1], points[2], 0xFF0000);
+	ft_fill_triangle(points[0], points[2], points[3], 0xFF0000);
 }

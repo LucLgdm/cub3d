@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:02:39 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/18 14:09:13 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:39:27 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_draw_sprite(t_game *game)
 	int	i;
 
 	i = -1;
-	while(++i < game->map->num_enemy)
+	while (++i < game->map->num_enemy)
 	{
 		ft_move_enemy(game, &game->map->enemy[i]);
 		ft_draw_enemy(game, game->map->enemy[i]);
@@ -26,43 +26,69 @@ void	ft_draw_sprite(t_game *game)
 
 void	ft_draw_enemy(t_game *game, t_enemy enemy)
 {
-    double	dx = enemy.pos.x - game->player->pos.x;
-    double	dy = enemy.pos.y - game->player->pos.y;
-    double	dist = sqrt(dx * dx + dy * dy);
+	double	dx;
+	double	dy;
+	double	dist;
+	double	angle;
+	double	fov;
 
-    double angle = atan2(dy, dx) - game->player->angle;
-    while (angle > PI)
-        angle -= 2 * PI;
-    while (angle < -PI)
-        angle += 2 * PI;
+	dx = enemy.pos.x - game->player->pos.x;
+	dy = enemy.pos.y - game->player->pos.y;
+	dist = sqrt(dx * dx + dy * dy);
+	angle = atan2(dy, dx) - game->player->angle;
+	while (angle > PI)
+		angle -= 2 * PI;
+	while (angle < -PI)
+		angle += 2 * PI;
+	fov = 60 * PI / 180;
+	if (fabs(angle) < fov / 2)
+		ft_render_enemy_sprite(game, dist, angle, fov);
+}
 
-    double fov = 60 * PI / 180;
-    if (fabs(angle) < fov / 2)
-    {
-        int screen_x = (int)((angle / (fov / 2)) * (game->width_w / 2) + (game->width_w / 2));
-        int sprite_size = (int)(T_SIZE * game->height_w / dist);
+void	ft_render_enemy_sprite(t_game *game, double dist, double angle,
+		double fov)
+{
+	int			screen_x;
+	int			sprite_size;
+	t_position	start;
+	t_position	end;
 
-        int y_start = game->height_w / 2 - sprite_size / 2;
-        int y_end = y_start + sprite_size;
-        int x_start = screen_x - sprite_size / 2;
-        int x_end = x_start + sprite_size;
+	screen_x = (int)((angle / (fov / 2)) * (game->width_w / 2) + (game->width_w
+				/ 2));
+	sprite_size = (int)(T_SIZE * game->height_w / dist);
+	start.y = game->height_w / 2 - sprite_size / 2;
+	end.y = start.y + sprite_size;
+	start.x = screen_x - sprite_size / 2;
+	end.x = start.x + sprite_size;
+	ft_draw_enemy_texture(game, (t_position[]){start, end}, sprite_size, dist);
+}
 
-		t_tex *tex = &game->image->vilain;
+void	ft_draw_enemy_texture(t_game *game, t_position *pos,
+		int size, double dist)
+{
+	int			x;
+	int			y;
+	t_position	texp;
+	t_tex		*tex;
+	int			color;
 
-        for (int x = x_start; x < x_end; x++)
-        {
-            if (x < 0 || x >= game->width_w || dist >= game->zbuffer[x])
-                continue;
-            int tex_x = (int)((double)(x - x_start) / sprite_size * tex->width);
-            for (int y = y_start; y < y_end; y++)
-            {
-                if (y < 0 || y >= game->height_w)
-                    continue;
-                int tex_y = (int)((double)(y - y_start) / sprite_size * tex->height);
-                int color = *(int *)(tex->addr + (tex_y * tex->line_length + tex_x * (tex->bits_per_pixel / 8)));
-                if ((color & 0x00FFFFFF) != 0x00FF00FF)
-                	my_mlx_pixel_put(game->mlx, x, y, color);
-            }
-        }
-    }
+	tex = &game->image->vilain;
+	x = pos[0].x - 1;
+	while (++x < pos[1].x)
+	{
+		if (x < 0 || x >= game->width_w || dist >= game->zbuffer[x])
+			continue ;
+		texp.x = (int)((double)(x - pos[0].x) / size * tex->width);
+		y = pos[0].y - 1;
+		while (++y < pos[1].y)
+		{
+			if (y < 0 || y >= game->height_w)
+				continue ;
+			texp.y = (int)((double)(y - pos[0].y) / size * tex->height);
+			color = *(int *)(tex->addr + ((int)texp.y * tex->line_length
+						+ (int)texp.x * (tex->bits_per_pixel / 8)));
+			if ((color & 0x00FFFFFF) != 0x00FF00FF)
+				my_mlx_pixel_put(game->mlx, x, y, color);
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 09:04:54 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/18 14:57:30 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/19 11:56:07 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	ft_check_content(char *line, int i, int size)
 			line[j] = '0';
 		}
 		else if (line[j] != '0' && line[j] != '1' && line[j] != ' '
-			&& line[j] != 'D' && line[j] != 'T' && line[j] != 'V' && game->player)
+			&& line[j] != 'D' && line[j] != 'T' && line[j] != 'V'
+			&& game->player)
 			return (1);
 		continue ;
 	}

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:37:39 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/16 17:13:01 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/19 09:23:28 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ void	ft_display_map(t_game *game)
 		while (++j < game->map->width)
 		{
 			if (game->map->map[i][j] == '1')
-				ft_draw_square(game, j * T_SIZE, i * T_SIZE, ft_create_color(255, 255, 255, 255));
-			else
-				ft_draw_square(game, j * T_SIZE, i * T_SIZE, ft_create_color(255, 0, 0, 0));
+				ft_draw_square(game, j * T_SIZE, i * T_SIZE,
+					ft_create_color(255, 255, 255, 255));
+			else if (game->map->map[i][j] == '0')
+				ft_draw_square(game, j * T_SIZE, i * T_SIZE,
+					ft_create_color(255, 0, 0, 0));
 		}
 	}
 }

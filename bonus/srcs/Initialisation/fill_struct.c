@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 10:24:54 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/18 10:18:15 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:45:41 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_fill_door(int i, int j, t_game *game)
 void	ft_fill_enemy(int i, int j, t_game *game)
 {
 	t_enemy	*tmp;
-	
+
 	if (!game->map->enemy)
 	{
 		game->map->enemy = ft_calloc(1, sizeof(t_enemy));
@@ -97,7 +97,8 @@ void	ft_fill_enemy(int i, int j, t_game *game)
 		game->map->enemy = ft_calloc(game->map->num_enemy + 1, sizeof(t_enemy));
 		if (!game->map->enemy)
 			ft_print_error_and_exit("Error: Memory allocation enemy failed\n");
-		ft_memcpy(game->map->enemy, tmp, game->map->num_enemy * sizeof(t_enemy));
+		ft_memcpy(game->map->enemy, tmp, game->map->num_enemy
+			* sizeof(t_enemy));
 		free(tmp);
 		game->map->num_enemy++;
 	}
@@ -105,5 +106,5 @@ void	ft_fill_enemy(int i, int j, t_game *game)
 	game->map->enemy[game->map->num_enemy - 1].pos.y = i * T_SIZE;
 	game->map->enemy[game->map->num_enemy - 1].dxdy.x = 1.0;
 	game->map->enemy[game->map->num_enemy - 1].dxdy.y = 0.0;
-	game->map->enemy[game->map->num_enemy - 1].speed = 0.5;
+	game->map->enemy[game->map->num_enemy - 1].speed = 0.4;
 }

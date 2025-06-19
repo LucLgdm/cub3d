@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/18 15:38:25 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:43:21 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,8 @@ void				ft_draw_rectangle(t_position start, int height, int width,
 void				ft_draw_wall_column(t_game *game, t_tex *tex, t_wall *wp,
 						int tex_x);
 void				ft_draw_enemy(t_game *game, t_enemy enemy);
+void	ft_render_enemy_sprite(t_game *g, double dist, double angle, double fov);
+void	ft_draw_enemy_texture(t_game *g, t_position *pos, int size, double dist);
 
 /*	CORRECTION	*/
 void				ft_display_all(t_game *game);
@@ -218,10 +220,20 @@ void				ft_handle_teleport(t_game *game);
 void				ft_teleport_player(t_game *game);
 void				ft_handle_door(t_game *game);
 void				ft_move_enemy(t_game *game, t_enemy *enemy);
+void	ft_move_enemy_step(t_game *game, t_enemy *enemy,
+			t_position delta, double dist);
+void	ft_move_enemy_y(t_game *game, t_enemy *enemy,
+			t_position delta, double speed);
 /*	MINI MAP	*/
 void				ft_draw_minimap(t_game *game);
 void				ft_draw_sprite(t_game *game);
 void				ft_draw_player_mini(t_game *game);
+void				ft_draw_enemy_mini(t_game *game);
+void	ft_draw_one_enemy(t_game *game, t_enemy *enemy);
+void	ft_draw_enemy_on_minimap(t_game *game, double dx, double dy);
+// GEOMETRY
+void				ft_fill_triangle(t_position a, t_position b, t_position c, int color);
+void				ft_put_octogone(double x, double y);
 /********************
  * 		Memory
  ********************/

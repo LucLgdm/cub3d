@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/05 12:08:36 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/19 13:05:28 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,23 @@ MEM_DIR = Memory/
 INI_DIR = Initialisation/
 ERR_DIR = Error/
 MLX_DIR = Mlx/
+
+INVALID_MAPS = \
+	map/invalid_map/additionnal_element.cub \
+	map/invalid_map/doople_element.cub \
+	map/invalid_map/doople_F_C.cub \
+	map/invalid_map/invalid_path.cub \
+	map/invalid_map/invalid_path_2.cub \
+	map/invalid_map/lower_case.cub \
+	map/invalid_map/missing_F_C.cub \
+	map/invalid_map/missing_link.cub \
+	map/invalid_map/missing_player.cub \
+	map/invalid_map/wrong_border.cub \
+	map/invalid_map/wrong_border_2.cub \
+	map/invalid_map/wrong_char.cub \
+	map/invalid_map/wrong_color.cub \
+	map/invalid_map/map.txt
+
 
 # Liste des fichiers source
 SRC_FILES = $(SRC_DIR)main.c \
@@ -98,5 +115,14 @@ re: fclean all
 
 val: re
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) map/valid_map/map_3.cub
+
+test: all
+	@for file in $(INVALID_MAPS); do \
+		echo ""; \
+		echo "Testing $$file..."; \
+		./$(NAME) $$file || true; \
+	done
+	@echo ""; echo "Testing without arguments..."; \
+	./$(NAME) || true
 
 .PHONY: all clean fclean re
