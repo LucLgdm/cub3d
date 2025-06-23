@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/23 15:14:51 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/23 15:32:55 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ vpath %.c srcs
 NAME = cub3D
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -I $(INCLUDES)
+CFLAGS = -Wall -Werror -Wextra -g3 -I $(INCLUDES)
 FLAGS = $(LIBFT) $(MLX) -I mlx -Lmlx -lmlx -lX11 -lXext -lm
 
 LIBFT = libft/libft.a

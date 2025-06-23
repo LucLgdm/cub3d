@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/18 10:48:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:03:56 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_game(void)
 	if (!mlx)
 		ft_print_error_and_exit("Error\nAllocation failed\n");
 	mlx->mlx = mlx_init();
+	if (!mlx->mlx)
+		ft_print_error_and_exit("Error\nAllocationion mlx failed\n");
 	mlx_get_screen_size(mlx->mlx, &game->width_w, &game->height_w);
 	mlx->win = mlx_new_window(mlx->mlx, game->width_w, game->height_w, "cub3D");
 	mlx->img = mlx_new_image(mlx->mlx, game->width_w, game->height_w);
@@ -54,21 +56,6 @@ void	ft_game(void)
 	ft_display(game);
 	ft_loop_mlx(game);
 }
-
-// static void	ft_print_enemy(void)
-// {
-// 	int			i;
-// 	t_enemy	*enemy;
-
-// 	i = -1;
-// 	enemy = ft_get_game()->map->enemy;
-// 	printf("ft_print_enemy\n");
-// 	while (++i < ft_get_game()->map->num_enemy)
-// 	{
-// 		printf("enemy %d: x = %.2f, y = %.2f\n", i, enemy[i].pos.x,
-// 			enemy[i].pos.y);
-// 	}
-// }
 
 int	main(int argc, char **argv)
 {

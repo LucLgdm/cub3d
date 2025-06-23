@@ -6,100 +6,110 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:49:50 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/11/27 13:56:35 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:45:54 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_read_file(int fd, char *rest)
+void	ft_clean(char *buffer)
 {
-	char	*buffer;
-	int		bytes;
-
-	if (!rest)
-		rest = ft_calloc(1, 1);
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	bytes = 1;
-	while (bytes > 0)
-	{
-		bytes = read(fd, buffer, BUFFER_SIZE);
-		if (bytes == -1)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		buffer[bytes] = 0;
-		rest = ft_free(rest, buffer);
-		if (ft_strchr(buffer, '\n'))
-			break ;
-	}
-	free(buffer);
-	return (rest);
-}
-
-char	*ft_free(char *buffer, char *buf)
-{
-	char	*tmp;
-
-	tmp = ft_strjoin(buffer, buf);
-	free(buffer);
-	return (tmp);
-}
-
-char	*ft_pickline(char *rest)
-{
-	char	*line;
-	int		i;
+	int	i;
+	int	j;
 
 	i = 0;
-	if (!rest[0])
-		return (NULL);
-	while (rest[i] && rest[i] != '\n')
-		i++;
-	line = ft_calloc(i + 2, sizeof(char));
-	i = -1;
-	while (rest[++i] && rest[i] != '\n')
-		line[i] = rest[i];
-	if (rest[i] && rest[i] == '\n')
-		line[i++] = '\n';
-	return (line);
-}
-
-char	*ft_update(char *rest)
-{
-	char	*line;
-	int		i;
-	int		j;
-
-	i = 0;
-	while (rest[i] && rest[i] != '\n')
-		i++;
-	if (!rest[i])
-	{
-		free(rest);
-		return (NULL);
-	}
-	line = ft_calloc(ft_strlen(rest) - i + 1, sizeof(char));
-	i++;
 	j = 0;
-	while (rest[i])
-		line[j++] = rest[i++];
-	free(rest);
-	return (line);
+	while (buffer[i] != '\n')
+		i++;
+	while (buffer[i])
+	{
+		buffer[j] = buffer[i + 1];
+		i++;
+		j++;
+	}
+}
+
+int	ft_strclen(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	if (str[i] == c)
+		i++;
+	return (i);
+}
+
+char	*ft_strcdup(char *str, char c)
+{
+	int		length;
+	char	*duplicated;
+	int		i;
+
+	length = ft_strclen(str, c);
+	duplicated = malloc((length + 1) * sizeof(char));
+	if (!duplicated)
+		return (NULL);
+	i = -1;
+	while (++i < length)
+		duplicated[i] = str[i];
+	duplicated[length] = 0;
+	return (duplicated);
+}
+
+char	*ft_strcjoin(char *line, char *buffer, char c)
+{
+	char	*new_line;
+	int		i;
+
+	if (!line)
+		return (ft_strcdup(buffer, c));
+	new_line = malloc((ft_strclen(line, c) + ft_strclen(buffer, c) + 1)
+			* sizeof(char));
+	if (!new_line)
+		return (NULL);
+	i = -1;
+	while (line[++i])
+		new_line[i] = line[i];
+	while (*buffer && *buffer != c)
+	{
+		new_line[i] = *buffer;
+		i++;
+		buffer++;
+	}
+	if (*buffer == c)
+		new_line[i++] = c;
+	new_line[i] = 0;
+	free(line);
+	return (new_line);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*rest[4096];
-	char		*newline;
+	static char	buffer[BUFFER_SIZE + 1];
+	char		*line;
+	int			bytes_read;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
+	line = NULL;
+	bytes_read = 1;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	rest[fd] = ft_read_file(fd, rest[fd]);
-	if (!rest[fd])
-		return (NULL);
-	newline = ft_pickline(rest[fd]);
-	rest[fd] = ft_update(rest[fd]);
-	return (newline);
+	while (bytes_read > 0)
+	{
+		if (*buffer)
+		{
+			line = ft_strcjoin(line, buffer, '\n');
+			if (!line)
+				return (NULL);
+		}
+		if (ft_strchr(buffer, '\n'))
+		{
+			ft_clean(buffer);
+			break ;
+		}
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		buffer[bytes_read] = 0;
+	}
+	return (line);
 }

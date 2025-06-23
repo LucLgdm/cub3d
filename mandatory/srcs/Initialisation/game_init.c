@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:27:09 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/05/28 12:24:50 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:01:12 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void	ft_check_player(t_game *game)
 		game->player->angle = PI;
 	game->player->dx = 5 * cos(game->player->angle);
 	game->player->dy = 5 * sin(game->player->angle);
+	game->player->velocity = 1.0f;
 }

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:43:30 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/17 12:54:24 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:49:22 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef union u_color
 		unsigned char	g;
 		unsigned char	b;
 	} s_channel;
-}						t_color;
+}	t_color;
 
 typedef struct s_tex
 {
@@ -45,6 +45,5 @@ typedef struct s_image
 	t_tex	doors;
 	t_tex	vilain;
 }	t_image;
-
 
 #endif

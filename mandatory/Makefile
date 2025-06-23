@@ -6,13 +6,13 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/20 12:24:03 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/23 15:14:59 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 vpath %.c srcs
 
-NAME = cub3d
+NAME = cub3D
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -I $(INCLUDES)
@@ -115,7 +115,7 @@ fclean: clean
 re: fclean all
 
 val: all
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) map/invalid_map/missing_player.cub || true
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) map/valid_map/map_3.cub || true
 
 test: all
 	@for file in $(INVALID_MAPS); do \
