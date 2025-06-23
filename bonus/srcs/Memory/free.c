@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/18 10:18:15 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:50:58 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,11 @@ void	ft_destroy_image(t_game *game)
 	mlx_destroy_image(game->mlx->mlx, game->image->west.img);
 	mlx_destroy_image(game->mlx->mlx, game->image->east.img);
 	mlx_destroy_image(game->mlx->mlx, game->image->doors.img);
+	mlx_destroy_image(game->mlx->mlx, game->image->vilain.img);
 	mlx_destroy_image(game->mlx->mlx, game->image_resized->north.img);
 	mlx_destroy_image(game->mlx->mlx, game->image_resized->south.img);
 	mlx_destroy_image(game->mlx->mlx, game->image_resized->west.img);
 	mlx_destroy_image(game->mlx->mlx, game->image_resized->east.img);
 	mlx_destroy_image(game->mlx->mlx, game->image_resized->doors.img);
+	mlx_destroy_image(game->mlx->mlx, game->image_resized->vilain.img);
 }

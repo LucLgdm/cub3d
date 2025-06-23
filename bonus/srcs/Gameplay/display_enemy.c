@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:02:39 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/19 12:39:27 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:21:02 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_draw_enemy_texture(t_game *game, t_position *pos,
 	t_tex		*tex;
 	int			color;
 
-	tex = &game->image->vilain;
+	tex = &game->image_resized->vilain;
 	x = pos[0].x - 1;
 	while (++x < pos[1].x)
 	{
