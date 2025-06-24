@@ -1,7 +1,9 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./texture/pics/greystone.xpm
+SO ./texture/pics/bluestone.xpm
+WE ./texture/pics/colorstone.xpm
+EA ./texture/pics/purplestone.xpm
+
+
 
 F 220,100,0
 

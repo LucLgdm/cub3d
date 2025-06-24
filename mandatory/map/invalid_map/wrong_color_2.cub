@@ -1,11 +1,11 @@
 NO ./texture/pics/greystone.xpm
 SO ./texture/pics/bluestone.xpm
 WE ./texture/pics/colorstone.xpm
-ea ./texture/pics/purplestone.xpm
+EA ./texture/pics/purplestone.xpm
 
+C 20,20,,,,,,,,,,,,,,,,,,,,,,20
 
 F 42,42,42
-C 20,20,20
 
         1111111111111111111111111
         1000000000110000000000001

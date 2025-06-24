@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/23 16:04:24 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:54:59 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,15 @@ void	ft_game(int flag)
 
 	game = ft_get_game();
 	game->correction = flag;
-	mlx = game->mlx;
 	mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!mlx)
 		ft_print_error_and_exit("Error\nAllocation failed\n");
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
+	{
+		free(mlx);
 		ft_print_error_and_exit("Error\nAllocation mlx failed\n");
+	}
 	mlx_get_screen_size(mlx->mlx, &game->width_w, &game->height_w);
 	mlx->win = mlx_new_window(mlx->mlx, game->width_w, game->height_w, "cub3D");
 	mlx->img = mlx_new_image(mlx->mlx, game->width_w, game->height_w);

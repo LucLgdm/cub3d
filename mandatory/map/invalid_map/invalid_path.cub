@@ -1,7 +1,8 @@
-NO ./sprites/wall_brick0.xpm
-SO ./sprites/wall_brick1.xpm
-WE /sprites/wall_brick2.xpm
-EA ./sprites/wall_brick3.xpm
+NO ./texture/pics/greystone.xpm
+SO ./texture/pics/bluestone.xpm
+WE ./texture/pics/colorstone.xpm
+EA /texture/pics/purplestone.xpm
+
 
 F 42,42,42
 C 20,20,20
