@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/24 15:04:49 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/24 15:45:53 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,9 @@ ERR_DIR = Error/
 MLX_DIR = Mlx/
 
 INVALID_MAPS = \
+	map/invalid_map/vide.cub \
+	map/invalid_map/map.txt \
+	map/invalid_map/inexistant_map.cub \
 	map/invalid_map/additionnal_element.cub \
 	map/invalid_map/doople_element.cub \
 	map/invalid_map/doople_F_C.cub \
@@ -41,13 +44,9 @@ INVALID_MAPS = \
 	map/invalid_map/wrong_border.cub \
 	map/invalid_map/wrong_border_2.cub \
 	map/invalid_map/wrong_char.cub \
-	map/invalid_map/wrong_color.cub \
-	map/invalid_map/map.txt \
-	map/invalid_map/inexistant_map.cub \
 	map/invalid_map/invalid_texture.cub \
-	map/invalid_map/vide.cub \
+	map/invalid_map/wrong_color.cub \
 	map/invalid_map/wrong_color_2.cub 
-
 
 # Liste des fichiers source
 SRC_FILES = main.c free.c malloc.c game_init.c parsing.c parsing_link.c \
@@ -109,5 +108,14 @@ test: all
 	done
 	@echo ""; echo "Testing without arguments..."; \
 	./$(NAME) || true
+
+test_val: all
+	@for file in $(INVALID_MAPS); do \
+		echo ""; \
+		echo "Testing $$file..."; \
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $$file || true; \
+	done
+	@echo ""; echo "Testing without arguments..."; \
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) || true
 
 .PHONY: all clean fclean re

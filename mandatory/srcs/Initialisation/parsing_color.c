@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:44:36 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/24 15:23:43 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:46:54 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,16 @@ char	**ft_fill_color_2(char *line, int fd)
 	char	**splited;
 	int		compteur_virgule;
 	int		i;
-	
+
 	compteur_virgule = 0;
 	i = -1;
-	while(++i < (int)ft_strlen(line))
+	while (++i < (int)ft_strlen(line))
 	{
-		if(line[i] == ',')
+		if (line[i] == ',')
 			compteur_virgule++;
 		if (compteur_virgule > 2)
-			ft_print_error_and_exit("Error\nTrop de virgule sa mere !\n");
+			ft_exit_parsing(fd, line, "Error\nTrop de virgule sa mere !\n");
 	}
-
 	splited = ft_split(line + 2, ',');
 	if (!splited)
 		ft_exit_parsing(fd, line, "Error\nMemory allocation failed\n");
