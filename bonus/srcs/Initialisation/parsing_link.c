@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:42:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/30 16:20:26 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:40:08 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_get_info(int fd)
 		}
 		else if (ft_strncmp(line, "\n", 2) != 0)
 		{
-			if (counter != 7)
+			if (counter != 8)
 				ft_exit_parsing(fd, line, "Error\nToo much or few info\n");
 			break ;
 		}
@@ -60,6 +60,8 @@ void	ft_fill_link(char *line, int fd)
 		game->image->vilain.path = ft_strdup(line + 3);
 	else if (line[1] == '2' && !game->image->vilain_2.path)
 		game->image->vilain_2.path = ft_strdup(line + 3);
+	else if (line[1] == '3' && !game->image->vilain_3.path)
+		game->image->vilain_3.path = ft_strdup(line + 3);
 	else
 		ft_exit_parsing(fd, line, "Error\nToo much texture\n");
 }
@@ -69,7 +71,7 @@ bool	ft_is_link(char *line)
 	if (ft_strncmp(line, "NO ", 3) == 0 || ft_strncmp(line, "SO ", 3) == 0
 		|| ft_strncmp(line, "WE ", 3) == 0 || ft_strncmp(line, "EA ", 3) == 0
 		|| ft_strncmp(line, "DO ", 3) == 0 || ft_strncmp(line, "VI ", 3) == 0
-		|| ft_strncmp(line, "V2 ", 3) == 0)
+		|| ft_strncmp(line, "V2 ", 3) == 0 || ft_strncmp(line, "V3 ", 3) == 0)
 		return (true);
 	return (false);
 }

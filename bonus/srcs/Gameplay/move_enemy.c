@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:01:16 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/30 16:30:31 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:45:35 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ void	ft_move_enemy(t_game *game, t_enemy *enemy)
 	ft_move_enemy_step(game, enemy, delta, dist);
 	count++;
 	if (count < 8)
-		game->map->one_or_two = true;
+		game->map->one_or_two = 0;
+	else if (count >= 8 && count < 16)
+		game->map->one_or_two = 1;
 	else
-		game->map->one_or_two = false;
-	if (count > 16)
+		game->map->one_or_two = 2;
+	if (count > 24)
 		count = 0;
 }
 

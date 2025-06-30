@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/30 16:06:01 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:00:30 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_free_game(t_game *game)
 
 void	ft_free_image(t_game *game)
 {
-	if (game->image && game->image_resized)
+	if (game->image && game->image)
 	{
 		if (game->mlx)
 			ft_destroy_image(game);
@@ -48,8 +48,9 @@ void	ft_free_image(t_game *game)
 		free(game->image->doors.path);
 		free(game->image->vilain.path);
 		free(game->image->vilain_2.path);
+		free(game->image->vilain_3.path);
 		free(game->image);
-		free(game->image_resized);
+		free(game->image);
 	}
 }
 
@@ -96,6 +97,8 @@ void	ft_destroy_image(t_game *game)
 		mlx_destroy_image(game->mlx->mlx, game->image->vilain.img);
 	if (game->image->vilain_2.img)
 		mlx_destroy_image(game->mlx->mlx, game->image->vilain_2.img);
+	if (game->image->vilain_3.img)
+		mlx_destroy_image(game->mlx->mlx, game->image->vilain_3.img);
 	ft_destroy_resized_image(game);
 }
 
@@ -113,6 +116,8 @@ void	ft_destroy_resized_image(t_game *game)
 		mlx_destroy_image(game->mlx->mlx, game->image_resized->doors.img);
 	if (game->image_resized->vilain.img)
 		mlx_destroy_image(game->mlx->mlx, game->image_resized->vilain.img);
-	if (game->image_resized->vilain_2.img)
+	if (game->image->vilain_2.img)
 		mlx_destroy_image(game->mlx->mlx, game->image_resized->vilain_2.img);
+	if (game->image_resized->vilain_3.img)
+		mlx_destroy_image(game->mlx->mlx, game->image_resized->vilain_3.img);
 }

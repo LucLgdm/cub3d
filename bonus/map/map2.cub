@@ -5,6 +5,7 @@ EA ./texture/eagle.xpm
 DO ./texture/wood.xpm
 VI ./texture/skeleton_1.xpm
 V2 ./texture/skeleton_2.xpm
+V3 ./texture/skeleton_3.xpm
 
 11111111111111
 10000000000001

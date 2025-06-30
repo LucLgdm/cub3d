@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:58:46 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/30 16:25:03 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:45:48 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_map
 	int			num_teleporters;
 	int			num_doors;
 	int			num_enemy;
-	bool		one_or_two;
+	int			one_or_two;
 }	t_map;
 
 typedef struct s_mini_map

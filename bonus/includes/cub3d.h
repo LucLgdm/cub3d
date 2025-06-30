@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/30 16:09:27 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:55:14 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ void	ft_image_west(void *mlx, t_tex *west);
 void	ft_image_doors(void *mlx, t_tex *doors);
 void	ft_image_vilain(void *mlx, t_tex *vilain);
 void	ft_image_vilain_2(void *mlx, t_tex *vilain);
+void	ft_image_vilain_3(void *mlx, t_tex *vilain);
 void	resize_tex(t_tex *src, t_tex *dst);
 void	ft_resize_all_images(t_image *source, t_image *dest);
 
