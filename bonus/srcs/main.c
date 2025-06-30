@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:50:45 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/23 16:03:56 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:08:18 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_game(void)
 	t_mlx	*mlx;
 
 	game = ft_get_game();
-	mlx = game->mlx;
 	mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!mlx)
 		ft_print_error_and_exit("Error\nAllocation failed\n");
@@ -51,6 +50,7 @@ void	ft_game(void)
 	game->zbuffer = ft_calloc(game->width_w, sizeof(double));
 	if (!game->zbuffer)
 		ft_print_error_and_exit("Error malloc zbuffer\n");
+	game->mlx = mlx;
 	ft_image_generator(game);
 	ft_resize_all_images(game->image, game->image_resized);
 	ft_display(game);

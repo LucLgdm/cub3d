@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:02:39 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/23 15:21:02 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:27:49 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ void	ft_render_enemy_sprite(t_game *game, double dist, double angle,
 	ft_draw_enemy_texture(game, (t_position[]){start, end}, sprite_size, dist);
 }
 
+static t_tex *ft_choose_tex_enemy(t_game *game)
+{
+	if (game->map->one_or_two)
+		return (&game->image_resized->vilain);
+	else
+		return (&game->image_resized->vilain_2);
+}
 void	ft_draw_enemy_texture(t_game *game, t_position *pos,
 		int size, double dist)
 {
@@ -72,7 +79,7 @@ void	ft_draw_enemy_texture(t_game *game, t_position *pos,
 	t_tex		*tex;
 	int			color;
 
-	tex = &game->image_resized->vilain;
+	tex = ft_choose_tex_enemy(game);
 	x = pos[0].x - 1;
 	while (++x < pos[1].x)
 	{

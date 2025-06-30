@@ -1,9 +1,10 @@
-NO ./texture/pics/greystone.xpm
-SO ./texture/pics/bluestone.xpm
-WE ./texture/pics/barrel.xpm
-EA ./texture/pics/eagle.xpm
-DO ./texture/pics/wood.xpm
-VI ./texture/pics/skeleton.xpm
+NO ./texture/greystone.xpm
+SO ./texture/bluestone.xpm
+WE ./texture/barrel.xpm
+EA ./texture/eagle.xpm
+DO ./texture/wood.xpm
+VI ./texture/skeleton_1.xpm
+V2 ./texture/skeleton_2.xpm
 
 11111111111111
 10000000000001

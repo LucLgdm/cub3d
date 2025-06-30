@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/23 15:49:11 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:09:27 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void	ft_image_east(void *mlx, t_tex *east);
 void	ft_image_west(void *mlx, t_tex *west);
 void	ft_image_doors(void *mlx, t_tex *doors);
 void	ft_image_vilain(void *mlx, t_tex *vilain);
+void	ft_image_vilain_2(void *mlx, t_tex *vilain);
 void	resize_tex(t_tex *src, t_tex *dst);
 void	ft_resize_all_images(t_image *source, t_image *dest);
 
@@ -245,9 +246,9 @@ void	ft_malloc_mlx(t_game *game);
 void	ft_malloc_image(t_game *game);
 void	ft_malloc_map(t_game *game);
 void	ft_free_game(t_game *game);
-void	ft_free_mlx(t_mlx *mlx);
 void	ft_free_image(t_game *game);
 void	ft_destroy_image(t_game *game);
+void	ft_destroy_resized_image(t_game *game);
 void	ft_free_map(t_map *map);
 
 /********************

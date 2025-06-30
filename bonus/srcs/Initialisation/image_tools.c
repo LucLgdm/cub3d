@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 10:23:13 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/18 10:41:10 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:56:27 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_image_doors(void *mlx, t_tex *doors)
 	game = ft_get_game();
 	doors->img = mlx_xpm_file_to_image(mlx, doors->path, &(doors->width),
 			&(doors->height));
+	if(!doors->img)
+		ft_print_error_and_exit("Doors image failed\n");
 	doors->addr = mlx_get_data_addr(doors->img, &(doors->bits_per_pixel),
 			&(doors->line_length), &(doors->endian));
 	game->image_resized->doors.img = mlx_new_image(mlx, 32, 32);
@@ -38,6 +40,8 @@ void	ft_image_vilain(void *mlx, t_tex *vilain)
 	game = ft_get_game();
 	vilain->img = mlx_xpm_file_to_image(mlx, vilain->path, &(vilain->width),
 			&(vilain->height));
+	if(!vilain->img)
+		ft_print_error_and_exit("Vilain image failed\n");
 	vilain->addr = mlx_get_data_addr(vilain->img, &(vilain->bits_per_pixel),
 			&(vilain->line_length), &(vilain->endian));
 	game->image_resized->vilain.img = mlx_new_image(mlx, 32, 32);
@@ -48,6 +52,27 @@ void	ft_image_vilain(void *mlx, t_tex *vilain)
 			&game->image_resized->vilain.endian);
 	game->image_resized->vilain.width = 32;
 	game->image_resized->vilain.height = 32;
+}
+
+void	ft_image_vilain_2(void *mlx, t_tex *vilain)
+{
+	t_game	*game;
+
+	game = ft_get_game();
+	vilain->img = mlx_xpm_file_to_image(mlx, vilain->path, &(vilain->width),
+			&(vilain->height));
+	if(!vilain->img)
+		ft_print_error_and_exit("Vilain_2 image failed\n");
+	vilain->addr = mlx_get_data_addr(vilain->img, &(vilain->bits_per_pixel),
+			&(vilain->line_length), &(vilain->endian));
+	game->image_resized->vilain_2.img = mlx_new_image(mlx, 32, 32);
+	game->image_resized->vilain_2.addr = mlx_get_data_addr(
+			game->image_resized->vilain_2.img,
+			&game->image_resized->vilain_2.bits_per_pixel,
+			&game->image_resized->vilain_2.line_length,
+			&game->image_resized->vilain_2.endian);
+	game->image_resized->vilain_2.width = 32;
+	game->image_resized->vilain_2.height = 32;
 }
 
 void	resize_tex(t_tex *src, t_tex *dst)
@@ -85,4 +110,5 @@ void	ft_resize_all_images(t_image *source, t_image *dest)
 	resize_tex(&source->west, &dest->west);
 	resize_tex(&source->doors, &dest->doors);
 	resize_tex(&source->vilain, &dest->vilain);
+	resize_tex(&source->vilain_2, &dest->vilain_2);
 }

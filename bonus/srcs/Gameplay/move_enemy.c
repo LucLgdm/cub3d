@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:01:16 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/19 12:50:30 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:30:31 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	ft_move_enemy(t_game *game, t_enemy *enemy)
 	t_position	player;
 	t_position	delta;
 	double		dist;
+	static int	count;
 
 	player = game->player->pos;
 	delta.x = player.x - enemy->pos.x;
@@ -61,6 +62,13 @@ void	ft_move_enemy(t_game *game, t_enemy *enemy)
 	if (!has_line_of_sight(enemy->pos.x, enemy->pos.y, player))
 		return ;
 	ft_move_enemy_step(game, enemy, delta, dist);
+	count++;
+	if (count < 8)
+		game->map->one_or_two = true;
+	else
+		game->map->one_or_two = false;
+	if (count > 16)
+		count = 0;
 }
 
 void	ft_move_enemy_step(t_game *game, t_enemy *enemy, t_position delta,

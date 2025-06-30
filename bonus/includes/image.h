@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:43:30 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/23 15:49:22 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:51:40 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_image
 	t_tex	west;
 	t_tex	doors;
 	t_tex	vilain;
+	t_tex	vilain_2;
 }	t_image;
 
 #endif
