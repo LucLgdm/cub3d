@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:44:36 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/24 15:46:54 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:37:52 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,23 @@ char	**ft_fill_color_2(char *line, int fd)
 	return (splited);
 }
 
+void	ft_check_int(char **splited, char *line, int fd)
+{
+	long	res;
+	int		i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		res = ft_atol(splited[i]);
+		if (res > INT_MAX)
+		{
+			ft_free_array(splited);
+			ft_exit_parsing(fd, line, "Error\nOverflow color\n");
+		}
+	}
+}
+
 void	ft_fill_color(char *line, int fd)
 {
 	t_color	color;
@@ -58,6 +75,7 @@ void	ft_fill_color(char *line, int fd)
 	splited = ft_fill_color_2(line, fd);
 	color.value = 0;
 	i = -1;
+	ft_check_int(splited, line, fd);
 	while (++i < 3)
 	{
 		if (ft_atoi(splited[i]) < 0 || ft_atoi(splited[i]) > 255)

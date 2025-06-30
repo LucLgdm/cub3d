@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:52:01 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/16 17:30:25 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:39:00 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <limits.h>
 
 # define PI 3.1415926535
 # define T_SIZE 32.0
@@ -150,6 +151,7 @@ void				ft_fill_game_color(char *line, t_color *color);
 char				**ft_fill_color_2(char *line, int fd);
 void				ft_fill_color(char *line, int fd);
 bool				ft_is_color(char *line);
+void				ft_check_int(char **splited, char *line, int fd);
 
 /*    MAP    */
 void				ft_get_map(t_game *game, int fd, char *line);

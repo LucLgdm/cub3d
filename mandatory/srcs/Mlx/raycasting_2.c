@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/16 17:30:28 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:48:35 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ t_tex	*ft_choose_tex(t_game *game, t_raycasting *ray)
 	if (ray->hit_v)
 	{
 		if (ray->angle < PI / 2 || ray->angle > 3 * PI / 2)
-			tex = &game->image_resized->north;
+			tex = &game->image_resized->west;
 		else
-			tex = &game->image_resized->south;
+			tex = &game->image_resized->east;
 	}
 	else
 	{
 		if (ray->angle < PI)
-			tex = &game->image_resized->west;
+			tex = &game->image_resized->north;
 		else
-			tex = &game->image_resized->east;
+			tex = &game->image_resized->south;
 	}
 	return (tex);
 }
@@ -69,6 +69,9 @@ int	ft_calc_tex_x(t_tex *tex, t_raycasting *ray)
 	else
 		wall_x = ray->final.x / tex->height - floor(ray->final.x / tex->height);
 	tex_x = (int)(wall_x * (double)tex->width);
+	if ((ray->angle > PI / 2 && ray->angle < 3 * PI / 2 && ray->hit_v))
+		// || (ray->angle > PI && !ray->hit_v))
+		tex_x = tex->width - tex_x - 1;
 	if (tex_x < 0)
 		tex_x = 0;
 	if (tex_x >= tex->width)

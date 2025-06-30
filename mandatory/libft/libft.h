@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luclgdm <luclgdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 10:20:13 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/05/02 08:46:33 by luclgdm          ###   ########.fr       */
+/*   Updated: 2025/06/30 13:49:55 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ struct	s_list
 };
 
 int		ft_next_prime(int n);
+long	ft_atol(const char *nptr);
 bool	ft_isprime(int n);
 int		ft_arraylen(char **str);
 void	ft_free_array(char **split);

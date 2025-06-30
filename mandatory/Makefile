@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/24 15:45:53 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/06/30 15:36:26 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ INVALID_MAPS = \
 	map/invalid_map/wrong_char.cub \
 	map/invalid_map/invalid_texture.cub \
 	map/invalid_map/wrong_color.cub \
-	map/invalid_map/wrong_color_2.cub 
+	map/invalid_map/wrong_color_2.cub \
+	map/invalid_map/overflow_color.cub
 
 # Liste des fichiers source
 SRC_FILES = main.c free.c malloc.c game_init.c parsing.c parsing_link.c \

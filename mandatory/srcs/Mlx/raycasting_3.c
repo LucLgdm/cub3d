@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:38:14 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/16 17:16:14 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:28:19 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_set_ray_color(t_raycasting *ray)
 	else
 	{
 		if (ray->angle < PI)
-			ray->color = ft_create_color(255, 25, 25, 135);
+			ray->color = ft_create_color(255, 53, 64, 135);
 		else
 			ray->color = ft_create_color(255, 155, 32, 137);
 	}

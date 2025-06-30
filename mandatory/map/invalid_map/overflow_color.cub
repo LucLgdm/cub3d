@@ -3,9 +3,9 @@ SO ./texture/pics/bluestone.xpm
 WE ./texture/pics/colorstone.xpm
 EA ./texture/pics/purplestone.xpm
 
-C 20,20,20, 20
+C 20,20,20
 
-F 42,42,42
+F 42,42,4289235034876520834847290847309845029345780123945
 
         1111111111111111111111111
         1000000000110000000000001
