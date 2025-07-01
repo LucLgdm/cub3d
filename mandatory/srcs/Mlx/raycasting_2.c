@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:52:52 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/30 15:59:46 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/07/01 09:48:27 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ int	ft_calc_tex_x(t_tex *tex, t_raycasting *ray)
 	else
 		wall_x = ray->final.x / tex->height - floor(ray->final.x / tex->height);
 	tex_x = (int)(wall_x * (double)tex->width);
-	// if ((ray->angle > PI / 2 && ray->angle < 3 * PI / 2 && ray->hit_v))
-	// 	// || (ray->angle > PI && !ray->hit_v))
-	// 	tex_x = tex->width - tex_x - 1;
 	if (tex_x < 0)
 		tex_x = 0;
 	if (tex_x >= tex->width)
 		tex_x = tex->width - 1;
+	if (((ray->angle < PI / 2 || ray->angle > 3 * PI / 2) && ray->hit_v)
+		|| (ray->angle < PI && !ray->hit_v))
+		tex_x = tex->width - tex_x - 1;
 	return (tex_x);
 }
 
