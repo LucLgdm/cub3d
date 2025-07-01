@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:02:39 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/06/30 18:00:30 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/07/01 09:59:21 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,15 @@ void	ft_draw_enemy(t_game *game, t_enemy enemy)
 {
 	double	dx;
 	double	dy;
+	t_position dxdy;
 	double	dist;
 	double	angle;
 	double	fov;
 
-	dx = enemy.pos.x - game->player->pos.x;
-	dy = enemy.pos.y - game->player->pos.y;
-	dist = sqrt(dx * dx + dy * dy);
-	angle = atan2(dy, dx) - game->player->angle;
+	dxdy.dx = enemy.pos.x - game->player->pos.x;
+	dxdy.dy = enemy.pos.y - game->player->pos.y;
+	dist = sqrt(dxdy.dx * dxdy.dx + dxdy.dy * dxdy.dy);
+	angle = atan2(dxdy.dy, dxdy.dx) - game->player->angle;
 	while (angle > PI)
 		angle -= 2 * PI;
 	while (angle < -PI)
@@ -63,17 +64,17 @@ void	ft_render_enemy_sprite(t_game *game, double dist, double angle,
 	ft_draw_enemy_texture(game, (t_position[]){start, end}, sprite_size, dist);
 }
 
-static t_tex *ft_choose_tex_enemy(t_game *game)
+static t_tex	*ft_choose_tex_enemy(t_game *game)
 {
 	if (game->map->one_or_two == 0)
 		return (&game->image_resized->vilain);
-	else if  (game->map->one_or_two == 1)
+	else if (game->map->one_or_two == 1)
 		return (&game->image_resized->vilain_2);
 	else
 		return (&game->image_resized->vilain_3);
 }
-void	ft_draw_enemy_texture(t_game *game, t_position *pos,
-		int size, double dist)
+void	ft_draw_enemy_texture(t_game *game, t_position *pos, int size,
+		double dist)
 {
 	int			x;
 	int			y;

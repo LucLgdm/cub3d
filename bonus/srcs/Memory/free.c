@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 10:43:12 by luclgdm           #+#    #+#             */
-/*   Updated: 2025/06/30 18:00:30 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/07/01 08:45:51 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_free_image(t_game *game)
 		free(game->image->vilain.path);
 		free(game->image->vilain_2.path);
 		free(game->image->vilain_3.path);
-		free(game->image);
+		free(game->image_resized);
 		free(game->image);
 	}
 }

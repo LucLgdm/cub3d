@@ -1,7 +1,7 @@
-NO ./texture/greystone.xpm
+NO ./texture/bluestone.xpm
 SO ./texture/bluestone.xpm
-WE ./texture/barrel.xpm
-EA ./texture/eagle.xpm
+WE ./texture/bluestone.xpm
+EA ./texture/bluestone.xpm
 DO ./texture/wood.xpm
 VI ./texture/skeleton_1.xpm
 V2 ./texture/skeleton_2.xpm
