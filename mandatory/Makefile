@@ -47,6 +47,7 @@ INVALID_MAPS = \
 	map/invalid_map/invalid_texture.cub \
 	map/invalid_map/wrong_color.cub \
 	map/invalid_map/wrong_color_2.cub \
+	map/invalid_map/wrong_color_3.cub \
 	map/invalid_map/overflow_color.cub
 
 # Liste des fichiers source
