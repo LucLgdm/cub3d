@@ -6,11 +6,11 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 15:49:27 by luclgdm           #+#    #+#              #
-#    Updated: 2025/06/23 15:32:55 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/07/02 15:57:22 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-vpath %.c srcs
+vpath %.c srcs srcs/Error srcs/Gameplay srcs/Initialisation srcs/Memory srcs/Mlx
 
 NAME = cub3D
 
@@ -30,38 +30,12 @@ MLX_DIR = Mlx/
 GME_DIR = Gameplay/
 
 # Liste des fichiers source
-SRC_FILES = $(SRC_DIR)main.c \
-			$(SRC_DIR)$(MEM_DIR)free.c \
-			$(SRC_DIR)$(MEM_DIR)malloc.c \
-			$(SRC_DIR)$(INI_DIR)game_init.c \
-			$(SRC_DIR)$(INI_DIR)parsing.c \
-			$(SRC_DIR)$(INI_DIR)parsing_link.c \
-			$(SRC_DIR)$(INI_DIR)image_tools.c \
-			$(SRC_DIR)$(INI_DIR)parsing_map.c \
-			$(SRC_DIR)$(INI_DIR)fill_struct.c \
-			$(SRC_DIR)$(INI_DIR)check_map.c \
-			$(SRC_DIR)$(INI_DIR)image_generator.c \
-			$(SRC_DIR)$(ERR_DIR)error.c \
-			$(SRC_DIR)$(ERR_DIR)print.c \
-			$(SRC_DIR)$(MLX_DIR)display.c \
-			$(SRC_DIR)$(MLX_DIR)correction.c \
-			$(SRC_DIR)$(MLX_DIR)drawing.c \
-			$(SRC_DIR)$(MLX_DIR)raycasting.c \
-			$(SRC_DIR)$(MLX_DIR)raycasting_2.c \
-			$(SRC_DIR)$(MLX_DIR)raycasting_3.c \
-			$(SRC_DIR)$(MLX_DIR)usefull.c \
-			$(SRC_DIR)$(MLX_DIR)draw_world.c \
-			$(SRC_DIR)$(GME_DIR)status.c \
-			$(SRC_DIR)$(GME_DIR)quit.c \
-			$(SRC_DIR)$(GME_DIR)extra.c \
-			$(SRC_DIR)$(GME_DIR)move.c \
-			$(SRC_DIR)$(GME_DIR)doors.c \
-			$(SRC_DIR)$(GME_DIR)move_use.c \
-			$(SRC_DIR)$(GME_DIR)mini_map.c \
-			$(SRC_DIR)$(GME_DIR)display_enemy.c \
-			$(SRC_DIR)$(GME_DIR)mini_map_enemy.c \
-			$(SRC_DIR)$(GME_DIR)draw_geometrical.c \
-			$(SRC_DIR)$(GME_DIR)move_enemy.c
+SRC_FILES = main.c free.c malloc.c 	game_init.c parsing.c parsing_link.c image_tools.c \
+			parsing_map.c fill_struct.c check_map.c	image_generator.c error.c \
+			print.c display.c correction.c drawing.c raycasting.c raycasting_2.c \
+			raycasting_3.c usefull.c draw_world.c status.c quit.c extra.c \
+			move.c doors.c move_use.c mini_map.c display_enemy.c mini_map_enemy.c \
+			draw_geometrical.c move_enemy.c image_vilain.c
 			
 # Transforme chaque fichier source en un fichier objet dans $(OBJ_DIR)
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
@@ -75,12 +49,6 @@ $(OBJ_DIR)%.o: %.c
 # Création du dossier objs/ et des sous-répertoires s'ils n'existent pas
 mkdir_obj:
 	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)$(SRC_DIR)
-	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(MEM_DIR)
-	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(INI_DIR)
-	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(ERR_DIR)
-	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(MLX_DIR)
-	@mkdir -p $(OBJ_DIR)$(SRC_DIR)$(GME_DIR)
 
 # Compilation finale
 $(NAME): $(OBJS)
